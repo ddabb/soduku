@@ -322,7 +322,6 @@ namespace Soduku
             // postion_0_0
             // 
             this.postion_0_0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.postion_0_0.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.postion_0_0.Location = new System.Drawing.Point(1, 1);
             this.postion_0_0.Margin = new System.Windows.Forms.Padding(0);
             this.postion_0_0.Multiline = true;
@@ -330,6 +329,7 @@ namespace Soduku
             this.postion_0_0.Size = new System.Drawing.Size(50, 50);
             this.postion_0_0.TabIndex = 0;
             this.postion_0_0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_0_0.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_0_1
             // 
@@ -340,6 +340,8 @@ namespace Soduku
             this.postion_0_1.Name = "postion_0_1";
             this.postion_0_1.Size = new System.Drawing.Size(50, 50);
             this.postion_0_1.TabIndex = 0;
+            this.postion_0_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_0_1.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_0_2
             // 
@@ -350,6 +352,8 @@ namespace Soduku
             this.postion_0_2.Name = "postion_0_2";
             this.postion_0_2.Size = new System.Drawing.Size(50, 50);
             this.postion_0_2.TabIndex = 0;
+            this.postion_0_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_0_2.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_0_3
             // 
@@ -360,6 +364,8 @@ namespace Soduku
             this.postion_0_3.Name = "postion_0_3";
             this.postion_0_3.Size = new System.Drawing.Size(50, 50);
             this.postion_0_3.TabIndex = 0;
+            this.postion_0_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_0_3.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_0_4
             // 
@@ -370,6 +376,8 @@ namespace Soduku
             this.postion_0_4.Name = "postion_0_4";
             this.postion_0_4.Size = new System.Drawing.Size(50, 50);
             this.postion_0_4.TabIndex = 0;
+            this.postion_0_4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_0_4.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_0_5
             // 
@@ -380,6 +388,8 @@ namespace Soduku
             this.postion_0_5.Name = "postion_0_5";
             this.postion_0_5.Size = new System.Drawing.Size(50, 50);
             this.postion_0_5.TabIndex = 0;
+            this.postion_0_5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_0_5.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_0_6
             // 
@@ -390,6 +400,8 @@ namespace Soduku
             this.postion_0_6.Name = "postion_0_6";
             this.postion_0_6.Size = new System.Drawing.Size(50, 50);
             this.postion_0_6.TabIndex = 0;
+            this.postion_0_6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_0_6.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_0_7
             // 
@@ -400,6 +412,8 @@ namespace Soduku
             this.postion_0_7.Name = "postion_0_7";
             this.postion_0_7.Size = new System.Drawing.Size(50, 50);
             this.postion_0_7.TabIndex = 0;
+            this.postion_0_7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_0_7.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_0_8
             // 
@@ -410,6 +424,8 @@ namespace Soduku
             this.postion_0_8.Name = "postion_0_8";
             this.postion_0_8.Size = new System.Drawing.Size(50, 50);
             this.postion_0_8.TabIndex = 0;
+            this.postion_0_8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_0_8.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_1_0
             // 
@@ -420,6 +436,8 @@ namespace Soduku
             this.postion_1_0.Name = "postion_1_0";
             this.postion_1_0.Size = new System.Drawing.Size(50, 50);
             this.postion_1_0.TabIndex = 0;
+            this.postion_1_0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_1_0.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_1_1
             // 
@@ -430,6 +448,8 @@ namespace Soduku
             this.postion_1_1.Name = "postion_1_1";
             this.postion_1_1.Size = new System.Drawing.Size(50, 50);
             this.postion_1_1.TabIndex = 0;
+            this.postion_1_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_1_1.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_1_2
             // 
@@ -440,6 +460,8 @@ namespace Soduku
             this.postion_1_2.Name = "postion_1_2";
             this.postion_1_2.Size = new System.Drawing.Size(50, 50);
             this.postion_1_2.TabIndex = 0;
+            this.postion_1_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_1_2.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_1_3
             // 
@@ -450,6 +472,8 @@ namespace Soduku
             this.postion_1_3.Name = "postion_1_3";
             this.postion_1_3.Size = new System.Drawing.Size(50, 50);
             this.postion_1_3.TabIndex = 0;
+            this.postion_1_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_1_3.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_1_4
             // 
@@ -460,6 +484,8 @@ namespace Soduku
             this.postion_1_4.Name = "postion_1_4";
             this.postion_1_4.Size = new System.Drawing.Size(50, 50);
             this.postion_1_4.TabIndex = 0;
+            this.postion_1_4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_1_4.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_1_5
             // 
@@ -470,6 +496,8 @@ namespace Soduku
             this.postion_1_5.Name = "postion_1_5";
             this.postion_1_5.Size = new System.Drawing.Size(50, 50);
             this.postion_1_5.TabIndex = 0;
+            this.postion_1_5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_1_5.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_1_6
             // 
@@ -480,6 +508,8 @@ namespace Soduku
             this.postion_1_6.Name = "postion_1_6";
             this.postion_1_6.Size = new System.Drawing.Size(50, 50);
             this.postion_1_6.TabIndex = 0;
+            this.postion_1_6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_1_6.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_1_7
             // 
@@ -490,6 +520,8 @@ namespace Soduku
             this.postion_1_7.Name = "postion_1_7";
             this.postion_1_7.Size = new System.Drawing.Size(50, 50);
             this.postion_1_7.TabIndex = 0;
+            this.postion_1_7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_1_7.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_1_8
             // 
@@ -500,6 +532,8 @@ namespace Soduku
             this.postion_1_8.Name = "postion_1_8";
             this.postion_1_8.Size = new System.Drawing.Size(50, 50);
             this.postion_1_8.TabIndex = 0;
+            this.postion_1_8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_1_8.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_2_0
             // 
@@ -510,6 +544,8 @@ namespace Soduku
             this.postion_2_0.Name = "postion_2_0";
             this.postion_2_0.Size = new System.Drawing.Size(50, 50);
             this.postion_2_0.TabIndex = 0;
+            this.postion_2_0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.postion_2_0.Font = new System.Drawing.Font("楷体", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // postion_2_1
             // 
