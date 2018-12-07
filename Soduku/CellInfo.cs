@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Soduku
 {
-    class CellInfo
+   public class CellInfo
     {
     }
 }
