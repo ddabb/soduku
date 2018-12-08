@@ -30,7 +30,7 @@ namespace Soduku
             return new List<List<int>> {list1, list2, list3, list4, list5, list6, list7, list8, list9};
         }
 
-        public List<int> moveToTail(List<int> list, int size)
+        private List<int> moveToTail(List<int> list, int size)
         {
             List<int> a = new List<int>();
             List<int> b = new List<int>();
@@ -51,30 +51,98 @@ namespace Soduku
         }
 
         /// <summary>
+        /// 横向9个链表
+        /// 纵向9个链表
+        /// 九宫格9个链表
+        /// </summary>
+        /// <returns></returns>
+        public List<List<int>> FilledDatas()
+        {
+            List<List<int>> result = new List<List<int>>();
+            for (int i = 0; i < 9; i++)
+            {
+                result.Add(new List<int>());
+            }
+
+            return result;
+        }
+
+  
+
+        /// <summary>
+        /// 行已填充数据
+        /// </summary>
+        public static List<List<int>> rowDatas;
+
+        /// <summary>
+        /// 列已填充数据
+        /// </summary>
+        public static List<List<int>> columnDatas;
+
+
+        /// <summary>
+        /// 宫已填充数据
+        /// </summary>
+        public static List<List<int>> gongDatas;
+
+
+        private static Dictionary<string, CellInfo> cellInfos;
+
+
+        /// <summary>
         /// 出题
         /// </summary>
         /// <returns></returns>
         public List<List<int>> Question()
         {
-            var empty= new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            var list1 = new List<int>{0,5,0,0,0,0,0,2,0};
-            var list2 = new List<int> { 4, 0, 0, 2, 0, 6, 0, 0, 7 };
-            var list3 = new List<int> { 0, 0, 8, 0, 3, 0, 1, 0, 0 };
-            var list4 = new List<int> { 0, 1, 0, 0, 0, 0, 0, 6, 0 };
-            var list5 = new List<int> { 0, 0, 9, 0, 0, 0, 5, 0, 0 };
-            var list6 = new List<int> { 0, 7, 0, 0, 0, 0, 0, 9, 0 };
-            var list7 = new List<int> { 0, 0, 5, 0, 8, 0, 3, 0, 0 };
-            var list8 = new List<int> { 7, 0, 0, 9, 0, 1, 0, 0, 4 };
-            var list9 = new List<int> { 0, 2, 0, 0, 0, 0, 0, 7, 0 };
-            return new List<List<int>> { list1, list2, list3, list4, list5, list6, list7, list8, list9 };
+            var list1 = new List<int> {0, 5, 0, 0, 0, 0, 0, 2, 0};
+            var list2 = new List<int> {4, 0, 0, 2, 0, 6, 0, 0, 7};
+            var list3 = new List<int> {0, 0, 8, 0, 3, 0, 1, 0, 0};
+            var list4 = new List<int> {0, 1, 0, 0, 0, 0, 0, 6, 0};
+            var list5 = new List<int> {0, 0, 9, 0, 0, 0, 5, 0, 0};
+            var list6 = new List<int> {0, 7, 0, 0, 0, 0, 0, 9, 0};
+            var list7 = new List<int> {0, 0, 5, 0, 8, 0, 3, 0, 0};
+            var list8 = new List<int> {7, 0, 0, 9, 0, 1, 0, 0, 4};
+            var list9 = new List<int> {0, 2, 0, 0, 0, 0, 0, 7, 0};
+            return new List<List<int>> {list1, list2, list3, list4, list5, list6, list7, list8, list9};
         }
 
         /// <summary>
         /// 解题
         /// </summary>
         /// <returns></returns>
-        public List<List<int>> Solve()
+        public List<List<int>> Solve(List<List<int>> values, bool firsttime)
+
         {
+            if (firsttime)
+            {
+                rowDatas = FilledDatas();
+                columnDatas = FilledDatas();
+                gongDatas = FilledDatas();
+                cellInfos = new Dictionary<string, CellInfo>();
+
+                int row = 0;
+
+                foreach (var list in values)
+                {
+                    int column = 0;
+                    foreach (var value in list)
+                    {
+                        CellInfo cell = new CellInfo(row, column);
+                        if (value != 0)
+                        {
+                            cell.SetValue(value);
+                        }
+
+
+                        column += 1;
+                    }
+
+                    row += 1;
+                }
+            }
+
+
             return new List<List<int>>();
         }
 

@@ -20,7 +20,7 @@ namespace Soduku
  
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(this, true, null);
+            this.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)?.SetValue(this, true, null);
 
             for (int i = 0; i < numbers; i++)
             {

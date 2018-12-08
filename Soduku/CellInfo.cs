@@ -18,10 +18,19 @@ namespace Soduku
         /// </summary>
         private int column;
 
+
+        /// <summary>
+        /// 宫格
+        /// </summary>
+        private int gong;
+
+
         /// <summary>
         /// 剩余可选项
         /// </summary>
         private List<int> rests;
+
+
 
         /// <summary>
         /// 是否初始化数据
@@ -38,31 +47,48 @@ namespace Soduku
         /// </summary>
         public bool isComfirm;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="value"></param>
-        /// <param name="isInit"></param>
-        public CellInfo(int x, int y, int value, bool isInit = false) : this(x, y)
+        public static int GetGong(int x, int y)
         {
-            this.isInit = isInit;
-            this.Value = value;
-            this.rests.Clear();
+            return (x / 3) * 3 + (y / 3);
         }
-
 
         public CellInfo(int x, int y)
         {
             this.row = x;
             this.column = y;
-            this.rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            this.gong = GetGong(row, column);
         }
 
+        /// <summary>
+        /// hangRest 0~8表示行
+        /// </summary>
+        /// <param name="value"></param>
         public void SetValue(int value)
         {
             this.Value = value;
+            Soduku.columnDatas[this.column].Add(value);
+            Soduku.rowDatas[this.row].Add(value);
+            Soduku.gongDatas[this.gong].Add(value);
+        }
+
+        public List<int> GetRest()
+        {
+            List<int> all=new List<int>{1,2,3,4,5,6,7,8,9};
+        
+            foreach (var rowExists in Soduku.rowDatas[row])
+            {
+                all.Remove(rowExists);
+            }
+            foreach (var columnExists in Soduku.columnDatas[column])
+            {
+                all.Remove(columnExists);
+            }
+            foreach (var gongExists in Soduku.gongDatas[gong])
+            {
+                all.Remove(gongExists);
+            }
+
+            return all;
         }
     }
 }
