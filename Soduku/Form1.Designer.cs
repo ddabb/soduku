@@ -112,7 +112,10 @@ namespace Soduku
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.resultMessage = new System.Windows.Forms.Label();
+            this.helpMessage = new System.Windows.Forms.Label();
+            this.isShowHelp = new System.Windows.Forms.CheckBox();
+            this.makeQuestion = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -796,7 +799,7 @@ namespace Soduku
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(48, 12);
+            this.button1.Location = new System.Drawing.Point(28, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -806,7 +809,7 @@ namespace Soduku
             // 
             // SolveSoduku
             // 
-            this.SolveSoduku.Location = new System.Drawing.Point(129, 12);
+            this.SolveSoduku.Location = new System.Drawing.Point(236, 12);
             this.SolveSoduku.Name = "SolveSoduku";
             this.SolveSoduku.Size = new System.Drawing.Size(75, 23);
             this.SolveSoduku.TabIndex = 1;
@@ -815,7 +818,7 @@ namespace Soduku
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(373, 12);
+            this.button2.Location = new System.Drawing.Point(480, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -825,7 +828,7 @@ namespace Soduku
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(210, 12);
+            this.button3.Location = new System.Drawing.Point(317, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 3;
@@ -834,27 +837,59 @@ namespace Soduku
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(292, 12);
+            this.button4.Location = new System.Drawing.Point(399, 12);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 4;
             this.button4.Text = "导入数独";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // resultMessage
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(559, 118);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 15);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "label1";
+            this.resultMessage.AutoSize = true;
+            this.resultMessage.Location = new System.Drawing.Point(559, 118);
+            this.resultMessage.Name = "resultMessage";
+            this.resultMessage.Size = new System.Drawing.Size(55, 15);
+            this.resultMessage.TabIndex = 5;
+            this.resultMessage.Text = "label1";
+            // 
+            // helpMessage
+            // 
+            this.helpMessage.AutoSize = true;
+            this.helpMessage.Location = new System.Drawing.Point(196, 73);
+            this.helpMessage.Name = "helpMessage";
+            this.helpMessage.Size = new System.Drawing.Size(71, 15);
+            this.helpMessage.TabIndex = 6;
+            this.helpMessage.Text = "helpText";
+            // 
+            // isShowHelp
+            // 
+            this.isShowHelp.AutoSize = true;
+            this.isShowHelp.Location = new System.Drawing.Point(32, 73);
+            this.isShowHelp.Name = "isShowHelp";
+            this.isShowHelp.Size = new System.Drawing.Size(149, 19);
+            this.isShowHelp.TabIndex = 7;
+            this.isShowHelp.Text = "是否显示帮助信息";
+            this.isShowHelp.UseVisualStyleBackColor = true;
+            // 
+            // makeQuestion
+            // 
+            this.makeQuestion.Location = new System.Drawing.Point(123, 12);
+            this.makeQuestion.Name = "makeQuestion";
+            this.makeQuestion.Size = new System.Drawing.Size(106, 23);
+            this.makeQuestion.TabIndex = 8;
+            this.makeQuestion.Text = "出数独题目";
+            this.makeQuestion.UseVisualStyleBackColor = true;
+            this.makeQuestion.Click += new System.EventHandler(this.makeQuestion_Click);
             // 
             // Form1
             // 
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(906, 749);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.makeQuestion);
+            this.Controls.Add(this.isShowHelp);
+            this.Controls.Add(this.helpMessage);
+            this.Controls.Add(this.resultMessage);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -968,6 +1003,9 @@ namespace Soduku
         private Button button3;
         private Button button4;
         private Button button2;
-        private Label label1;
+        private Label resultMessage;
+        private Label helpMessage;
+        private CheckBox isShowHelp;
+        private Button makeQuestion;
     }
 }

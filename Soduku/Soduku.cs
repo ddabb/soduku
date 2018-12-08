@@ -56,7 +56,17 @@ namespace Soduku
         /// <returns></returns>
         public List<List<int>> Question()
         {
-            return new List<List<int>>();
+            var empty= new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            var list1 = new List<int>{0,5,0,0,0,0,0,2,0};
+            var list2 = new List<int> { 4, 0, 0, 2, 0, 6, 0, 0, 7 };
+            var list3 = new List<int> { 0, 0, 8, 0, 3, 0, 1, 0, 0 };
+            var list4 = new List<int> { 0, 1, 0, 0, 0, 0, 0, 6, 0 };
+            var list5 = new List<int> { 0, 0, 9, 0, 0, 0, 5, 0, 0 };
+            var list6 = new List<int> { 0, 7, 0, 0, 0, 0, 0, 9, 0 };
+            var list7 = new List<int> { 0, 0, 5, 0, 8, 0, 3, 0, 0 };
+            var list8 = new List<int> { 7, 0, 0, 9, 0, 1, 0, 0, 4 };
+            var list9 = new List<int> { 0, 2, 0, 0, 0, 0, 0, 7, 0 };
+            return new List<List<int>> { list1, list2, list3, list4, list5, list6, list7, list8, list9 };
         }
 
         /// <summary>
