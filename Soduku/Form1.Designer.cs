@@ -899,12 +899,17 @@ namespace Soduku
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.tableLayoutPanel1.Paint+=new PaintEventHandler(this.DrawBorder);
+
+            this.tableLayoutPanel1.CellPaint+=new TableLayoutCellPaintEventHandler(this.tableLayoutPanel1_CellPaint);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+  
         private IContainer components = null;
 
         private TableLayoutPanel tableLayoutPanel1;

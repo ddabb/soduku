@@ -20,6 +20,8 @@ namespace Soduku
  
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(this, true, null);
+
             for (int i = 0; i < numbers; i++)
             {
                 for (int j = 0; j < numbers; j++)
@@ -28,21 +30,30 @@ namespace Soduku
                             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
                                                                      | System.Reflection.BindingFlags.IgnoreCase)
                         ?.GetValue(this);
-                    TextBox testBox = (TextBox) obj;
+                    TextBox testBox = (TextBox)obj;
                     if (testBox == null) continue;
-                    testBox.Dock = DockStyle.Fill;
-                    testBox.Margin = new Padding(0);
+                    testBox.Dock = DockStyle.None;
+                    testBox.Margin = new Padding(2);
+                    testBox.BorderStyle = BorderStyle.None;
                     testBox.Multiline = true;
                     testBox.Size = new Size(50, 50);
                     testBox.TabIndex = 0;
                     testBox.TextAlign = HorizontalAlignment.Center;
-                    testBox.Font = new Font("Dotum", 30f, FontStyle.Regular, GraphicsUnit.Point, ((byte) (134)));
+                    testBox.Font = new Font("Dotum", 30f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
                     testBox.TextChanged += new EventHandler(textChanged);
                     testBox.MouseEnter += new EventHandler(MouseEntere);
                 }
             }
         }
 
+        private Color borderColor = Color.Black;
+
+
+        public Color BorderColor
+        {
+            get { return borderColor; }
+            set { borderColor = value; }
+        }
         private void MouseEntere(object sender, EventArgs e)
         {
             var ctx = (TextBox) sender;
@@ -50,6 +61,9 @@ namespace Soduku
             var thisValue = ctx.Text;
             resultMessage.Text = thisValue;
             if (string.IsNullOrEmpty(thisValue)) return;
+
+        //var postion=    this.tableLayoutPanel1.GetCellPosition(ctx);
+           
 
             for (int i = 0; i < numbers; i++)
             {
@@ -78,6 +92,64 @@ namespace Soduku
           
         }
 
+        private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        {
+            if (e.Row == 2 || e.Row == 5)
+            {
+                ControlPaint.DrawBorder(e.Graphics,
+                    e.CellBounds,
+                    Color.Black,//7f9db9
+                    0,
+                    ButtonBorderStyle.Solid,
+                    Color.Black,
+                    0,
+                    ButtonBorderStyle.Solid,
+                    Color.Black,
+                    0,
+                    ButtonBorderStyle.Solid,
+                    Color.Black,
+                    2,
+                    ButtonBorderStyle.Solid);
+            }
+
+            if (e.Column == 2||e.Column==5)
+            {
+                ControlPaint.DrawBorder(e.Graphics,
+                    e.CellBounds,
+                    Color.Black,//7f9db9
+                    0,
+                    ButtonBorderStyle.Solid,
+                    Color.Black,
+                    0,
+                    ButtonBorderStyle.Solid,
+                    Color.Black,
+                    2,
+                    ButtonBorderStyle.Solid,
+                    Color.Black,
+                    0,
+                    ButtonBorderStyle.Solid);
+            }
+
+
+        }
+
+        private void DrawBorder(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics,
+                this.tableLayoutPanel1.ClientRectangle,
+                Color.Black,//7f9db9
+                2,
+                ButtonBorderStyle.Solid,
+                Color.Black,
+                2,
+                ButtonBorderStyle.Solid,
+                Color.Black,
+                2,
+                ButtonBorderStyle.Solid,
+                Color.Black,
+                2,
+                ButtonBorderStyle.Solid);
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -108,6 +180,7 @@ namespace Soduku
 
             var breakouot = 0;
         }
+
 
         private void makeQuestion_Click(object sender, EventArgs e)
         {
