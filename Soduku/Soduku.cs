@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -151,33 +153,30 @@ namespace Soduku
             if (false)
             {
                 //该难度 唯余法 宮摒除 行摒除 列摒除 xwing就足够了。
-                var list1 = new List<int> { 0, 5, 0, 0, 0, 0, 0, 2, 0 };
-                var list2 = new List<int> { 4, 0, 0, 2, 0, 6, 0, 0, 7 };
-                var list3 = new List<int> { 0, 0, 8, 0, 3, 0, 1, 0, 0 };
-                var list4 = new List<int> { 0, 1, 0, 0, 0, 0, 0, 6, 0 };
-                var list5 = new List<int> { 0, 0, 9, 0, 0, 0, 5, 0, 0 };
-                var list6 = new List<int> { 0, 7, 0, 0, 0, 0, 0, 9, 0 };
-                var list7 = new List<int> { 0, 0, 5, 0, 8, 0, 3, 0, 0 };
-                var list8 = new List<int> { 7, 0, 0, 9, 0, 1, 0, 0, 4 };
-                var list9 = new List<int> { 0, 2, 0, 0, 0, 0, 0, 7, 0 };
-                return new List<List<int>> { list1, list2, list3, list4, list5, list6, list7, list8, list9 };
+                var list1 = new List<int> {0, 5, 0, 0, 0, 0, 0, 2, 0};
+                var list2 = new List<int> {4, 0, 0, 2, 0, 6, 0, 0, 7};
+                var list3 = new List<int> {0, 0, 8, 0, 3, 0, 1, 0, 0};
+                var list4 = new List<int> {0, 1, 0, 0, 0, 0, 0, 6, 0};
+                var list5 = new List<int> {0, 0, 9, 0, 0, 0, 5, 0, 0};
+                var list6 = new List<int> {0, 7, 0, 0, 0, 0, 0, 9, 0};
+                var list7 = new List<int> {0, 0, 5, 0, 8, 0, 3, 0, 0};
+                var list8 = new List<int> {7, 0, 0, 9, 0, 1, 0, 0, 4};
+                var list9 = new List<int> {0, 2, 0, 0, 0, 0, 0, 7, 0};
+                return new List<List<int>> {list1, list2, list3, list4, list5, list6, list7, list8, list9};
             }
             else
             {
-                var list1 = new List<int> { 0, 8, 0, 0, 0, 0, 6, 0, 0 };
-                var list2 = new List<int> { 0, 0, 0, 4, 0, 0, 0, 0, 9 };
-                var list3 = new List<int> { 0, 7, 0, 0, 0, 0, 8, 0, 5 };
-                var list4 = new List<int> { 4, 0, 0, 0, 0, 0, 0, 0, 0 };
-                var list5 = new List<int> { 0, 3, 0, 0, 6, 0, 0, 9, 0 };
-                var list6 = new List<int> { 0, 0, 0, 7, 2, 0, 1, 0, 0 };
-                var list7 = new List<int> { 0, 9, 3, 2, 0, 0, 0, 6, 4 };
-                var list8 = new List<int> { 8, 1, 0, 3, 0, 0, 0, 0, 0 };
-                var list9 = new List<int> { 0, 0, 0, 0, 0, 5, 0, 0, 0 };
-                return new List<List<int>> { list1, list2, list3, list4, list5, list6, list7, list8, list9 };
-
+                var list1 = new List<int> {0, 8, 0, 0, 0, 0, 6, 0, 0};
+                var list2 = new List<int> {0, 0, 0, 4, 0, 0, 0, 0, 9};
+                var list3 = new List<int> {0, 7, 0, 0, 0, 0, 8, 0, 5};
+                var list4 = new List<int> {4, 0, 0, 0, 0, 0, 0, 0, 0};
+                var list5 = new List<int> {0, 3, 0, 0, 6, 0, 0, 9, 0};
+                var list6 = new List<int> {0, 0, 0, 7, 2, 0, 1, 0, 0};
+                var list7 = new List<int> {0, 9, 3, 2, 0, 0, 0, 6, 4};
+                var list8 = new List<int> {8, 1, 0, 3, 0, 0, 0, 0, 0};
+                var list9 = new List<int> {0, 0, 0, 0, 0, 5, 0, 0, 0};
+                return new List<List<int>> {list1, list2, list3, list4, list5, list6, list7, list8, list9};
             }
- 
-
         }
 
         public CellInfo GetCellInfo(string location)
@@ -234,27 +233,43 @@ namespace Soduku
                 {
                     //针对行的xwing
                     var result = GetXwing(i, rowCells);
-                    if (result.Count == 4 && result[0].column == result[2].column && result[1].column == result[3].column)
+                    if (result.Count == 4 && result[0].column == result[2].column &&
+                        result[1].column == result[3].column)
                     {
-                        SolveMessage += "第" + round + "轮\r\n" + result[0].showPostion + " 和 " + result[1].showPostion + "\r\n" + result[2].showPostion + " 和 " + result[3].showPostion + "\r\n构成" + i + "的行xwing\r\n";
+                        SolveMessage += "\r\n第" + round + "轮\r\n" + result[0].showPostion + " 和 " + result[1].showPostion +
+                                        "\r\n" + result[2].showPostion + " 和 " + result[3].showPostion + "\r\n构成" + i +
+                                        "的行xwing\r\n";
 
                         SolveMessage += "可以移除除了" + (result[0].row + 1) + "," +
-                                        (result[2].row + 1) + "行的第"+  + (result[0].column + 1) + "列的待选项值" + i + "\r\n";
+                                        (result[2].row + 1) + "行的第" + +(result[0].column + 1) + "列的待选项值" + i + "\r\n";
 
-                        SolveMessage += "可以移除除了"+ (result[0].row + 1) + "," +
+                        SolveMessage += "可以移除除了" + (result[0].row + 1) + "," +
                                         (result[2].row + 1) + "行的第" + +(result[1].column + 1) + "列的待选项值" + i + "\r\n";
                         fillflag = true;
                         MoveColumnValue(result[0].column, i, result[0].row, result[2].row);
                         MoveColumnValue(result[1].column, i, result[0].row, result[2].row);
                     }
-
                 }
+
+                var temp = "";
+
+
+
+                for (int index = 0; index < 9; index++)
+                {
+                    HiddenTriplet(MethodDiction.Row, index);
+                    HiddenTriplet(MethodDiction.Column, index);
+                    HiddenTriplet(MethodDiction.Block, index);
+                }
+
+       
+
                 fillflag = false;
                 var weiyu = cellInfos.Values.Where(c => c.Value == 0 && c.GetRest().Count == 1).ToList();
                 foreach (var cell in weiyu)
                 {
                     var value = cell.GetRest()[0];
-                    SolveMessage += "第" + round + "轮唯余法：" + (cell.row + 1) + "行" + (cell.column + 1) + "列的值为" + value +
+                    SolveMessage += "\r\n第" + round + "轮唯余法：" + (cell.row + 1) + "行" + (cell.column + 1) + "列的值为" + value +
                                     "\r\n";
                     cell.SetValue(value);
                     fillflag = true;
@@ -277,22 +292,102 @@ namespace Soduku
                 }
 
 
-
-
-
                 round = round + 1;
             }
+        }
 
-            var temp="";
-            foreach (var cell in blockCells[8].Where(c=>c.Value==0))
+        /// <summary>
+        /// 方法方向
+        /// </summary>
+        enum MethodDiction
+        {
+            [Description("行")]
+            Row,
+            [Description("列")]
+            Column,
+            [Description("宫")]
+            Block
+        }
+
+      
+        /// <summary>
+        /// 三链数 
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="index"></param>
+        private void HiddenTriplet(MethodDiction method, int index)
+        {
+
+            var cellsDic = GetCellsDic(method);
+            var  listcells = cellsDic[index].Where(c => c.Value == 0).ToList();
+            var celllist = listcells;
+            var list = celllist.Where(c => c.GetRest().Count <= 3).ToList();
+            List<int> listcount = new List<int>();
+            if (celllist.Count!=3&&list.Count == 3)
             {
-                temp += cell.showPostion + JsonConvert.SerializeObject(cell.GetRest())+ "\r\n";
+                foreach (var cell in list)
+                {
+                    listcount.AddRange(cell.GetRest());
+                }
 
-
+                var hiddenTripletList = listcount.Distinct().ToList();
+                if (hiddenTripletList.Count == 3)
+                {
+                    var hiddenTripletstring = JsonConvert.SerializeObject(hiddenTripletList);
+                    SolveMessage += "\r\n" + string.Join(",", list.Select(c => c.showPostion).ToList()) + "的取值只可能是" +
+                                    hiddenTripletstring + ",\r\n所以第"+(index+1)+GetDescription(method)+"的其余位置的备选项需要移除掉" + hiddenTripletstring + "等数据\r\n";
+                    var keys = list.Select(c => c.ProgramPostion).ToList();
+                    foreach (var VARIABLE in listcells)
+                    {
+                        if (!keys.Contains(VARIABLE.ProgramPostion))
+                        {
+                            VARIABLE.hiddenTripletList = hiddenTripletList;
+                        }
+                    }
+                }
             }
+        }
 
-            var break1 = 0;
+        /// <summary>
+        /// 获取枚举的描述
+        /// </summary>
+        /// <param name="en">枚举</param>
+        /// <returns>返回枚举的描述</returns>
+        public static string GetDescription(Enum en)
+        {
+            Type type = en.GetType();   //获取类型
+            MemberInfo[] memberInfos = type.GetMember(en.ToString());   //获取成员
+            if (memberInfos != null && memberInfos.Length > 0)
+            {
+                DescriptionAttribute[] attrs = memberInfos[0].GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];   //获取描述特性
 
+                if (attrs != null && attrs.Length > 0)
+                {
+                    return attrs[0].Description;    //返回当前描述
+                }
+            }
+            return en.ToString();
+        }
+
+
+        private static Dictionary<int, List<CellInfo>> GetCellsDic(MethodDiction method)
+        {
+            Dictionary<int, List<CellInfo>> cellsDic = null;
+            switch (method)
+            {
+                case MethodDiction.Row:
+                    cellsDic = rowCells;
+                    break;
+                case MethodDiction.Column:
+                    cellsDic = columnCells;
+                    break;
+                case MethodDiction.Block:
+                    cellsDic = blockCells;
+                    break;
+            }
+            
+
+            return cellsDic;
         }
 
         /// <summary>
@@ -302,32 +397,29 @@ namespace Soduku
         /// <param name="i">待移除项</param>
         /// <param name="row1">排除行1</param>
         /// <param name="row2">排除行2</param>
-        private void MoveColumnValue(int column, int i,int row1,int row2)
+        private void MoveColumnValue(int column, int i, int row1, int row2)
         {
-
-            for (int j = 0; j < 9; j++)
+            for (int row = 0; row < 9; row++)
             {
-                if (j==row1|| j==row2)
+                if (row == row1 || row == row2)
                 {
                     continue;
                 }
-                cellInfos["postion_"+ j+"_"+ column].xwing.Add(i);
+
+                cellInfos["postion_" + row + "_" + column].xwing.Add(i);
             }
-
-
         }
 
-        private Dictionary<int, CellInfo> GetXwing(int Value,Dictionary<int,List<CellInfo>> Cells)
+        private Dictionary<int, CellInfo> GetXwing(int Value, Dictionary<int, List<CellInfo>> Cells)
         {
-     
             int count = 0;
-            Dictionary<int,CellInfo> dic=new Dictionary<int, CellInfo>();
+            Dictionary<int, CellInfo> dic = new Dictionary<int, CellInfo>();
             int index = 0;
             foreach (var rowRests in Cells)
             {
                 var cells = rowRests.Value;
                 var innerCount = 0;
-                List<CellInfo> tempCellInfos=new List<CellInfo>();
+                List<CellInfo> tempCellInfos = new List<CellInfo>();
                 foreach (var cellInfo in cells)
                 {
                     if (cellInfo.GetRest().Contains(Value))
@@ -335,12 +427,10 @@ namespace Soduku
                         tempCellInfos.Add(cellInfo);
                         innerCount += 1;
                     }
-
                 }
 
                 if (innerCount == 2)
                 {
-               
                     dic.Add(index, tempCellInfos[0]);
                     count += 1;
                     index += 1;

@@ -55,6 +55,7 @@ namespace Soduku
         public string ProgramPostion;
 
         public string showPostion;
+        public List<int> hiddenTripletList;
 
         public static int GetBlock(int x, int y)
         {
@@ -68,6 +69,7 @@ namespace Soduku
             this.ProgramPostion = "postion_" + x + "_" + y;
             this.showPostion =  (x + 1) + "行" + (y + 1)+ "列" ;
             this.block = GetBlock(row, column);
+            this.hiddenTripletList=new List<int>();
             this.xwing=new List<int>();
             rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
             rests = GetRest();
@@ -128,7 +130,10 @@ namespace Soduku
             {
                 rests.Remove(xwingexists);
             }
-
+            foreach (var xwingexists in hiddenTripletList)
+            {
+                rests.Remove(xwingexists);
+            }
             return rests;
         }
     }
