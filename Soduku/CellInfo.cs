@@ -32,6 +32,12 @@ namespace Soduku
 
 
         /// <summary>
+        /// xwing排除项
+        /// </summary>
+        public List<int> xwing;
+
+
+        /// <summary>
         /// 是否初始化数据
         /// </summary>
         public bool isInit;
@@ -49,6 +55,7 @@ namespace Soduku
         public string ProgramPostion;
 
         public string showPostion;
+
         public static int GetBlock(int x, int y)
         {
             return (x / 3) * 3 + (y / 3);
@@ -59,8 +66,9 @@ namespace Soduku
             this.row = x;
             this.column = y;
             this.ProgramPostion = "postion_" + x + "_" + y;
-            this.showPostion = "postion_" + (x + 1) + "_" + (y + 1);
+            this.showPostion =  (x + 1) + "行" + (y + 1)+ "列" ;
             this.block = GetBlock(row, column);
+            this.xwing=new List<int>();
             rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
             rests = GetRest();
         }
@@ -72,11 +80,10 @@ namespace Soduku
         public void InitValue(int value)
         {
             SetValue(value);
-            if (value!=0)
+            if (value != 0)
             {
                 isInit = true;
             }
-          
         }
 
         /// <summary>
@@ -86,11 +93,18 @@ namespace Soduku
         public void SetValue(int value)
         {
             this.Value = value;
-           
+
             Soduku.rowDatas[this.row].Add(value);
             Soduku.columnDatas[this.column].Add(value);
             Soduku.blockDatas[this.block].Add(value);
-            this.rests = GetRest();
+            if (value != 0)
+            {
+                rests.Clear();
+            }
+            else
+            {
+                this.rests = GetRest();
+            }
         }
 
         public List<int> GetRest()
@@ -109,6 +123,12 @@ namespace Soduku
             {
                 rests.Remove(gongExists);
             }
+
+            foreach (var xwingexists in xwing)
+            {
+                rests.Remove(xwingexists);
+            }
+
             return rests;
         }
     }

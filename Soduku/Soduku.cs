@@ -148,18 +148,26 @@ namespace Soduku
         /// <returns></returns>
         public List<List<int>> Question()
         {
-            //var list1 = new List<int> { 0, 5, 0, 0, 0, 0, 0, 2, 0 };
-            //var list1 = new List<int> { 1, 5, 7, 4, 9, 8, 6, 2, 0 };
-            var list1 = new List<int> {0, 5, 0, 0, 0, 0, 0, 2, 0};
-            var list2 = new List<int> {4, 0, 0, 2, 0, 6, 0, 0, 7};
-            var list3 = new List<int> {0, 0, 8, 0, 3, 0, 1, 0, 0};
-            var list4 = new List<int> {0, 1, 0, 0, 0, 0, 0, 6, 0};
-            var list5 = new List<int> {0, 0, 9, 0, 0, 0, 5, 0, 0};
-            var list6 = new List<int> {0, 7, 0, 0, 0, 0, 0, 9, 0};
-            var list7 = new List<int> {0, 0, 5, 0, 8, 0, 3, 0, 0};
-            var list8 = new List<int> {7, 0, 0, 9, 0, 1, 0, 0, 4};
-            var list9 = new List<int> {0, 2, 0, 0, 0, 0, 0, 7, 0};
-            return new List<List<int>> {list1, list2, list3, list4, list5, list6, list7, list8, list9};
+            if (true)
+            {
+                //该难度 唯余法 宮摒除 行摒除 列摒除 xwing就足够了。
+                var list1 = new List<int> { 0, 5, 0, 0, 0, 0, 0, 2, 0 };
+                var list2 = new List<int> { 4, 0, 0, 2, 0, 6, 0, 0, 7 };
+                var list3 = new List<int> { 0, 0, 8, 0, 3, 0, 1, 0, 0 };
+                var list4 = new List<int> { 0, 1, 0, 0, 0, 0, 0, 6, 0 };
+                var list5 = new List<int> { 0, 0, 9, 0, 0, 0, 5, 0, 0 };
+                var list6 = new List<int> { 0, 7, 0, 0, 0, 0, 0, 9, 0 };
+                var list7 = new List<int> { 0, 0, 5, 0, 8, 0, 3, 0, 0 };
+                var list8 = new List<int> { 7, 0, 0, 9, 0, 1, 0, 0, 4 };
+                var list9 = new List<int> { 0, 2, 0, 0, 0, 0, 0, 7, 0 };
+                return new List<List<int>> { list1, list2, list3, list4, list5, list6, list7, list8, list9 };
+            }
+            else
+            {
+                
+            }
+ 
+
         }
 
         public CellInfo GetCellInfo(string location)
@@ -238,8 +246,87 @@ namespace Soduku
                     fillflag |= GetSingleValue(round, rowCells, blockCell.Key, "行摒除");
                 }
 
+
+                for (int i = 1; i < 9; i++)
+                {
+                    //针对行的xwing
+                    var result = GetXwing(i, rowCells);
+                    if (result.Count == 4 && result[0].column == result[2].column && result[1].column == result[3].column)
+                    {
+                        SolveMessage += "第" + round + "轮\r\n" + result[0].showPostion + "\r\n" + result[1].showPostion+ "\r\n" + result[2].showPostion+ "\r\n" + result[3].showPostion+ "\r\n构成" + i+"的行xwing\r\n";
+
+                        SolveMessage += "可以移除" + (result[0].column + 1) + "列除了" + (result[0].row + 1) + "," +
+                                        (result[0].row + 1) + "的待选项值" + i+"\r\n";
+
+                        SolveMessage += "可以移除" + (result[1].column + 1) + "列除了" + (result[0].row + 1) + "," +
+                                        (result[0].row + 1) + "的待选项值" + i + "\r\n";
+                        fillflag = true;
+                        MoveColumnValue(result[0].column,i,result[0].row,result[2].row);
+                        MoveColumnValue(result[1].column, i, result[0].row, result[2].row);
+                    }
+
+                }
+
+
                 round = round + 1;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="column">待移除列</param>
+        /// <param name="i">待移除项</param>
+        /// <param name="row1">排除行1</param>
+        /// <param name="row2">排除行2</param>
+        private void MoveColumnValue(int column, int i,int row1,int row2)
+        {
+
+            for (int j = 0; j < 9; j++)
+            {
+                if (j==row1|| j==row2)
+                {
+                    continue;
+                }
+                cellInfos["postion_"+ j+"_"+ column].xwing.Add(i);
+            }
+
+
+        }
+
+        private Dictionary<int, CellInfo> GetXwing(int Value,Dictionary<int,List<CellInfo>> Cells)
+        {
+     
+            int count = 0;
+            Dictionary<int,CellInfo> dic=new Dictionary<int, CellInfo>();
+            int index = 0;
+            foreach (var rowRests in Cells)
+            {
+                var cells = rowRests.Value;
+                var innerCount = 0;
+                List<CellInfo> tempCellInfos=new List<CellInfo>();
+                foreach (var cellInfo in cells)
+                {
+                    if (cellInfo.GetRest().Contains(Value))
+                    {
+                        tempCellInfos.Add(cellInfo);
+                        innerCount += 1;
+                    }
+
+                }
+
+                if (innerCount == 2)
+                {
+               
+                    dic.Add(index, tempCellInfos[0]);
+                    count += 1;
+                    index += 1;
+                    dic.Add(index, tempCellInfos[1]);
+                    index += 1;
+                }
+            }
+
+            return dic;
         }
 
         /// <summary>
