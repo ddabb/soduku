@@ -229,36 +229,13 @@ namespace Soduku
             int round = 1;
             while (fillflag)
             {
-                for (int i = 1; i < 9; i++)
-                {
-                    //针对行的xwing
-                    var result = GetXwing(i, GetCellsDic(MethodDiction.Row));
-                    GetRowXwing(result, round, i);
-                    //针对列的xwing
-                    var result1 = GetXwing(i, GetCellsDic(MethodDiction.Column));
-                    GetColumnXwing(result1, round, i);
-
-                }
-
-                var temp = "";
-
-
-
-                for (int index = 0; index < 9; index++)
-                {
-                    HiddenTriplet(MethodDiction.Row, index);
-                    HiddenTriplet(MethodDiction.Column, index);
-                    HiddenTriplet(MethodDiction.Block, index);
-                }
-
-       
-
                 fillflag = false;
                 var weiyu = cellInfos.Values.Where(c => c.Value == 0 && c.GetRest().Count == 1).ToList();
                 foreach (var cell in weiyu)
                 {
                     var value = cell.GetRest()[0];
-                    SolveMessage += "\r\n第" + round + "轮唯余法：" + (cell.row + 1) + "行" + (cell.column + 1) + "列的值为" + value +
+                    SolveMessage += "\r\n第" + round + "轮唯余法：" + (cell.row + 1) + "行" + (cell.column + 1) + "列的值为" +
+                                    value +
                                     "\r\n";
                     cell.SetValue(value);
                     fillflag = true;
@@ -280,8 +257,42 @@ namespace Soduku
                     fillflag |= GetSingleValue(round, rowCells, blockCell.Key, "行摒除");
                 }
 
+                for (int i = 1; i < 9; i++)
+                {
+                    //针对行的xwing
+                    var result = GetXwing(i, GetCellsDic(MethodDiction.Row));
+                    GetRowXwing(result, round, i);
+                    //针对列的xwing
+                    var result1 = GetXwing(i, GetCellsDic(MethodDiction.Column));
+                    GetColumnXwing(result1, round, i);
+                }
+
+
+                for (int index = 0; index < 9; index++)
+                {
+                    HiddenTriplet(MethodDiction.Row, index);
+                    HiddenTriplet(MethodDiction.Column, index);
+                    HiddenTriplet(MethodDiction.Block, index);
+
+                    blockSingleRow(MethodDiction.Block, index);
+
+                    blockSingleColomn(MethodDiction.Block, index);
+                }
+
+      
 
                 round = round + 1;
+            }
+
+            foreach (var kv in rowCells)
+            {
+                var temp = kv.Value.Where(c => c.Value == 0);
+                foreach (var cellInfo in temp)
+                {
+                    SolveMessage += cellInfo.ProgramPostion + JsonConvert.SerializeObject(cellInfo.GetRest())+"\r\n";
+                }
+
+                SolveMessage += "\r\n";
             }
         }
 
@@ -366,15 +377,114 @@ namespace Soduku
         /// </summary>
         enum MethodDiction
         {
-            [Description("行")]
-            Row,
-            [Description("列")]
-            Column,
-            [Description("宫")]
-            Block
+            [Description("行")] Row,
+            [Description("列")] Column,
+            [Description("宫")] Block
         }
 
-      
+
+        private void blockSingleRow(MethodDiction method, int index)
+        {
+            var cellsDic = GetCellsDic(method);
+            var listcells = cellsDic[index].Where(c => c.Value == 0).ToList();
+            var allRest = new List<int>();
+            foreach (var cell in listcells)
+            {
+                allRest.AddRange(cell.GetRest());
+            }
+
+            var distinct = allRest.Distinct().ToList();
+
+            Dictionary<int, List<int>> temp = new Dictionary<int, List<int>>();
+
+            foreach (var value in distinct)
+            {
+                temp.Add(value, new List<int>());
+            }
+
+            foreach (var cellInfo in listcells)
+            {
+                foreach (var value in distinct)
+                {
+                    if (cellInfo.GetRest().Contains(value))
+                    {
+                        temp[value].Add(cellInfo.row);
+                    }
+                }
+            }
+
+
+            foreach (var keyValuePair in temp)
+            {
+                if (keyValuePair.Value.Distinct().Count() == 1)
+                {
+                    var block = index;
+                    var SignleValue = keyValuePair.Key;
+                    var row = keyValuePair.Value.First();
+
+                    foreach (var cellInfo in rowCells[row])
+                    {
+                        if (cellInfo.block != block)
+                        {
+                            cellInfo.blockList.Add(SignleValue);
+                        }
+                    }
+                }
+            }
+        }
+
+
+        private void blockSingleColomn(MethodDiction method, int index)
+        {
+            var cellsDic = GetCellsDic(method);
+            var listcells = cellsDic[index].Where(c => c.Value == 0).ToList();
+            var allRest = new List<int>();
+            foreach (var cell in listcells)
+            {
+                allRest.AddRange(cell.GetRest());
+            }
+
+            var distinct = allRest.Distinct().ToList();
+
+            Dictionary<int, List<int>> temp = new Dictionary<int, List<int>>();
+
+            foreach (var value in distinct)
+            {
+                temp.Add(value, new List<int>());
+            }
+
+            foreach (var cellInfo in listcells)
+            {
+                foreach (var value in distinct)
+                {
+                    if (cellInfo.GetRest().Contains(value))
+                    {
+                        temp[value].Add(cellInfo.column);
+                    }
+                }
+            }
+
+
+            foreach (var keyValuePair in temp)
+            {
+                if (keyValuePair.Value.Distinct().Count() == 1)
+                {
+                    var block = index;
+                    var SignleValue = keyValuePair.Key;
+                    var column = keyValuePair.Value.First();
+
+                    foreach (var cellInfo in columnCells[column])
+                    {
+                        if (cellInfo.block != block)
+                        {
+                            cellInfo.blockList.Add(SignleValue);
+                        }
+                    }
+                }
+            }
+        }
+
+
         /// <summary>
         /// 三链数 
         /// </summary>
@@ -382,13 +492,12 @@ namespace Soduku
         /// <param name="index"></param>
         private void HiddenTriplet(MethodDiction method, int index)
         {
-
             var cellsDic = GetCellsDic(method);
-            var  listcells = cellsDic[index].Where(c => c.Value == 0).ToList();
+            var listcells = cellsDic[index].Where(c => c.Value == 0).ToList();
             var celllist = listcells;
             var list = celllist.Where(c => c.GetRest().Count <= 3).ToList();
             List<int> listcount = new List<int>();
-            if (celllist.Count!=3&&list.Count == 3)
+            if (celllist.Count != 3 && list.Count == 3)
             {
                 foreach (var cell in list)
                 {
@@ -400,7 +509,8 @@ namespace Soduku
                 {
                     var hiddenTripletstring = JsonConvert.SerializeObject(hiddenTripletList);
                     SolveMessage += "\r\n" + string.Join(",", list.Select(c => c.showPostion).ToList()) + "的取值只可能是" +
-                                    hiddenTripletstring + ",\r\n所以第"+(index+1)+GetDescription(method)+"的其余位置的备选项需要移除掉" + hiddenTripletstring + "等数据\r\n";
+                                    hiddenTripletstring + ",\r\n所以第" + (index + 1) + GetDescription(method) +
+                                    "的其余位置的备选项需要移除掉" + hiddenTripletstring + "等数据\r\n";
                     var keys = list.Select(c => c.ProgramPostion).ToList();
                     foreach (var VARIABLE in listcells)
                     {
@@ -420,17 +530,20 @@ namespace Soduku
         /// <returns>返回枚举的描述</returns>
         public static string GetDescription(Enum en)
         {
-            Type type = en.GetType();   //获取类型
-            MemberInfo[] memberInfos = type.GetMember(en.ToString());   //获取成员
+            Type type = en.GetType(); //获取类型
+            MemberInfo[] memberInfos = type.GetMember(en.ToString()); //获取成员
             if (memberInfos != null && memberInfos.Length > 0)
             {
-                DescriptionAttribute[] attrs = memberInfos[0].GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];   //获取描述特性
+                DescriptionAttribute[] attrs =
+                    memberInfos[0]
+                        .GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[]; //获取描述特性
 
                 if (attrs != null && attrs.Length > 0)
                 {
-                    return attrs[0].Description;    //返回当前描述
+                    return attrs[0].Description; //返回当前描述
                 }
             }
+
             return en.ToString();
         }
 
@@ -450,11 +563,10 @@ namespace Soduku
                     cellsDic = blockCells;
                     break;
             }
-            
+
 
             return cellsDic;
         }
-
 
 
         private Dictionary<int, CellInfo> GetXwing(int Value, Dictionary<int, List<CellInfo>> Cells)
@@ -488,7 +600,6 @@ namespace Soduku
 
             return dic;
         }
-
 
 
         /// <summary>
