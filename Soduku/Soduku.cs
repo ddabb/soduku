@@ -148,7 +148,7 @@ namespace Soduku
         /// <returns></returns>
         public List<List<int>> Question()
         {
-            if (true)
+            if (false)
             {
                 //该难度 唯余法 宮摒除 行摒除 列摒除 xwing就足够了。
                 var list1 = new List<int> { 0, 5, 0, 0, 0, 0, 0, 2, 0 };
@@ -164,7 +164,17 @@ namespace Soduku
             }
             else
             {
-                
+                var list1 = new List<int> { 0, 8, 0, 0, 0, 0, 6, 0, 0 };
+                var list2 = new List<int> { 0, 0, 0, 4, 0, 0, 0, 0, 9 };
+                var list3 = new List<int> { 0, 7, 0, 0, 0, 0, 8, 0, 5 };
+                var list4 = new List<int> { 4, 0, 0, 0, 0, 0, 0, 0, 0 };
+                var list5 = new List<int> { 0, 3, 0, 0, 6, 0, 0, 9, 0 };
+                var list6 = new List<int> { 0, 0, 0, 7, 2, 0, 1, 0, 0 };
+                var list7 = new List<int> { 0, 9, 3, 2, 0, 0, 0, 6, 4 };
+                var list8 = new List<int> { 8, 1, 0, 3, 0, 0, 0, 0, 0 };
+                var list9 = new List<int> { 0, 0, 0, 0, 0, 5, 0, 0, 0 };
+                return new List<List<int>> { list1, list2, list3, list4, list5, list6, list7, list8, list9 };
+
             }
  
 
@@ -216,9 +226,29 @@ namespace Soduku
             }
 
             bool fillflag = true;
+
             int round = 1;
             while (fillflag)
             {
+                for (int i = 1; i < 9; i++)
+                {
+                    //针对行的xwing
+                    var result = GetXwing(i, rowCells);
+                    if (result.Count == 4 && result[0].column == result[2].column && result[1].column == result[3].column)
+                    {
+                        SolveMessage += "第" + round + "轮\r\n" + result[0].showPostion + " 和 " + result[1].showPostion + "\r\n" + result[2].showPostion + " 和 " + result[3].showPostion + "\r\n构成" + i + "的行xwing\r\n";
+
+                        SolveMessage += "可以移除除了" + (result[0].row + 1) + "," +
+                                        (result[2].row + 1) + "行的第"+  + (result[0].column + 1) + "列的待选项值" + i + "\r\n";
+
+                        SolveMessage += "可以移除除了"+ (result[0].row + 1) + "," +
+                                        (result[2].row + 1) + "行的第" + +(result[1].column + 1) + "列的待选项值" + i + "\r\n";
+                        fillflag = true;
+                        MoveColumnValue(result[0].column, i, result[0].row, result[2].row);
+                        MoveColumnValue(result[1].column, i, result[0].row, result[2].row);
+                    }
+
+                }
                 fillflag = false;
                 var weiyu = cellInfos.Values.Where(c => c.Value == 0 && c.GetRest().Count == 1).ToList();
                 foreach (var cell in weiyu)
@@ -247,29 +277,22 @@ namespace Soduku
                 }
 
 
-                for (int i = 1; i < 9; i++)
-                {
-                    //针对行的xwing
-                    var result = GetXwing(i, rowCells);
-                    if (result.Count == 4 && result[0].column == result[2].column && result[1].column == result[3].column)
-                    {
-                        SolveMessage += "第" + round + "轮\r\n" + result[0].showPostion + "\r\n" + result[1].showPostion+ "\r\n" + result[2].showPostion+ "\r\n" + result[3].showPostion+ "\r\n构成" + i+"的行xwing\r\n";
 
-                        SolveMessage += "可以移除" + (result[0].column + 1) + "列除了" + (result[0].row + 1) + "," +
-                                        (result[0].row + 1) + "的待选项值" + i+"\r\n";
-
-                        SolveMessage += "可以移除" + (result[1].column + 1) + "列除了" + (result[0].row + 1) + "," +
-                                        (result[0].row + 1) + "的待选项值" + i + "\r\n";
-                        fillflag = true;
-                        MoveColumnValue(result[0].column,i,result[0].row,result[2].row);
-                        MoveColumnValue(result[1].column, i, result[0].row, result[2].row);
-                    }
-
-                }
 
 
                 round = round + 1;
             }
+
+            var temp="";
+            foreach (var cell in blockCells[8].Where(c=>c.Value==0))
+            {
+                temp += cell.showPostion + JsonConvert.SerializeObject(cell.GetRest())+ "\r\n";
+
+
+            }
+
+            var break1 = 0;
+
         }
 
         /// <summary>
