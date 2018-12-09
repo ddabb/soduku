@@ -232,23 +232,12 @@ namespace Soduku
                 for (int i = 1; i < 9; i++)
                 {
                     //针对行的xwing
-                    var result = GetXwing(i, rowCells);
-                    if (result.Count == 4 && result[0].column == result[2].column &&
-                        result[1].column == result[3].column)
-                    {
-                        SolveMessage += "\r\n第" + round + "轮\r\n" + result[0].showPostion + " 和 " + result[1].showPostion +
-                                        "\r\n" + result[2].showPostion + " 和 " + result[3].showPostion + "\r\n构成" + i +
-                                        "的行xwing\r\n";
+                    var result = GetXwing(i, GetCellsDic(MethodDiction.Row));
+                    GetRowXwing(result, round, i);
+                    //针对列的xwing
+                    var result1 = GetXwing(i, GetCellsDic(MethodDiction.Column));
+                    GetColumnXwing(result1, round, i);
 
-                        SolveMessage += "可以移除除了" + (result[0].row + 1) + "," +
-                                        (result[2].row + 1) + "行的第" + +(result[0].column + 1) + "列的待选项值" + i + "\r\n";
-
-                        SolveMessage += "可以移除除了" + (result[0].row + 1) + "," +
-                                        (result[2].row + 1) + "行的第" + +(result[1].column + 1) + "列的待选项值" + i + "\r\n";
-                        fillflag = true;
-                        MoveColumnValue(result[0].column, i, result[0].row, result[2].row);
-                        MoveColumnValue(result[1].column, i, result[0].row, result[2].row);
-                    }
                 }
 
                 var temp = "";
@@ -293,6 +282,82 @@ namespace Soduku
 
 
                 round = round + 1;
+            }
+        }
+
+        private void GetRowXwing(Dictionary<int, CellInfo> result, int round, int i)
+        {
+            bool fillflag;
+            if (result.Count == 4 && result[0].column == result[2].column &&
+                result[1].column == result[3].column)
+            {
+                SolveMessage += "\r\n第" + round + "轮\r\n" + result[0].showPostion + " 和 " + result[1].showPostion +
+                                "\r\n" + result[2].showPostion + " 和 " + result[3].showPostion + "\r\n构成" + i +
+                                "的行xwing\r\n";
+
+                SolveMessage += "可以移除除了" + (result[0].row + 1) + "," +
+                                (result[2].row + 1) + "行的第" + +(result[0].column + 1) + "列的待选项值" + i + "\r\n";
+
+                SolveMessage += "可以移除除了" + (result[0].row + 1) + "," +
+                                (result[2].row + 1) + "行的第" + +(result[1].column + 1) + "列的待选项值" + i + "\r\n";
+                fillflag = true;
+                MoveColumnValue(result[0].column, i, result[0].row, result[2].row);
+                MoveColumnValue(result[1].column, i, result[0].row, result[2].row);
+            }
+        }
+
+
+        private void GetColumnXwing(Dictionary<int, CellInfo> result, int round, int i)
+        {
+            bool fillflag;
+            if (result.Count == 4 && result[0].row == result[2].row &&
+                result[1].row == result[3].row)
+            {
+                SolveMessage += "\r\n第" + round + "轮\r\n" + result[0].showPostion + " 和 " + result[1].showPostion +
+                                "\r\n" + result[2].showPostion + " 和 " + result[3].showPostion + "\r\n构成" + i +
+                                "的列xwing\r\n";
+
+                SolveMessage += "可以移除除了" + (result[0].column + 1) + "," +
+                                (result[2].column + 1) + "列的第" + +(result[0].row + 1) + "行的待选项值" + i + "\r\n";
+
+                SolveMessage += "可以移除除了" + (result[0].row + 1) + "," +
+                                (result[2].column + 1) + "列的第" + +(result[1].row + 1) + "行的待选项值" + i + "\r\n";
+                fillflag = true;
+                MoveRowValue(result[0].row, i, result[0].column, result[2].column);
+                MoveRowValue(result[1].row, i, result[0].column, result[2].column);
+            }
+        }
+
+        private void MoveRowValue(int row, int value, int column1, int column2)
+        {
+            for (int column = 0; column < 9; column++)
+            {
+                if (column == column1 || column == column2)
+                {
+                    continue;
+                }
+
+                cellInfos["postion_" + row + "_" + column].xwing.Add(value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="column">待移除列</param>
+        /// <param name="value">待移除项</param>
+        /// <param name="row1">排除行1</param>
+        /// <param name="row2">排除行2</param>
+        private void MoveColumnValue(int column, int value, int row1, int row2)
+        {
+            for (int row = 0; row < 9; row++)
+            {
+                if (row == row1 || row == row2)
+                {
+                    continue;
+                }
+
+                cellInfos["postion_" + row + "_" + column].xwing.Add(value);
             }
         }
 
@@ -390,25 +455,7 @@ namespace Soduku
             return cellsDic;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="column">待移除列</param>
-        /// <param name="i">待移除项</param>
-        /// <param name="row1">排除行1</param>
-        /// <param name="row2">排除行2</param>
-        private void MoveColumnValue(int column, int i, int row1, int row2)
-        {
-            for (int row = 0; row < 9; row++)
-            {
-                if (row == row1 || row == row2)
-                {
-                    continue;
-                }
 
-                cellInfos["postion_" + row + "_" + column].xwing.Add(i);
-            }
-        }
 
         private Dictionary<int, CellInfo> GetXwing(int Value, Dictionary<int, List<CellInfo>> Cells)
         {
@@ -441,6 +488,8 @@ namespace Soduku
 
             return dic;
         }
+
+
 
         /// <summary>
         /// 宫摒除
