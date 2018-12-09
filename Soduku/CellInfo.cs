@@ -11,24 +11,24 @@ namespace Soduku
         /// <summary>
         /// 行
         /// </summary>
-        private int row;
+        public int row;
 
         /// <summary>
         /// 列
         /// </summary>
-        private int column;
+        public int column;
 
 
         /// <summary>
         /// 宫格
         /// </summary>
-        private int gong;
+        public int gong;
 
 
         /// <summary>
         /// 剩余可选项
         /// </summary>
-        public List<int> rests;
+        private List<int> rests;
 
 
         /// <summary>
@@ -67,7 +67,11 @@ namespace Soduku
         public void InitValue(int value)
         {
             SetValue(value);
-            isInit = true;
+            if (value!=0)
+            {
+                isInit = true;
+            }
+          
         }
 
         /// <summary>
@@ -77,8 +81,9 @@ namespace Soduku
         public void SetValue(int value)
         {
             this.Value = value;
-            Soduku.columnDatas[this.column].Add(value);
+
             Soduku.rowDatas[this.row].Add(value);
+            Soduku.columnDatas[this.column].Add(value);
             Soduku.gongDatas[this.gong].Add(value);
             this.rests = GetRest();
         }
@@ -100,6 +105,7 @@ namespace Soduku
                 rests.Remove(gongExists);
             }
 
+            this.rests = rests;
             return rests;
         }
     }

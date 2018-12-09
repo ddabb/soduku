@@ -94,7 +94,7 @@ namespace Soduku
         /// <returns></returns>
         public List<List<int>> Question()
         {
-            //var list1 = new List<int> {0, 5, 0, 0, 0, 0, 0, 2, 0};
+            //var list1 = new List<int> { 0, 5, 0, 0, 0, 0, 0, 2, 0 };
             var list1 = new List<int> { 1, 5, 7, 4, 9, 8, 6, 2, 0 };
             var list2 = new List<int> {4, 0, 0, 2, 0, 6, 0, 0, 7};
             var list3 = new List<int> {0, 0, 8, 0, 3, 0, 1, 0, 0};
@@ -128,9 +128,7 @@ namespace Soduku
                 columnDatas = FilledDatas();
                 gongDatas = FilledDatas();
                 cellInfos = new Dictionary<string, CellInfo>();
-
                 int row = 0;
-
                 foreach (var list in values)
                 {
                     int column = 0;
@@ -141,7 +139,7 @@ namespace Soduku
                         {
                             cell.InitValue(value);
                         }
-
+                   
                         cellInfos.Add("postion_" + row + "_" + column, cell);
 
                         column += 1;
@@ -151,12 +149,28 @@ namespace Soduku
                 }
             }
 
-            var weiyu = cellInfos.Values.Where(c => c.Value==0&& c.rests.Count == 1).ToList();
-            foreach (var cell in weiyu)
+            bool fillflag = true;
+            int round = 1;
+            while (fillflag)
             {
-                cell.SetValue(cell.rests[0]);
+                fillflag = false;
+                var weiyu = cellInfos.Values.Where(c => c.Value == 0 && c.GetRest().Count == 1).ToList();
+                foreach (var cell in weiyu)
+                {
+                    var value = cell.GetRest()[0];
+                    SolveMessage +="第"+round+"轮唯余法："+ (cell.row + 1) + "行" + (cell.column + 1) + "列的值为" + value+"\r\n";
+                    cell.SetValue(value);
+                    fillflag = true;
+                }
+
+                SolveMessage += "\r\n";
+
+                round += 1;
             }
+
         }
+
+        public string SolveMessage = "";
 
         /// <summary>
         /// 是否正确
