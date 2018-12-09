@@ -107,9 +107,11 @@ namespace Soduku
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.resultMessage = new System.Windows.Forms.TextBox();
-            this.helpMessage = new System.Windows.Forms.Label();
+            this.helpMessage = new System.Windows.Forms.TextBox();
             this.isShowHelp = new System.Windows.Forms.CheckBox();
             this.makeQuestion = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -208,7 +210,7 @@ namespace Soduku
             this.tableLayoutPanel1.Controls.Add(this.postion_8_6, 6, 8);
             this.tableLayoutPanel1.Controls.Add(this.postion_8_7, 7, 8);
             this.tableLayoutPanel1.Controls.Add(this.postion_8_8, 8, 8);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(34, 60);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(34, 50);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
@@ -843,22 +845,22 @@ namespace Soduku
             // 
             // resultMessage
             // 
-            this.resultMessage.Location = new System.Drawing.Point(515, 179);
+            this.resultMessage.Location = new System.Drawing.Point(521, 370);
             this.resultMessage.Multiline = true;
             this.resultMessage.Name = "resultMessage";
             this.resultMessage.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.resultMessage.Size = new System.Drawing.Size(363, 150);
+            this.resultMessage.Size = new System.Drawing.Size(339, 150);
             this.resultMessage.TabIndex = 5;
-            this.resultMessage.Text = "label1";
+            this.resultMessage.Text = "结果信息";
             // 
             // helpMessage
             // 
-            this.helpMessage.AutoSize = true;
-            this.helpMessage.Location = new System.Drawing.Point(521, 118);
+            this.helpMessage.Location = new System.Drawing.Point(521, 155);
+            this.helpMessage.Multiline = true;
             this.helpMessage.Name = "helpMessage";
-            this.helpMessage.Size = new System.Drawing.Size(95, 15);
+            this.helpMessage.Size = new System.Drawing.Size(339, 147);
             this.helpMessage.TabIndex = 6;
-            this.helpMessage.Text = "helpMessage";
+            this.helpMessage.Text = "帮助信息";
             // 
             // isShowHelp
             // 
@@ -880,10 +882,30 @@ namespace Soduku
             this.makeQuestion.UseVisualStyleBackColor = true;
             this.makeQuestion.Click += new System.EventHandler(this.makeQuestion_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(521, 134);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 15);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "帮助信息：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(521, 349);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 15);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "结果信息";
+            // 
             // Form1
             // 
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(919, 722);
+            this.ClientSize = new System.Drawing.Size(919, 540);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.makeQuestion);
             this.Controls.Add(this.isShowHelp);
             this.Controls.Add(this.helpMessage);
@@ -1004,8 +1026,10 @@ namespace Soduku
         private Button button4;
         private Button button2;
         private TextBox resultMessage;
-        private Label helpMessage;
+        private TextBox helpMessage;
         private CheckBox isShowHelp;
         private Button makeQuestion;
+        private Label label1;
+        private Label label2;
     }
 }

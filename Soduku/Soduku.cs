@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Soduku
 {
@@ -82,10 +83,63 @@ namespace Soduku
         /// <summary>
         /// 宫已填充数据
         /// </summary>
-        public static List<List<int>> gongDatas;
+        public static List<List<int>> blockDatas;
 
-
+        /// <summary>
+        /// 坐标与单元格的信息
+        /// </summary>
         private static Dictionary<string, CellInfo> cellInfos;
+
+
+        /// <summary>
+        /// 每一个宫对应的单元格信息
+        /// </summary>
+        private static Dictionary<int, List<CellInfo>> blockCells = new Dictionary<int, List<CellInfo>>
+        {
+            {0, new List<CellInfo>()},
+            {1, new List<CellInfo>()},
+            {2, new List<CellInfo>()},
+            {3, new List<CellInfo>()},
+            {4, new List<CellInfo>()},
+            {5, new List<CellInfo>()},
+            {6, new List<CellInfo>()},
+            {7, new List<CellInfo>()},
+            {8, new List<CellInfo>()}
+        };
+
+
+        /// <summary>
+        /// 每一行对应的单元格信息
+        /// </summary>
+        private static Dictionary<int, List<CellInfo>> rowCells = new Dictionary<int, List<CellInfo>>
+        {
+            {0, new List<CellInfo>()},
+            {1, new List<CellInfo>()},
+            {2, new List<CellInfo>()},
+            {3, new List<CellInfo>()},
+            {4, new List<CellInfo>()},
+            {5, new List<CellInfo>()},
+            {6, new List<CellInfo>()},
+            {7, new List<CellInfo>()},
+            {8, new List<CellInfo>()}
+        };
+
+
+        /// <summary>
+        /// 每一列对应的单元格信息
+        /// </summary>
+        private static Dictionary<int, List<CellInfo>> columnCells = new Dictionary<int, List<CellInfo>>
+        {
+            {0, new List<CellInfo>()},
+            {1, new List<CellInfo>()},
+            {2, new List<CellInfo>()},
+            {3, new List<CellInfo>()},
+            {4, new List<CellInfo>()},
+            {5, new List<CellInfo>()},
+            {6, new List<CellInfo>()},
+            {7, new List<CellInfo>()},
+            {8, new List<CellInfo>()}
+        };
 
 
         /// <summary>
@@ -95,7 +149,8 @@ namespace Soduku
         public List<List<int>> Question()
         {
             //var list1 = new List<int> { 0, 5, 0, 0, 0, 0, 0, 2, 0 };
-            var list1 = new List<int> { 1, 5, 7, 4, 9, 8, 6, 2, 0 };
+            //var list1 = new List<int> { 1, 5, 7, 4, 9, 8, 6, 2, 0 };
+            var list1 = new List<int> {0, 5, 0, 0, 0, 0, 0, 2, 0};
             var list2 = new List<int> {4, 0, 0, 2, 0, 6, 0, 0, 7};
             var list3 = new List<int> {0, 0, 8, 0, 3, 0, 1, 0, 0};
             var list4 = new List<int> {0, 1, 0, 0, 0, 0, 0, 6, 0};
@@ -112,8 +167,8 @@ namespace Soduku
             return cellInfos[location];
         }
 
-        public bool IsQuestion=> cellInfos!=null&&cellInfos.Count != 0;
-  
+        public bool IsQuestion => cellInfos != null && cellInfos.Count != 0;
+
 
         /// <summary>
         /// 解题
@@ -126,8 +181,9 @@ namespace Soduku
             {
                 rowDatas = FilledDatas();
                 columnDatas = FilledDatas();
-                gongDatas = FilledDatas();
+                blockDatas = FilledDatas();
                 cellInfos = new Dictionary<string, CellInfo>();
+
                 int row = 0;
                 foreach (var list in values)
                 {
@@ -139,9 +195,11 @@ namespace Soduku
                         {
                             cell.InitValue(value);
                         }
-                   
-                        cellInfos.Add("postion_" + row + "_" + column, cell);
 
+                        cellInfos.Add("postion_" + row + "_" + column, cell);
+                        blockCells[cell.block].Add(cell);
+                        rowCells[cell.row].Add(cell);
+                        columnCells[cell.column].Add(cell);
                         column += 1;
                     }
 
@@ -158,16 +216,69 @@ namespace Soduku
                 foreach (var cell in weiyu)
                 {
                     var value = cell.GetRest()[0];
-                    SolveMessage +="第"+round+"轮唯余法："+ (cell.row + 1) + "行" + (cell.column + 1) + "列的值为" + value+"\r\n";
+                    SolveMessage += "第" + round + "轮唯余法：" + (cell.row + 1) + "行" + (cell.column + 1) + "列的值为" + value +
+                                    "\r\n";
                     cell.SetValue(value);
                     fillflag = true;
                 }
 
                 SolveMessage += "\r\n";
+                foreach (var blockCell in blockCells)
+                {
+                    fillflag |= GetSingleValue(round, blockCells, blockCell.Key, "宫摒除");
+                }
 
-                round += 1;
+                foreach (var blockCell in columnCells)
+                {
+                    fillflag |= GetSingleValue(round, columnCells, blockCell.Key, "列摒除");
+                }
+
+                foreach (var blockCell in rowCells)
+                {
+                    fillflag |= GetSingleValue(round, rowCells, blockCell.Key, "行摒除");
+                }
+
+                round = round + 1;
+            }
+        }
+
+        /// <summary>
+        /// 宫摒除
+        /// </summary>
+        /// <param name="round"></param>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        private bool GetSingleValue(int round, Dictionary<int, List<CellInfo>> celldic, int i, string methodName)
+        {
+            var c = celldic[i].Where(x => x.Value == 0);
+            var result = "";
+            var fillflag = false;
+            List<int> temp = new List<int>();
+            foreach (var cellInfo in c)
+            {
+                temp.AddRange(cellInfo.GetRest());
             }
 
+            var r = temp.GroupBy(x => x).Where(j => j.Count() == 1);
+            var key = r.Select(group => group.Key).ToList();
+            foreach (var singleValue in key)
+            {
+                foreach (var cellInfo in c)
+                {
+                    if (cellInfo.GetRest().Contains(singleValue))
+                    {
+                        SolveMessage += "第" + round + "轮" + methodName + "：" + (cellInfo.row + 1) + "行" +
+                                        (cellInfo.column + 1) +
+                                        "列的值为" + singleValue +
+                                        "\r\n";
+                        cellInfo.SetValue(singleValue);
+                        fillflag = true;
+                        break;
+                    }
+                }
+            }
+
+            return fillflag;
         }
 
         public string SolveMessage = "";

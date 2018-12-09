@@ -22,7 +22,7 @@ namespace Soduku
         /// <summary>
         /// 宫格
         /// </summary>
-        public int gong;
+        public int block;
 
 
         /// <summary>
@@ -46,7 +46,10 @@ namespace Soduku
         /// </summary>
         public bool isComfirm;
 
-        public static int GetGong(int x, int y)
+        public string ProgramPostion;
+
+        public string showPostion;
+        public static int GetBlock(int x, int y)
         {
             return (x / 3) * 3 + (y / 3);
         }
@@ -55,7 +58,9 @@ namespace Soduku
         {
             this.row = x;
             this.column = y;
-            this.gong = GetGong(row, column);
+            this.ProgramPostion = "postion_" + x + "_" + y;
+            this.showPostion = "postion_" + (x + 1) + "_" + (y + 1);
+            this.block = GetBlock(row, column);
             rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
             rests = GetRest();
         }
@@ -81,10 +86,10 @@ namespace Soduku
         public void SetValue(int value)
         {
             this.Value = value;
-
+           
             Soduku.rowDatas[this.row].Add(value);
             Soduku.columnDatas[this.column].Add(value);
-            Soduku.gongDatas[this.gong].Add(value);
+            Soduku.blockDatas[this.block].Add(value);
             this.rests = GetRest();
         }
 
@@ -100,12 +105,10 @@ namespace Soduku
                 rests.Remove(columnExists);
             }
 
-            foreach (var gongExists in Soduku.gongDatas[gong])
+            foreach (var gongExists in Soduku.blockDatas[block])
             {
                 rests.Remove(gongExists);
             }
-
-            this.rests = rests;
             return rests;
         }
     }

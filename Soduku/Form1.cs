@@ -89,12 +89,12 @@ namespace Soduku
 
                 Soduku.rowDatas[cell.row].Sort();
                 Soduku.columnDatas[cell.column].Sort();
-                Soduku.gongDatas[cell.gong].Sort();
+                Soduku.blockDatas[cell.block].Sort();
                 var message2 = JsonConvert.SerializeObject(Soduku.rowDatas[cell.row]);
                 var message3 = JsonConvert.SerializeObject(Soduku.columnDatas[cell.column]);
-                var message4 = JsonConvert.SerializeObject(Soduku.gongDatas[cell.gong]);
-
-                helpMessage.Text = @"可选值范围为：" + message + "\r\n行已经填充" + message2 + "\r\n列已经填充" + message3 +
+                var message4 = JsonConvert.SerializeObject(Soduku.blockDatas[cell.block]);
+                helpMessage.Text = "当前鼠标位置为"+(cell.row+1)+"行"+ (cell.column + 1)+"列\r\n";
+                helpMessage.Text += @"可选值范围为：" + message + "\r\n行已经填充" + message2 + "\r\n列已经填充" + message3 +
                                    "\r\n宫已经填充" + message4;
             }
             else
@@ -102,7 +102,7 @@ namespace Soduku
                 helpMessage.Text = null;
             }
 
-            if (string.IsNullOrEmpty(thisValue)) return;
+            //if (string.IsNullOrEmpty(thisValue)) return;
 
             //var postion=    this.tableLayoutPanel1.GetCellPosition(ctx);
 
@@ -119,7 +119,7 @@ namespace Soduku
                     if (testBox == null) continue;
 
 
-                    testBox.BackColor = thisValue == testBox.Text.Trim() ? Color.Orange : Color.White;
+                    testBox.BackColor = !string.IsNullOrEmpty(thisValue)&& thisValue == testBox.Text.Trim() ? Color.Orange : Color.White;
                 }
             }
         }
