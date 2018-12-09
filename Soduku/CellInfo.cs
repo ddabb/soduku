@@ -28,8 +28,7 @@ namespace Soduku
         /// <summary>
         /// 剩余可选项
         /// </summary>
-        private List<int> rests;
-
+        public List<int> rests;
 
 
         /// <summary>
@@ -57,6 +56,18 @@ namespace Soduku
             this.row = x;
             this.column = y;
             this.gong = GetGong(row, column);
+            rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            rests = GetRest();
+        }
+
+        /// <summary>
+        /// hangRest 0~8表示行
+        /// </summary>
+        /// <param name="value"></param>
+        public void InitValue(int value)
+        {
+            SetValue(value);
+            isInit = true;
         }
 
         /// <summary>
@@ -69,26 +80,27 @@ namespace Soduku
             Soduku.columnDatas[this.column].Add(value);
             Soduku.rowDatas[this.row].Add(value);
             Soduku.gongDatas[this.gong].Add(value);
+            this.rests = GetRest();
         }
 
         public List<int> GetRest()
         {
-            List<int> all=new List<int>{1,2,3,4,5,6,7,8,9};
-        
             foreach (var rowExists in Soduku.rowDatas[row])
             {
-                all.Remove(rowExists);
-            }
-            foreach (var columnExists in Soduku.columnDatas[column])
-            {
-                all.Remove(columnExists);
-            }
-            foreach (var gongExists in Soduku.gongDatas[gong])
-            {
-                all.Remove(gongExists);
+                rests.Remove(rowExists);
             }
 
-            return all;
+            foreach (var columnExists in Soduku.columnDatas[column])
+            {
+                rests.Remove(columnExists);
+            }
+
+            foreach (var gongExists in Soduku.gongDatas[gong])
+            {
+                rests.Remove(gongExists);
+            }
+
+            return rests;
         }
     }
 }

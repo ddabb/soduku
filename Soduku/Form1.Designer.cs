@@ -229,6 +229,8 @@ namespace Soduku
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(460, 460);
             this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel1_CellPaint);
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawBorder);
             // 
             // postion_0_0
             // 
@@ -815,6 +817,7 @@ namespace Soduku
             this.SolveSoduku.TabIndex = 1;
             this.SolveSoduku.Text = "解答数独";
             this.SolveSoduku.UseVisualStyleBackColor = true;
+            this.SolveSoduku.Click += new System.EventHandler(this.SolveSoduku_Click);
             // 
             // button2
             // 
@@ -899,9 +902,6 @@ namespace Soduku
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.tableLayoutPanel1.Paint+=new PaintEventHandler(this.DrawBorder);
-
-            this.tableLayoutPanel1.CellPaint+=new TableLayoutCellPaintEventHandler(this.tableLayoutPanel1_CellPaint);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

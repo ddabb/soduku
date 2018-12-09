@@ -67,7 +67,6 @@ namespace Soduku
             return result;
         }
 
-  
 
         /// <summary>
         /// 行已填充数据
@@ -95,7 +94,8 @@ namespace Soduku
         /// <returns></returns>
         public List<List<int>> Question()
         {
-            var list1 = new List<int> {0, 5, 0, 0, 0, 0, 0, 2, 0};
+            //var list1 = new List<int> {0, 5, 0, 0, 0, 0, 0, 2, 0};
+            var list1 = new List<int> { 1, 5, 7, 4, 9, 8, 6, 2, 0 };
             var list2 = new List<int> {4, 0, 0, 2, 0, 6, 0, 0, 7};
             var list3 = new List<int> {0, 0, 8, 0, 3, 0, 1, 0, 0};
             var list4 = new List<int> {0, 1, 0, 0, 0, 0, 0, 6, 0};
@@ -107,11 +107,19 @@ namespace Soduku
             return new List<List<int>> {list1, list2, list3, list4, list5, list6, list7, list8, list9};
         }
 
+        public CellInfo GetCellInfo(string location)
+        {
+            return cellInfos[location];
+        }
+
+        public bool IsQuestion=> cellInfos!=null&&cellInfos.Count != 0;
+  
+
         /// <summary>
         /// 解题
         /// </summary>
         /// <returns></returns>
-        public List<List<int>> Solve(List<List<int>> values, bool firsttime)
+        public void Solve(List<List<int>> values, bool firsttime)
 
         {
             if (firsttime)
@@ -131,9 +139,10 @@ namespace Soduku
                         CellInfo cell = new CellInfo(row, column);
                         if (value != 0)
                         {
-                            cell.SetValue(value);
+                            cell.InitValue(value);
                         }
 
+                        cellInfos.Add("postion_" + row + "_" + column, cell);
 
                         column += 1;
                     }
@@ -142,8 +151,11 @@ namespace Soduku
                 }
             }
 
-
-            return new List<List<int>>();
+            var weiyu = cellInfos.Values.Where(c => c.Value==0&& c.rests.Count == 1).ToList();
+            foreach (var cell in weiyu)
+            {
+                cell.SetValue(cell.rests[0]);
+            }
         }
 
         /// <summary>
