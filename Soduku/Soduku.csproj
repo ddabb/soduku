@@ -62,7 +62,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Soduku.cs" />
-    <Compile Include="SodukuMaker.cs" />
+    <Compile Include="SodukuBuilder.cs" />
+    <Compile Include="SodukuQuestionGenerator.cs" />
+    <Compile Include="SodukuQusetionSolver.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

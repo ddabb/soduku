@@ -18,7 +18,10 @@ namespace Soduku
 
         private static Soduku sdk = new Soduku();
 
-        private static bool firsttime = true;
+        private static SodukuBuilder sdkBuilder = new SodukuBuilder();
+
+        private static SodukuQuestionGenerator sdkGenerator = new SodukuQuestionGenerator();
+        
 
         private static List<List<int>> questions;
 
@@ -139,7 +142,7 @@ namespace Soduku
             {
                 ControlPaint.DrawBorder(e.Graphics,
                     e.CellBounds,
-                    Color.Black, //7f9db9
+                    Color.Black,
                     0,
                     ButtonBorderStyle.Solid,
                     Color.Black,
@@ -157,7 +160,7 @@ namespace Soduku
             {
                 ControlPaint.DrawBorder(e.Graphics,
                     e.CellBounds,
-                    Color.Black, //7f9db9
+                    Color.Black, 
                     0,
                     ButtonBorderStyle.Solid,
                     Color.Black,
@@ -176,7 +179,7 @@ namespace Soduku
         {
             ControlPaint.DrawBorder(e.Graphics,
                 this.tableLayoutPanel1.ClientRectangle,
-                Color.Black, //7f9db9
+                Color.Black,
                 2,
                 ButtonBorderStyle.Solid,
                 Color.Black,
@@ -196,7 +199,7 @@ namespace Soduku
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var result = sdk.MakeSoduku();
+            var result = sdkBuilder.MakeSoduku();
             for (int i = 0; i < result.Count; i++)
             {
                 var list = result[i];
@@ -222,7 +225,7 @@ namespace Soduku
 
         private void makeQuestion_Click(object sender, EventArgs e)
         {
-            questions = sdk.Question();
+            questions = sdkGenerator.Question();
             for (int i = 0; i < questions.Count; i++)
             {
                 var list = questions[i];

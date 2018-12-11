@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 namespace Soduku
 {
     /// <summary>
-    /// 
+    /// 数独解题类
     /// </summary>
-   public class SodukuMaker
+    public  class SodukuQusetionSolver
     {
-        //todo 将生成数独的方法移到该方法中。
     }
 }
