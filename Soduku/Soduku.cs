@@ -172,7 +172,8 @@ namespace Soduku
                 var list4 = new List<int> {4, 0, 0, 0, 0, 0, 0, 0, 0};
                 var list5 = new List<int> {0, 3, 0, 0, 6, 0, 0, 9, 0};
                 var list6 = new List<int> {0, 0, 0, 7, 2, 0, 1, 0, 0};
-                var list7 = new List<int> {0, 9, 3, 2, 0, 0, 0, 6, 4};
+                //var list7 = new List<int> {0, 9, 3, 2, 0, 0, 0, 6, 4};
+                var list7 = new List<int> { 0, 9, 3, 2, 0, 0, 0, 6, 4 };
                 var list8 = new List<int> {8, 1, 0, 3, 0, 0, 0, 0, 0};
                 var list9 = new List<int> {0, 0, 0, 0, 0, 5, 0, 0, 0};
                 return new List<List<int>> {list1, list2, list3, list4, list5, list6, list7, list8, list9};
@@ -339,6 +340,17 @@ namespace Soduku
             }
         }
 
+
+        //todo 待补充以宫为遍历条件 1.xywing 2.数对 3.ur的判断逻辑
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="value"></param>
+        /// <param name="column1"></param>
+        /// <param name="column2"></param>
         private void MoveRowValue(int row, int value, int column1, int column2)
         {
             for (int column = 0; column < 9; column++)

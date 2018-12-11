@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Soduku
 {
@@ -58,9 +59,24 @@ namespace Soduku
         public List<int> hiddenTripletList;
         public List<int> blockList;
 
+        /// <summary>
+        /// 单元格的剩余可选项组成的串
+        /// </summary>
+        public string RestInfo => JsonConvert.SerializeObject(GetRest());
+
+        /// <summary>
+        /// 是否只有两个可选项
+        /// </summary>
+        public bool isTwoValue => GetRest().Count == 2;
+
         public static int GetBlock(int x, int y)
         {
             return (x / 3) * 3 + (y / 3);
+        }
+
+        public bool Equals(CellInfo x)
+        {
+            return this.ProgramPostion == x.ProgramPostion;
         }
 
         public CellInfo(int x, int y)
