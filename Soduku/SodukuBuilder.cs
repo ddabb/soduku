@@ -31,6 +31,67 @@ namespace Soduku
         }
 
         /// <summary>
+        /// 交换两行
+        /// </summary>
+        /// <param name="lists"></param>
+        /// <param name="row1"></param>
+        /// <param name="row2"></param>
+        /// <returns></returns>
+        private List<List<int>> switchTwoRows(List<List<int>> lists, int row1, int row2)
+        {
+            return new List<List<int>>();
+        }
+
+        /// <summary>
+        /// 交换两列
+        /// </summary>
+        /// <param name="lists"></param>
+        /// <param name="row1"></param>
+        /// <param name="row2"></param>
+        /// <returns></returns>
+        private List<List<int>> switchTwoColumn(List<List<int>> lists, int column1, int column2)
+        {
+            return new List<List<int>>();
+        }
+
+        /// <summary>
+        /// 交换两列块
+        /// </summary>
+        /// <param name="lists"></param>
+        /// <param name="row1"></param>
+        /// <param name="row2"></param>
+        /// <returns></returns>
+        private List<List<int>> switchTwoColumnBlocks(List<List<int>> lists, int block1, int block2)
+        {
+            return new List<List<int>>();
+        }
+
+
+        /// <summary>
+        /// 交换两行块
+        /// </summary>
+        /// <param name="lists"></param>
+        /// <param name="row1"></param>
+        /// <param name="row2"></param>
+        /// <returns></returns>
+        private List<List<int>> switchTwoRowsBlocks(List<List<int>> lists, int block1, int block2)
+        {
+            return new List<List<int>>();
+        }
+
+        /// <summary>
+        /// 交换两个值
+        /// </summary>
+        /// <param name="lists"></param>
+        /// <param name="row1"></param>
+        /// <param name="row2"></param>
+        /// <returns></returns>
+        private List<List<int>> switchTwoValue(List<List<int>> lists, int value1, int value2)
+        {
+            return new List<List<int>>();
+        }
+
+        /// <summary>
         /// 根据随机数范围获取一定数量的随机数
         /// </summary>
         /// <param name="minNum">随机数最小值</param>
