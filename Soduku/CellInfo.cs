@@ -70,6 +70,10 @@ namespace Soduku
         /// </summary>
         public List<int> UrList;
 
+        /// <summary>
+        /// 冲突练
+        /// </summary>
+        public List<int> Conflict;
 
 
         /// <summary>
@@ -108,6 +112,7 @@ namespace Soduku
             this.xwing=new List<int>();
             this.blockList = new List<int>();
             this.UrList=new List<int>();
+            this.Conflict=new List<int>();
             rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
             rests = GetRest();
         }
@@ -177,6 +182,11 @@ namespace Soduku
             }
 
             foreach (var xwingexists in UrList)
+            {
+                rests.Remove(xwingexists);
+            }
+
+            foreach (var xwingexists in Conflict)
             {
                 rests.Remove(xwingexists);
             }

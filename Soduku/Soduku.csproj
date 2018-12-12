@@ -59,12 +59,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MethodDiction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Soduku.cs" />
     <Compile Include="SodukuBuilder.cs" />
     <Compile Include="SodukuQuestionGenerator.cs" />
     <Compile Include="SodukuQusetionSolver.cs" />
+    <Compile Include="TwoPostion.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

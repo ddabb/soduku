@@ -120,10 +120,6 @@ namespace Soduku
         public void Solve(List<List<int>> values, bool firsttime)
 
         {
-            if (firsttime)
-            {
-            }
-
             rowDatas = FilledDatas();
             columnDatas = FilledDatas();
             blockDatas = FilledDatas();
@@ -208,7 +204,13 @@ namespace Soduku
                 var tryurlist = cellInfos.Values.Where(c => c.Value == 0 && c.isTwoValue == true).ToList();
                 foreach (var cellInfo in tryurlist)
                 {
+                    test(cellInfo);
                     Uniquerectangle(cellInfo);
+                }
+
+                foreach (var VARIABLE in cellInfos.Values.Where(c => c.Value == 0))
+                {
+                    test111(VARIABLE);
                 }
 
                 round = round + 1;
@@ -313,15 +315,6 @@ namespace Soduku
             }
         }
 
-        /// <summary>
-        /// 方法方向
-        /// </summary>
-        enum MethodDiction
-        {
-            [Description("行")] Row,
-            [Description("列")] Column,
-            [Description("宫")] Block
-        }
 
 
         private void blockSingleRow(MethodDiction method, int index)
@@ -500,8 +493,154 @@ namespace Soduku
         /// 则x，y所在列位置s第三宫
         /// 若存在元素b使得z所在列元素第三个宫的值为a且x也为a。则b是位置s的待删除项。
         /// </summary>
-        public void coflict()
+        public void test111(CellInfo cellInfo)
         {
+            var column = cellInfo.column;
+            var block = cellInfo.block;
+            var row = cellInfo.row;
+            var cellinfo = cellInfos["postion_" + row + "_" + column];
+            var sameBlock = InTwoPostion(MethodDiction.Block, block);
+            var sameColumn = InTwoPostion(MethodDiction.Column, column);
+            var sameRow = InTwoPostion(MethodDiction.Row, row);
+            var rests = cellinfo.GetRest();
+            foreach (var variable in rests)
+            {
+                if (sameBlock.ContainsKey(variable) && sameColumn.ContainsKey(variable))
+                {
+                    var break0 = 1;
+                    var otherBlockCell = sameBlock[variable].First(cell => cell.ProgramPostion != cellinfo.ProgramPostion);
+                    var otherColumnCell = sameColumn[variable].First(cell => cell.ProgramPostion != cellinfo.ProgramPostion);
+                    if (otherBlockCell.block != otherColumnCell.block && otherBlockCell.column != otherColumnCell.column)
+                    {
+                        SolveMessage += otherBlockCell.showPostion + "和" + otherColumnCell.showPostion + "的取值" + variable + "因" +
+                                        cellinfo.showPostion + "同真假" + "\r\n";
+
+                        var templist = blockCells[8];
+                        var temp = templist.Where(cell => cell.RestInfo == otherColumnCell.RestInfo && cell.column == otherBlockCell.column).ToList();
+                        var values = otherColumnCell.GetRest();
+                        if (values.Count==2&& temp.Count==1)
+                        {
+                            var deleteValue = values.First(c => c != variable);
+                            foreach (var VARIABLE in templist.Where(c=>c.Value==0))
+                            {
+                                if (VARIABLE.column== cellInfo.column)
+                                {
+                                    VARIABLE.Conflict.Add(deleteValue);
+                                }
+                               
+                            }
+
+                            foreach (var variable1 in blockCells[otherColumnCell.block].Where(c => c.Value == 0))
+                            {
+                                if (variable1.column == temp.First().column)
+                                {
+                                    variable1.Conflict.Add(deleteValue);
+                                }
+                            
+                            }
+
+                        }
+        
+                    }
+
+
+                }
+
+                if (sameBlock.ContainsKey(variable) && sameRow.ContainsKey(variable))
+                {
+                    var break0 = 1;
+                    var cell1 = sameBlock[variable].First(cell => cell.ProgramPostion != cellinfo.ProgramPostion);
+                    var cell2 = sameRow[variable].First(cell => cell.ProgramPostion != cellinfo.ProgramPostion);
+                    if (cell1.block != cell2.block && cell1.row != cell2.row)
+                    {
+                        SolveMessage += cell1.showPostion + "和" + cell2.showPostion + "的取值" + variable + "因" +
+                                        cellinfo.showPostion + "同真假" + "\r\n";
+                    }
+                }
+            }
+
+
+            var break1 = 1;
+        }
+
+        private Dictionary<int, List<CellInfo>> InTwoPostion(MethodDiction dirtion, int index)
+        {
+            var c = GetCellsDic(dirtion)[index];
+            List<int> temp = new List<int>();
+            var result = c.Where(x => x.Value == 0).ToList();
+            foreach (var cellInfo in result)
+            {
+                temp.AddRange(cellInfo.GetRest());
+            }
+
+            var newtemp = temp.GroupBy(x => x).Where(j => j.Count() == 2);
+            Dictionary<int, List<CellInfo>> dic = new Dictionary<int, List<CellInfo>>();
+            foreach (var VARIABLE in newtemp)
+            {
+                foreach (var cellInfo in result)
+                {
+                    if (cellInfo.GetRest().Contains(VARIABLE.Key))
+                    {
+                        if (dic.ContainsKey(VARIABLE.Key))
+                        {
+                            dic[VARIABLE.Key].Add(cellInfo);
+                        }
+                        else
+                        {
+                            dic[VARIABLE.Key] = new List<CellInfo> {cellInfo};
+                        }
+                    }
+                }
+            }
+
+            return dic;
+        }
+
+        public void test(CellInfo cellInfo)
+        {
+            var cellsDic = GetCellsDic(MethodDiction.Row);
+            var cellsDic2 = GetCellsDic(MethodDiction.Block);
+            var relatedCell = xywing(cellsDic[cellInfo.row], cellInfo);
+            var relatedCell2 = xywing(cellsDic[cellInfo.block], cellInfo);
+            if (relatedCell != null && relatedCell2 != null && relatedCell2.block != relatedCell.block)
+            {
+                SolveMessage += "row cellInfo" + cellInfo.ProgramPostion + "  " + cellInfo.RestInfo + "   " +
+                                "relatedCell  " + relatedCell.ProgramPostion + "  " + relatedCell.RestInfo +
+                                "   relatedCell2   " + relatedCell2.ProgramPostion + "  " + relatedCell2.RestInfo +
+                                "\r\n";
+            }
+
+            relatedCell = xywing(cellsDic[cellInfo.column], cellInfo);
+            if (relatedCell != null && relatedCell2 != null && relatedCell2.block != relatedCell.block)
+            {
+                SolveMessage += " column cellInfo" + cellInfo.ProgramPostion + "  " + cellInfo.RestInfo + "   " +
+                                "relatedCell  " + relatedCell.ProgramPostion + "  " + relatedCell.RestInfo +
+                                "   relatedCell2   " + relatedCell2.ProgramPostion + "  " + relatedCell2.RestInfo +
+                                "\r\n";
+            }
+        }
+
+
+        public CellInfo xywing(List<CellInfo> cellInfos, CellInfo cellInfo)
+        {
+            foreach (var info in cellInfos)
+            {
+                if (info.ProgramPostion != cellInfo.ProgramPostion)
+                {
+                    var list1 = cellInfo.GetRest();
+                    var list = info.GetRest();
+                    if (list.Count == 2 && info.RestInfo != cellInfo.RestInfo)
+                    {
+                        var intersectedList = list.Intersect(list1);
+                        if (intersectedList.Any())
+                        {
+                            return info;
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
 
 
@@ -564,6 +703,9 @@ namespace Soduku
             }
         }
 
+
+
+     
         /// <summary>
         /// 获取枚举的描述
         /// </summary>
