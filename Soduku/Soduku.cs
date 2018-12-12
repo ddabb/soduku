@@ -204,7 +204,9 @@ namespace Soduku
                     HiddenTriplet(MethodDiction.Row, index);
                     HiddenTriplet(MethodDiction.Column, index);
                     HiddenTriplet(MethodDiction.Block, index);
-
+                    PairNumbers(MethodDiction.Row, index);
+                    PairNumbers(MethodDiction.Column, index);
+                    PairNumbers(MethodDiction.Block, index);
                     blockSingleRow(MethodDiction.Block, index);
 
                     blockSingleColomn(MethodDiction.Block, index);
@@ -426,6 +428,51 @@ namespace Soduku
             }
         }
 
+        /// <summary>
+        /// 数对
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="index"></param>
+        private void PairNumbers(MethodDiction method, int index)
+        {
+            var cellsDic = GetCellsDic(method);
+            var listcells = cellsDic[index].Where(c => c.Value == 0).ToList();
+     
+            var list = listcells.Where(c => c.GetRest().Count ==2).ToList();
+            if (list.Count>2)
+            {
+                var r = list.GroupBy(x => x.RestInfo).Where(j => j.Count() == 2).ToList();
+                if (r.Count!=0)
+                {
+                    var restinfoList = r.Select(group => group.Key).ToList();
+                    foreach (var onekey in restinfoList)
+                    {
+                        var pairlist = listcells.First(c => c.RestInfo == onekey).GetRest();
+                        List<int> temp=new List<Int32>();
+                        foreach (var VARIABLE in pairlist)
+                        {
+                            temp.Add(VARIABLE);
+                        }
+
+                        foreach (var cell in listcells)
+                        {
+                            if (!restinfoList.Contains(cell.RestInfo))
+                            {
+                                cell.PairList = temp;
+                            }
+                        }
+
+                    }
+         
+                }
+            
+
+            }
+
+
+        }
+
+        
 
         /// <summary>
         /// 三链数 

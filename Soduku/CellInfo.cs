@@ -56,7 +56,22 @@ namespace Soduku
         public string ProgramPostion;
 
         public string showPostion;
+        /// <summary>
+        /// 3链数
+        /// </summary>
         public List<int> hiddenTripletList;
+
+
+        /// <summary>
+        /// 3链数
+        /// </summary>
+        public List<int> PairList;
+
+
+
+        /// <summary>
+        /// 其余宮的单行值或者单列值
+        /// </summary>
         public List<int> blockList;
 
         /// <summary>
@@ -89,6 +104,7 @@ namespace Soduku
             this.hiddenTripletList=new List<int>();
             this.xwing=new List<int>();
             this.blockList = new List<int>();
+            this.PairList=new List<Int32>();
             rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
             rests = GetRest();
         }
@@ -156,7 +172,11 @@ namespace Soduku
             {
                 rests.Remove(xwingexists);
             }
-            
+
+            foreach (var xwingexists in PairList)
+            {
+                rests.Remove(xwingexists);
+            }
             return rests;
         }
     }
