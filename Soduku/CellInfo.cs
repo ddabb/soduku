@@ -65,7 +65,7 @@ namespace Soduku
         /// <summary>
         /// 3链数
         /// </summary>
-        public List<int> PairList;
+        public List<int> UrList;
 
 
 
@@ -104,7 +104,7 @@ namespace Soduku
             this.hiddenTripletList=new List<int>();
             this.xwing=new List<int>();
             this.blockList = new List<int>();
-            this.PairList=new List<Int32>();
+            this.UrList=new List<Int32>();
             rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
             rests = GetRest();
         }
@@ -173,7 +173,7 @@ namespace Soduku
                 rests.Remove(xwingexists);
             }
 
-            foreach (var xwingexists in PairList)
+            foreach (var xwingexists in UrList)
             {
                 rests.Remove(xwingexists);
             }

@@ -14,10 +14,6 @@ namespace Soduku
     /// </summary>
     public class Soduku
     {
-
-
-
-
         /// <summary>
         /// 横向9个链表
         /// 纵向9个链表
@@ -107,7 +103,6 @@ namespace Soduku
             {7, new List<CellInfo>()},
             {8, new List<CellInfo>()}
         };
-
 
 
         public CellInfo GetCellInfo(string location)
@@ -204,15 +199,16 @@ namespace Soduku
                     HiddenTriplet(MethodDiction.Row, index);
                     HiddenTriplet(MethodDiction.Column, index);
                     HiddenTriplet(MethodDiction.Block, index);
-                    PairNumbers(MethodDiction.Row, index);
-                    PairNumbers(MethodDiction.Column, index);
-                    PairNumbers(MethodDiction.Block, index);
                     blockSingleRow(MethodDiction.Block, index);
 
                     blockSingleColomn(MethodDiction.Block, index);
                 }
 
-      
+                var tryurlist = cellInfos.Values.Where(c => c.Value == 0 && c.isTwoValue == true).ToList();
+                foreach (var cellInfo in tryurlist)
+                {
+                    Uniquerectangle(cellInfo);
+                }
 
                 round = round + 1;
             }
@@ -222,7 +218,7 @@ namespace Soduku
                 var temp = kv.Value.Where(c => c.Value == 0);
                 foreach (var cellInfo in temp)
                 {
-                    SolveMessage += cellInfo.ProgramPostion + JsonConvert.SerializeObject(cellInfo.GetRest())+"\r\n";
+                    SolveMessage += cellInfo.ProgramPostion + JsonConvert.SerializeObject(cellInfo.GetRest()) + "\r\n";
                 }
 
                 SolveMessage += "\r\n";
@@ -253,7 +249,6 @@ namespace Soduku
 
         private void GetColumnXwing(Dictionary<int, CellInfo> result, int round, int i)
         {
-            bool fillflag;
             if (result.Count == 4 && result[0].row == result[2].row &&
                 result[1].row == result[3].row)
             {
@@ -266,15 +261,12 @@ namespace Soduku
 
                 SolveMessage += "可以移除除了" + (result[0].row + 1) + "," +
                                 (result[2].column + 1) + "列的第" + +(result[1].row + 1) + "行的待选项值" + i + "\r\n";
-                fillflag = true;
+
+
                 MoveRowValue(result[0].row, i, result[0].column, result[2].column);
                 MoveRowValue(result[1].row, i, result[0].column, result[2].column);
             }
         }
-
-
-        //todo 待补充以宫为遍历条件 1.xywing 2.数对 3.ur的判断逻辑
-
 
         /// <summary>
         /// 
@@ -363,14 +355,14 @@ namespace Soduku
                 if (keyValuePair.Value.Distinct().Count() == 1)
                 {
                     var block = index;
-                    var SignleValue = keyValuePair.Key;
+                    var signleValue = keyValuePair.Key;
                     var row = keyValuePair.Value.First();
 
                     foreach (var cellInfo in rowCells[row])
                     {
                         if (cellInfo.block != block)
                         {
-                            cellInfo.blockList.Add(SignleValue);
+                            cellInfo.blockList.Add(signleValue);
                         }
                     }
                 }
@@ -429,15 +421,75 @@ namespace Soduku
         }
 
 
-
         /// <summary>
         /// 唯一矩阵
         /// </summary>
-        private void Uniquerectangle()
+        private void Uniquerectangle(CellInfo cellInfo)
         {
+            var row = cellInfo.row;
+            var column = cellInfo.column;
 
+            var a = cellInfo;
+
+            var restinfo = a.RestInfo;
+            Dictionary<string, List<CellInfo>> dic1 = PairNumbers(MethodDiction.Column, column);
+            Dictionary<string, List<CellInfo>> dic2 = PairNumbers(MethodDiction.Row, row);
+
+            if (dic1.ContainsKey(restinfo) && dic2.ContainsKey(restinfo))
+            {
+                //
+                CellInfo other1 = dic1[restinfo].Find(x => x.ProgramPostion != a.ProgramPostion);
+
+                //
+                CellInfo other2 = dic2[restinfo].Find(x => x.ProgramPostion != a.ProgramPostion);
+                var location = "postion_" + other1.row + "_" + other2.column;
+                var cell = cellInfos[location];
+
+                List<int> blocks = new List<int>();
+                if (!blocks.Contains(a.block))
+                {
+                    blocks.Add(a.block);
+                }
+
+                if (!blocks.Contains(other1.block))
+                {
+                    blocks.Add(other1.block);
+                }
+
+                if (!blocks.Contains(other2.block))
+                {
+                    blocks.Add(other2.block);
+                }
+
+                if (!blocks.Contains(cell.block))
+                {
+                    blocks.Add(cell.block);
+                }
+
+                if (blocks.Count != 2)
+                {
+                    return;
+                }
+
+                var c = cell.GetRest();
+                if (c.Count == 3)
+                {
+                    var restlist = a.GetRest();
+                    var flag = true;
+                    foreach (var i in restlist)
+                    {
+                        if (c.Contains(i)) continue;
+                        flag = false;
+                        break;
+                    }
+
+                    if (flag)
+                    {
+                        cell.UrList = restlist;
+                    }
+                }
+            }
         }
-
 
 
         /// <summary>
@@ -445,67 +497,35 @@ namespace Soduku
         /// </summary>
         /// <param name="method"></param>
         /// <param name="index"></param>
-        private void PairNumbers(MethodDiction method, int index)
+        private Dictionary<string, List<CellInfo>> PairNumbers(MethodDiction method, int index)
         {
             var cellsDic = GetCellsDic(method);
             var listcells = cellsDic[index].Where(c => c.Value == 0).ToList();
-
-            if (listcells.Count>2)
+            Dictionary<string, List<CellInfo>> restinfodic = new Dictionary<string, List<CellInfo>>();
+            foreach (var cellInfo in listcells)
             {
-                List<int> listcount = new List<int>();
-                foreach (var cell in listcells)
+                if (cellInfo.GetRest().Count != 2) continue;
+                var restInfo = cellInfo.RestInfo;
+                if (restinfodic.ContainsKey(restInfo))
                 {
-                    listcount.AddRange(cell.GetRest());
+                    restinfodic[restInfo].Add(cellInfo);
                 }
-                //list 是该行 或该列 或该宮的所有剩余可选项的值。
-                var list = listcount.Distinct().ToList();
-                Dictionary<int, List<string>> dic = new Dictionary<int, List<string>>();
-                foreach (var rest in list)
+                else
                 {
-                    dic.Add(rest, new List<string>());
+                    restinfodic[restInfo] = new List<CellInfo> {cellInfo};
                 }
-
-                foreach (var VARIABLE in dic)
-                {
-                    foreach (var cell in listcells)
-                    {
-                        if (cell.GetRest().Contains(VARIABLE.Key))
-                        {
-                            // 获取该元素的所有位置。
-                            dic[VARIABLE.Key].Add(cell.ProgramPostion);
-                        }
-                    }
-                }
-
-                //   只存在于两个位置的候选数列表。
-                var c = dic.Where(key => key.Value.Count() == 2);
-
-                if (c.Count()>1)
-                {
-                    //确定元素x所有候选位置
-                   Dictionary<int, string> newDictionary=new Dictionary<int, string>();
-                   List<string> locationinfo=new List<String>();
-                    foreach (var kv in c)
-                    {
-                        var allLocation = string.Join(",", kv.Value);
-                        newDictionary.Add(kv.Key, allLocation);
-                        locationinfo.Add(allLocation);
-                    }
-
-              
-             
-
-
-                }
-
-
-
-
-
             }
 
+            Dictionary<string, List<CellInfo>> result = new Dictionary<string, List<CellInfo>>();
+            foreach (var variable in restinfodic)
+            {
+                if (variable.Value.Count == 2)
+                {
+                    result.Add(variable.Key, variable.Value);
+                }
+            }
 
-
+            return result;
         }
 
         /// <summary>
@@ -674,7 +694,5 @@ namespace Soduku
         {
             return true;
         }
-
-
     }
 }
