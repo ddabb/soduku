@@ -428,6 +428,18 @@ namespace Soduku
             }
         }
 
+
+
+        /// <summary>
+        /// 唯一矩阵
+        /// </summary>
+        private void Uniquerectangle()
+        {
+
+        }
+
+
+
         /// <summary>
         /// 数对
         /// </summary>
@@ -437,42 +449,64 @@ namespace Soduku
         {
             var cellsDic = GetCellsDic(method);
             var listcells = cellsDic[index].Where(c => c.Value == 0).ToList();
-     
-            var list = listcells.Where(c => c.GetRest().Count ==2).ToList();
-            if (list.Count>2)
+
+            if (listcells.Count>2)
             {
-                var r = list.GroupBy(x => x.RestInfo).Where(j => j.Count() == 2).ToList();
-                if (r.Count!=0)
+                List<int> listcount = new List<int>();
+                foreach (var cell in listcells)
                 {
-                    var restinfoList = r.Select(group => group.Key).ToList();
-                    foreach (var onekey in restinfoList)
-                    {
-                        var pairlist = listcells.First(c => c.RestInfo == onekey).GetRest();
-                        List<int> temp=new List<Int32>();
-                        foreach (var VARIABLE in pairlist)
-                        {
-                            temp.Add(VARIABLE);
-                        }
-
-                        foreach (var cell in listcells)
-                        {
-                            if (!restinfoList.Contains(cell.RestInfo))
-                            {
-                                cell.PairList = temp;
-                            }
-                        }
-
-                    }
-         
+                    listcount.AddRange(cell.GetRest());
                 }
-            
+                //list 是该行 或该列 或该宮的所有剩余可选项的值。
+                var list = listcount.Distinct().ToList();
+                Dictionary<int, List<string>> dic = new Dictionary<int, List<string>>();
+                foreach (var rest in list)
+                {
+                    dic.Add(rest, new List<string>());
+                }
+
+                foreach (var VARIABLE in dic)
+                {
+                    foreach (var cell in listcells)
+                    {
+                        if (cell.GetRest().Contains(VARIABLE.Key))
+                        {
+                            // 获取该元素的所有位置。
+                            dic[VARIABLE.Key].Add(cell.ProgramPostion);
+                        }
+                    }
+                }
+
+                //   只存在于两个位置的候选数列表。
+                var c = dic.Where(key => key.Value.Count() == 2);
+
+                if (c.Count()>1)
+                {
+                    //确定元素x所有候选位置
+                   Dictionary<int, string> newDictionary=new Dictionary<int, string>();
+                   List<string> locationinfo=new List<String>();
+                    foreach (var kv in c)
+                    {
+                        var allLocation = string.Join(",", kv.Value);
+                        newDictionary.Add(kv.Key, allLocation);
+                        locationinfo.Add(allLocation);
+                    }
+
+              
+             
+
+
+                }
+
+
+
+
 
             }
 
 
-        }
 
-        
+        }
 
         /// <summary>
         /// 三链数 

@@ -42,7 +42,7 @@ namespace Soduku
                 var list5 = new List<int> { 0, 3, 0, 0, 6, 0, 0, 9, 0 };
                 var list6 = new List<int> { 0, 0, 0, 7, 2, 0, 1, 0, 0 };
                 //var list7 = new List<int> {0, 9, 3, 2, 0, 0, 0, 6, 4};
-                var list7 = new List<int> { 0, 9, 3, 2, 0, 0, 5, 6, 4 };
+                var list7 = new List<int> { 0, 9, 3, 2, 0, 0, 0, 6, 4 };
                 var list8 = new List<int> { 8, 1, 0, 3, 0, 0, 0, 0, 0 };
                 var list9 = new List<int> { 0, 0, 0, 0, 0, 5, 0, 0, 0 };
                 return new List<List<int>> { list1, list2, list3, list4, list5, list6, list7, list8, list9 };
