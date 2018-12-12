@@ -19,6 +19,9 @@ namespace Soduku
         /// </summary>
         public int column;
 
+  
+
+
 
         /// <summary>
         /// 宫格
@@ -104,7 +107,7 @@ namespace Soduku
             this.hiddenTripletList=new List<int>();
             this.xwing=new List<int>();
             this.blockList = new List<int>();
-            this.UrList=new List<Int32>();
+            this.UrList=new List<int>();
             rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
             rests = GetRest();
         }
@@ -177,6 +180,7 @@ namespace Soduku
             {
                 rests.Remove(xwingexists);
             }
+            rests.Sort();
             return rests;
         }
     }

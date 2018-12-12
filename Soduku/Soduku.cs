@@ -122,32 +122,33 @@ namespace Soduku
         {
             if (firsttime)
             {
-                rowDatas = FilledDatas();
-                columnDatas = FilledDatas();
-                blockDatas = FilledDatas();
-                cellInfos = new Dictionary<string, CellInfo>();
+            }
 
-                int row = 0;
-                foreach (var list in values)
+            rowDatas = FilledDatas();
+            columnDatas = FilledDatas();
+            blockDatas = FilledDatas();
+            cellInfos = new Dictionary<string, CellInfo>();
+
+            int row = 0;
+            foreach (var list in values)
+            {
+                int column = 0;
+                foreach (var value in list)
                 {
-                    int column = 0;
-                    foreach (var value in list)
+                    CellInfo cell = new CellInfo(row, column);
+                    if (value != 0)
                     {
-                        CellInfo cell = new CellInfo(row, column);
-                        if (value != 0)
-                        {
-                            cell.InitValue(value);
-                        }
-
-                        cellInfos.Add("postion_" + row + "_" + column, cell);
-                        blockCells[cell.block].Add(cell);
-                        rowCells[cell.row].Add(cell);
-                        columnCells[cell.column].Add(cell);
-                        column += 1;
+                        cell.InitValue(value);
                     }
 
-                    row += 1;
+                    cellInfos.Add("postion_" + row + "_" + column, cell);
+                    blockCells[cell.block].Add(cell);
+                    rowCells[cell.row].Add(cell);
+                    columnCells[cell.column].Add(cell);
+                    column += 1;
                 }
+
+                row += 1;
             }
 
             bool fillflag = true;
@@ -284,7 +285,11 @@ namespace Soduku
                     continue;
                 }
 
-                cellInfos["postion_" + row + "_" + column].xwing.Add(value);
+                var c = cellInfos["postion_" + row + "_" + column].xwing;
+                if (!c.Contains(value))
+                {
+                    c.Add(value);
+                }
             }
         }
 
@@ -431,17 +436,13 @@ namespace Soduku
 
             var a = cellInfo;
 
-            var restinfo = a.RestInfo;
-            Dictionary<string, List<CellInfo>> dic1 = PairNumbers(MethodDiction.Column, column);
-            Dictionary<string, List<CellInfo>> dic2 = PairNumbers(MethodDiction.Row, row);
 
-            if (dic1.ContainsKey(restinfo) && dic2.ContainsKey(restinfo))
+            CellInfo other1 = PairNumbers(cellInfo, MethodDiction.Column, column);
+
+            CellInfo other2 = PairNumbers(cellInfo, MethodDiction.Row, row);
+
+            if (other1 != null && other2 != null)
             {
-                //
-                CellInfo other1 = dic1[restinfo].Find(x => x.ProgramPostion != a.ProgramPostion);
-
-                //
-                CellInfo other2 = dic2[restinfo].Find(x => x.ProgramPostion != a.ProgramPostion);
                 var location = "postion_" + other1.row + "_" + other2.column;
                 var cell = cellInfos[location];
 
@@ -493,39 +494,36 @@ namespace Soduku
 
 
         /// <summary>
+        /// x，y单元格同列，元素a属于其中一个;
+        /// y，z单元格同宫，a属于其中一个;
+        /// 若x，z不同宫，不同列;
+        /// 则x，y所在列位置s第三宫
+        /// 若存在元素b使得z所在列元素第三个宫的值为a且x也为a。则b是位置s的待删除项。
+        /// </summary>
+        public void coflict()
+        {
+        }
+
+
+        /// <summary>
         /// 数对
         /// </summary>
         /// <param name="method"></param>
         /// <param name="index"></param>
-        private Dictionary<string, List<CellInfo>> PairNumbers(MethodDiction method, int index)
+        private CellInfo PairNumbers(CellInfo cellInfo, MethodDiction method, int index)
         {
             var cellsDic = GetCellsDic(method);
-            var listcells = cellsDic[index].Where(c => c.Value == 0).ToList();
-            Dictionary<string, List<CellInfo>> restinfodic = new Dictionary<string, List<CellInfo>>();
-            foreach (var cellInfo in listcells)
+            var listcells = cellsDic[index].Where(c => c.Value == 0 && c.ProgramPostion != cellInfo.ProgramPostion)
+                .ToList();
+            foreach (var newCellInfo in listcells)
             {
-                if (cellInfo.GetRest().Count != 2) continue;
-                var restInfo = cellInfo.RestInfo;
-                if (restinfodic.ContainsKey(restInfo))
+                if (newCellInfo.RestInfo == cellInfo.RestInfo)
                 {
-                    restinfodic[restInfo].Add(cellInfo);
-                }
-                else
-                {
-                    restinfodic[restInfo] = new List<CellInfo> {cellInfo};
+                    return newCellInfo;
                 }
             }
 
-            Dictionary<string, List<CellInfo>> result = new Dictionary<string, List<CellInfo>>();
-            foreach (var variable in restinfodic)
-            {
-                if (variable.Value.Count == 2)
-                {
-                    result.Add(variable.Key, variable.Value);
-                }
-            }
-
-            return result;
+            return null;
         }
 
         /// <summary>
