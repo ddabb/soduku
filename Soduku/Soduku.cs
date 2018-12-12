@@ -498,102 +498,130 @@ namespace Soduku
             var column = cellInfo.column;
             var block = cellInfo.block;
             var row = cellInfo.row;
-            var cellinfo = cellInfos["postion_" + row + "_" + column];
-            var sameBlock = InTwoPostion(MethodDiction.Block, block);
-            var sameColumn = InTwoPostion(MethodDiction.Column, column);
-            var sameRow = InTwoPostion(MethodDiction.Row, row);
-            var rests = cellinfo.GetRest();
-            foreach (var variable in rests)
+            var y = cellInfos["postion_" + row + "_" + column];
+            var rests = y.GetRest();
+            foreach (var value in rests)
             {
-                if (sameBlock.ContainsKey(variable) && sameColumn.ContainsKey(variable))
-                {
-                    var break0 = 1;
-                    var otherBlockCell = sameBlock[variable].First(cell => cell.ProgramPostion != cellinfo.ProgramPostion);
-                    var otherColumnCell = sameColumn[variable].First(cell => cell.ProgramPostion != cellinfo.ProgramPostion);
-                    if (otherBlockCell.block != otherColumnCell.block && otherBlockCell.column != otherColumnCell.column)
-                    {
-                        SolveMessage += otherBlockCell.showPostion + "和" + otherColumnCell.showPostion + "的取值" + variable + "因" +
-                                        cellinfo.showPostion + "同真假" + "\r\n";
 
-                        var templist = blockCells[8];
-                        var temp = templist.Where(cell => cell.RestInfo == otherColumnCell.RestInfo && cell.column == otherBlockCell.column).ToList();
-                        var values = otherColumnCell.GetRest();
-                        if (values.Count==2&& temp.Count==1)
+                var z = OtherPostion(y, MethodDiction.Block, block, value);
+                var x = OtherPostion(y,MethodDiction.Column, column, value);
+                var r = OtherPostion(y, MethodDiction.Row, row, value);
+                var flag = false;
+
+                if (x!=null&& z!=null && x.GetRest().Count==2)
+                {
+                    var xrest = x.GetRest();
+                    var left = xrest.First(c => c != value);
+                    if (z.block != x.block &&
+                        z.column != x.column)
+                    {
+                        var blockid = BlocksInfo.GetLeftBlock(z.block, x.block);
+                        var blocklist = blockCells[blockid];
+                        var templist = blocklist.Where(cell => cell.RestInfo == x.RestInfo && cell.column == z.column).ToList(); ;
+                        if (templist.Count==1)
                         {
-                            var deleteValue = values.First(c => c != variable);
-                            foreach (var VARIABLE in templist.Where(c=>c.Value==0))
+                            foreach (var variable in blocklist)
                             {
-                                if (VARIABLE.column== cellInfo.column)
+                                if (variable.column==column)
                                 {
-                                    VARIABLE.Conflict.Add(deleteValue);
+                                    flag = true;
+                                    variable.Conflict.Add(left);
                                 }
-                               
+              
+                            }
+                            foreach (var variable in GetCellsDic(MethodDiction.Block)[x.block])
+                            {
+                                if (variable.column == z.column)
+                                {
+                                    flag = true;
+                                    variable.Conflict.Add(left);
+                                }
+
                             }
 
-                            foreach (var variable1 in blockCells[otherColumnCell.block].Where(c => c.Value == 0))
+                            if (flag)
                             {
-                                if (variable1.column == temp.First().column)
-                                {
-                                    variable1.Conflict.Add(deleteValue);
-                                }
-                            
+                                break;
                             }
-
                         }
-        
+
                     }
-
-
                 }
 
-                if (sameBlock.ContainsKey(variable) && sameRow.ContainsKey(variable))
+                if (r != null && z != null && r.GetRest().Count == 2)
                 {
-                    var break0 = 1;
-                    var cell1 = sameBlock[variable].First(cell => cell.ProgramPostion != cellinfo.ProgramPostion);
-                    var cell2 = sameRow[variable].First(cell => cell.ProgramPostion != cellinfo.ProgramPostion);
-                    if (cell1.block != cell2.block && cell1.row != cell2.row)
+                    var xrest = r.GetRest();
+                    var left = xrest.First(c => c != value);
+                    if (z.block != r.block &&
+                        z.column != r.row)
                     {
-                        SolveMessage += cell1.showPostion + "和" + cell2.showPostion + "的取值" + variable + "因" +
-                                        cellinfo.showPostion + "同真假" + "\r\n";
+                        var blockid = BlocksInfo.GetLeftBlock(z.block, r.block);
+                        var blocklist = blockCells[blockid];
+                        var templist = blocklist.Where(cell => cell.RestInfo == r.RestInfo && cell.row == z.row).ToList(); ;
+                        if (templist.Count == 1)
+                        {
+                            foreach (var variable in blocklist)
+                            {
+                                if (variable.row == row)
+                                {
+                                    flag = true;
+                                    variable.Conflict.Add(left);
+                                }
+
+                            }
+                            foreach (var variable in GetCellsDic(MethodDiction.Block)[r.block])
+                            {
+                                if (variable.column == z.row)
+                                {
+                                    flag = true;
+                                    variable.Conflict.Add(left);
+                                }
+
+                            }
+
+                            if (flag)
+                            {
+                                break;
+                            }
+                        }
+
                     }
                 }
+
             }
 
+       
 
             var break1 = 1;
         }
 
-        private Dictionary<int, List<CellInfo>> InTwoPostion(MethodDiction dirtion, int index)
+        /// <summary>
+        /// 取值在两个位置
+        /// </summary>
+        /// <param name="dirtion"></param>
+        /// <param name="index"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private CellInfo OtherPostion(CellInfo cellInfo,MethodDiction dirtion, int index,int value)
         {
             var c = GetCellsDic(dirtion)[index];
-            List<int> temp = new List<int>();
+            List<CellInfo> temp = new List<CellInfo>();
             var result = c.Where(x => x.Value == 0).ToList();
-            foreach (var cellInfo in result)
+            foreach (var cell in result)
             {
-                temp.AddRange(cellInfo.GetRest());
-            }
-
-            var newtemp = temp.GroupBy(x => x).Where(j => j.Count() == 2);
-            Dictionary<int, List<CellInfo>> dic = new Dictionary<int, List<CellInfo>>();
-            foreach (var VARIABLE in newtemp)
-            {
-                foreach (var cellInfo in result)
+                if (cell.ProgramPostion!=cellInfo.ProgramPostion&& cell.GetRest().Contains(value))
                 {
-                    if (cellInfo.GetRest().Contains(VARIABLE.Key))
-                    {
-                        if (dic.ContainsKey(VARIABLE.Key))
-                        {
-                            dic[VARIABLE.Key].Add(cellInfo);
-                        }
-                        else
-                        {
-                            dic[VARIABLE.Key] = new List<CellInfo> {cellInfo};
-                        }
-                    }
+                    temp.Add(cell);
                 }
+        
             }
 
-            return dic;
+            if (temp.Count==1)
+            {
+                return temp.First();
+            }
+
+            return null;
         }
 
         public void test(CellInfo cellInfo)
