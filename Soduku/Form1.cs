@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using SodukuBase;
+using SodukuGenerator;
 
-namespace Soduku
+namespace SodukuUI
 {
     public partial class Form1 : Form
     {
@@ -20,7 +21,7 @@ namespace Soduku
 
         private static SodukuBuilder sdkBuilder = new SodukuBuilder();
 
-        private static SodukuQuestionGenerator sdkGenerator = new SodukuQuestionGenerator();
+        private static SodukuQuestion.SodukuQuestion sdkGenerator = new SodukuQuestion.SodukuQuestion();
         
 
         private static List<List<int>> questions;

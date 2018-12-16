@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Soduku
+namespace SodukuBase
 {
     /// <summary>
     /// 方法方向

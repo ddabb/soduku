@@ -1,7 +1,7 @@
-﻿using System.Windows.Forms;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
-namespace Soduku
+namespace SodukuUI
 {
     partial class Form1
     {

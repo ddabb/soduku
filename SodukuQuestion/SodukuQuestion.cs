@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Soduku
+namespace SodukuQuestion
 {
     /// <summary>
     /// 数独出题类
     /// </summary>
-   public class SodukuQuestionGenerator
+   public class SodukuQuestion
     {
 
 

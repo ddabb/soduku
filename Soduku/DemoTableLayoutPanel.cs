@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace Soduku
+namespace SodukuUI
 {
     public class DemoTableLayoutPanel : TableLayoutPanel
     {

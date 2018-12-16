@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Soduku
+namespace SodukuSolver
 {
-    /// <summary>
-    /// 数独解题类
-    /// </summary>
-    public  class SodukuQusetionSolver
+    class Program
     {
+        static void Main(string[] args)
+        {
+        }
     }
 }
