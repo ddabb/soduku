@@ -50,6 +50,8 @@ namespace SodukuTest
 
         static string _result = "";
         private static int _resultCount = 0;
+
+        private static bool AllValue = false;
         private static bool asc = true;
         static void Main(string[] args)
 
@@ -181,10 +183,13 @@ namespace SodukuTest
                 return;
 
             }
-            
-            if (_resultCount > 1)
+
+            if (!AllValue)
             {
-                return;
+                if (_resultCount > 1)
+                {
+                    return;
+                }
             }
 
             int i = n / 9, j = n % 9;
