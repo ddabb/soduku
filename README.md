@@ -29,7 +29,7 @@
 单元测试类库
 
 # 参考资料
-[手写数独教程](https://www.60points.com/handwrite-soduku/)
-[标准数独解题之旅](http://www.sudokufans.org.cn/forums/topic/8/)
-[C#简单实现九宫数独算法：穷举+回溯](https://blog.csdn.net/canhui87/article/details/4997969)
+[手写数独教程](https://www.60points.com/handwrite-soduku/)  
+[标准数独解题之旅](http://www.sudokufans.org.cn/forums/topic/8/)  
+[C#简单实现九宫数独算法：穷举+回溯](https://blog.csdn.net/canhui87/article/details/4997969)  
 
