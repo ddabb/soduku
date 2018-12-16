@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{1D
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodukuTest", "SodukuTest\SodukuTest.csproj", "{F467EA4C-B782-4E56-821F-344A9F49E8FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{6D97C8A3-6F76-4FFC-9FCB-EDEAB3B961C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D97C8A3-6F76-4FFC-9FCB-EDEAB3B961C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D97C8A3-6F76-4FFC-9FCB-EDEAB3B961C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F467EA4C-B782-4E56-821F-344A9F49E8FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F467EA4C-B782-4E56-821F-344A9F49E8FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F467EA4C-B782-4E56-821F-344A9F49E8FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F467EA4C-B782-4E56-821F-344A9F49E8FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

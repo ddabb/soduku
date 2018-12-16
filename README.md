@@ -5,7 +5,7 @@
 >SodukuQuestion 数独出题类库
 >SodukuSolver 数独求解类库
 >SodukuWinformUi WinformUI类库
-
+>SodukuTest 数独测试类库
 ## 数独基础类库
 
 设置盘面每个位置的信息
@@ -24,6 +24,8 @@
 以winform的形式展示数据，并构造求解过程
 提供数独题目,并辅助玩家求解。
 
+## 数独测试类库
+单元测试类库
 
 # 参考资料
 [手写数独教程](https://www.60points.com/handwrite-soduku/)
