@@ -16,34 +16,49 @@ namespace SodukuTest
 
  {
 
- {0,0,0,7,2,8,0,0,0},
+ {0,4,2,1,9,7,5,8,0},
 
- {0,9,0,0,5,1,6,0,0},
+ {0,8,0,4,5,2,0,9,0},
 
- {0,0,0,0,6,0,0,8,2},
+ {5,9,0,3,8,6,0,4,2},
 
- {3,0,0,8,0,2,7,0,4},
+ {7,1,9,2,4,5,6,3,8},
 
- {1,7,4,0,3,0,0,2,0},
+ {2,5,3,6,1,8,9,7,4},
 
- {2,8,0,5,0,0,0,3,0},
+ {4,6,8,7,3,9,2,5,1},
 
- {0,1,0,3,0,0,2,0,0},
+ {1,2,5,8,7,3,4,6,9},
 
- {0,0,7,0,4,6,0,0,5},
+ {8,7,4,9,6,1,3,2,5},
 
- {0,0,6,1,0,0,0,4,9} };
+ {9,3,6,5,2,4,8,1,7} };
 
-        static string result = "";
+        private static int[,] pu1 = new int[9, 9]
+        {
+            {0, 8, 0, 0, 0, 0, 6, 0, 0},
+            {0, 0, 0, 4, 0, 0, 0, 0, 9},
+            {0, 7, 0, 0, 0, 0, 8, 0, 5},
+            {4, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 3, 0, 0, 6, 0, 0, 9, 0},
+            {0, 0, 0, 7, 2, 0, 1, 0, 0},
+            {0, 9, 3, 2, 0, 0, 0, 6, 4},
+            {8, 1, 0, 3, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 5, 0, 0, 0}
+        };
 
+
+        static string _result = "";
+        private static int _resultCount = 0;
+        private static bool asc = true;
         static void Main(string[] args)
 
         {
 
-            Show();
+          
 
             GetAnswer(0);
-
+            Console.WriteLine(_resultCount);
             Console.ReadLine();
 
         }
@@ -117,7 +132,7 @@ namespace SodukuTest
         static void Show()
 
         {
-            result = "";
+            _result = "";
             for (var i = 0; i < 9; i++)
 
             {
@@ -125,7 +140,7 @@ namespace SodukuTest
                 for (var j = 0; j < 9; j++)
 
                 {
-                    result +=pu[i, j];
+                    _result +=pu[i, j];
                     Console.Write(pu[i, j] + " ");
 
                 
@@ -137,8 +152,9 @@ namespace SodukuTest
             }
           
             Console.WriteLine("----------------------------------------------");
+            _resultCount += 1;
 
-            Console.WriteLine(result);
+            Console.WriteLine(_result);
 
         }
 
@@ -161,12 +177,15 @@ namespace SodukuTest
             {//是否已经是最后一个格子
 
                 Show();
-
+        
                 return;
 
             }
-
-
+            
+            if (_resultCount > 1)
+            {
+                return;
+            }
 
             int i = n / 9, j = n % 9;
 
@@ -183,18 +202,20 @@ namespace SodukuTest
             }
 
 
+                for (int k = 0; k < 9; k++)
 
-            for (int k = 0; k < 9; k++)
+               {
+                    var value = asc? k + 1:9-k;
+                  
 
-            {
+                    pu[i, j]= value;//当前格子进行尝试所有解
 
-                pu[i, j]++;//当前格子进行尝试所有解
+                    if (IsValid(i, j))
 
-                if (IsValid(i, j))
+                        GetAnswer(n + 1);//验证通过，就继续下一个
 
-                    GetAnswer(n + 1);//验证通过，就继续下一个
-
-            }
+                }
+    
 
 
 
