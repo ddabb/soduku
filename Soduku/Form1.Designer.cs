@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace SodukuUI
@@ -112,12 +113,13 @@ namespace SodukuUI
             this.makeQuestion = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.noticeNumber = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top| System.Windows.Forms.AnchorStyles.Left;
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel1.ColumnCount = 9;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
@@ -900,10 +902,30 @@ namespace SodukuUI
             this.label2.TabIndex = 10;
             this.label2.Text = "结果信息";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(524, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(159, 15);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "提示数个数(最小17个)";
+            // 
+            // noticeNumber
+            // 
+            this.noticeNumber.Location = new System.Drawing.Point(689, 47);
+            this.noticeNumber.Name = "noticeNumber";
+            this.noticeNumber.Size = new System.Drawing.Size(100, 25);
+            this.noticeNumber.TabIndex = 12;
+            this.noticeNumber.Text = "30";
+            this.noticeNumber.TextChanged+=new EventHandler(noticeNumberChanged);
+            // 
             // Form1
             // 
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(919, 540);
+            this.Controls.Add(this.noticeNumber);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.makeQuestion);
@@ -1031,5 +1053,7 @@ namespace SodukuUI
         private Button makeQuestion;
         private Label label1;
         private Label label2;
+        private Label label3;
+        private TextBox noticeNumber;
     }
 }

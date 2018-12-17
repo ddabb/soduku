@@ -8,8 +8,8 @@
 
         public PostionValue(string postion, int value, Operatoration operatoration = Operatoration.Equal)
         {
-            this.Postion = postion;
-            this.Value = value;
+            Postion = postion;
+            Value = value;
             this.operatoration = operatoration;
         }
 

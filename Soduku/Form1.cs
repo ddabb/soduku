@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using SodukuBase;
+using SodukuFactory;
 using SodukuGenerator;
 
 namespace SodukuUI
@@ -21,7 +22,7 @@ namespace SodukuUI
 
         private static SodukuBuilder sdkBuilder = new SodukuBuilder();
 
-        private static SodukuFactory.SodukuQuestion sdkGenerator = new SodukuFactory.SodukuQuestion();
+        private static SodukuQuestion sdkGenerator = new SodukuQuestion();
         
 
         private static List<List<int>> questions;
@@ -29,14 +30,42 @@ namespace SodukuUI
         private static readonly List<string> vaildValues =
             new List<string> {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
+        private void noticeNumberChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(noticeNumber.Text))
+            {
+                noticeNumber.Text = "30";
+            }
+
+            int value = 0;
+            if (int.TryParse(noticeNumber.Text,out value))
+            {
+                if (value<17)
+                {
+                    noticeNumber.Text += "17";
+                }
+
+                if (value > 81)
+                {
+                    noticeNumber.Text += "80";
+                }
+            }
+            else
+            {
+                noticeNumber.Text = "30";
+            }
+
+           
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.GetType()
+            GetType()
                 .GetProperty("DoubleBuffered",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
                 ?.SetValue(this, true, null);
-            this.helpMessage.Text = null;
-            this.resultMessage.Text = null;
+            helpMessage.Text = null;
+            resultMessage.Text = null;
             for (int i = 0; i < numbers; i++)
             {
                 for (int j = 0; j < numbers; j++)
@@ -179,7 +208,7 @@ namespace SodukuUI
         private void DrawBorder(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics,
-                this.tableLayoutPanel1.ClientRectangle,
+                tableLayoutPanel1.ClientRectangle,
                 Color.Black,
                 2,
                 ButtonBorderStyle.Solid,
@@ -200,6 +229,10 @@ namespace SodukuUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+      
+
+   
+
             var result = sdkBuilder.MakeSoduku();
             for (int i = 0; i < result.Count; i++)
             {
@@ -226,7 +259,17 @@ namespace SodukuUI
 
         private void makeQuestion_Click(object sender, EventArgs e)
         {
-            questions = sdkGenerator.Question();
+
+
+            if (false)
+            {
+                questions = sdkGenerator.Question();
+            }
+            else
+            {
+                questions  = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
+            }
+      
             for (int i = 0; i < questions.Count; i++)
             {
                 var list = questions[i];

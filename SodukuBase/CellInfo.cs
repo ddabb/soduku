@@ -94,21 +94,21 @@ namespace SodukuBase
 
         public bool Equals(CellInfo x)
         {
-            return this.ProgramPostion == x.ProgramPostion;
+            return ProgramPostion == x.ProgramPostion;
         }
 
         public CellInfo(int x, int y)
         {
-            this.row = x;
-            this.column = y;
-            this.ProgramPostion = "postion_" + x + "_" + y;
-            this.showPostion =  (x + 1) + "行" + (y + 1)+ "列" ;
-            this.block = GetBlock(row, column);
-            this.hiddenTripletList=new List<int>();
-            this.xwing=new List<int>();
-            this.blockList = new List<int>();
-            this.UrList=new List<int>();
-            this.Conflict=new List<int>();
+            row = x;
+            column = y;
+            ProgramPostion = "postion_" + x + "_" + y;
+            showPostion =  (x + 1) + "行" + (y + 1)+ "列" ;
+            block = GetBlock(row, column);
+            hiddenTripletList=new List<int>();
+            xwing=new List<int>();
+            blockList = new List<int>();
+            UrList=new List<int>();
+            Conflict=new List<int>();
             rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
             rests = GetRest();
         }
@@ -132,18 +132,18 @@ namespace SodukuBase
         /// <param name="value"></param>
         public void SetValue(int value)
         {
-            this.Value = value;
+            Value = value;
 
-            Soduku.rowDatas[this.row].Add(value);
-            Soduku.columnDatas[this.column].Add(value);
-            Soduku.blockDatas[this.block].Add(value);
+            Soduku.rowDatas[row].Add(value);
+            Soduku.columnDatas[column].Add(value);
+            Soduku.blockDatas[block].Add(value);
             if (value != 0)
             {
                 rests.Clear();
             }
             else
             {
-                this.rests = GetRest();
+                rests = GetRest();
             }
         }
 
