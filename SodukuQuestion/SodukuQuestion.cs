@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using SodukuBase;
 
-namespace SodukuQuestion
+namespace SodukuFactory
 {
     /// <summary>
     /// 数独出题类
@@ -45,27 +45,64 @@ namespace SodukuQuestion
             }
         }
 
-        public List<List<int>> AutoQuestion(List<List<int>> validInitList,int noticeValue)
+        public List<List<int>> AutoQuestion(List<List<int>> validInitList, int noticeValue)
         {
             Random rm = new Random();
             List<List<int>> tempquestion;
+     
             do
             {
-                tempquestion = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(validInitList));
-
-                var list1 = RandomHelper.GetRandom(0, true, 80, true,81- noticeValue, rm, false);
-                foreach (var item in list1)
+                tempquestion =
+                    JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(validInitList));
+                List<int> list1;
+                do
                 {
+                    list1 = RandomHelper.GetRandom(0, true, 80, true,noticeValue, rm, false);
+         
 
-                    tempquestion[item / 9][item % 9] = 0;
+                } while (!ValidNoticeList(list1));
+
+                for (int i = 0; i < 9; i++)
+                {
+                    for (int j = 0; j < 9; j++)
+                    {
+                 
+                        if (!list1.Contains(i * 9 + j))
+                        {
+                            tempquestion[i ][ j] = 0;
+                        }
+           
+                    }
+            
                 }
 
 
+
+          
+            
             } while (!isVaildQuestion(tempquestion));
 
-          ;
+            ;
             return tempquestion;
+        }
 
+
+        public static bool ValidNoticeList(List<int> noticeValue)
+        {
+            List<bool> row = new List<bool> {false, false, false, false, false, false, false, false, false,};
+            List<bool> column = new List<bool> {false, false, false, false, false, false, false, false, false,};
+            foreach (var value in noticeValue)
+            {
+                row[value / 9] =true;
+                column[value % 9] =true;
+            }
+            return (row[0] ? 1 : 0) + (row[1] ? 1 : 0) + (row[2] ? 1 : 0) >= 2
+                   && (row[3] ? 1 : 0) + (row[4] ? 1 : 0) + (row[5] ? 1 : 0) >= 2
+                   && (row[6] ? 1 : 0) + (row[7] ? 1 : 0) + (row[8] ? 1 : 0) >= 2
+                   && (column[0] ? 1 : 0) + (column[1] ? 1 : 0) + (column[2] ? 1 : 0) >= 2
+                   && (column[3] ? 1 : 0) + (column[4] ? 1 : 0) + (column[5] ? 1 : 0) >= 2
+                   && (column[6] ? 1 : 0) + (column[7] ? 1 : 0) + (column[8] ? 1 : 0) >= 2
+                ;
         }
 
 
@@ -99,7 +136,7 @@ namespace SodukuQuestion
             for (t = 0; t < 9; t++)
 
             {
-                if ((t != i && pu[t][j] == n) || (t != j && pu[i][t] == n))
+                if (t != i && pu[t][j] == n || t != j && pu[i][t] == n)
 
                     return false;
             }

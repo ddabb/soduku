@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodukuBase", "SodukuBase\So
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodukuBuilder", "SodukuGenerator\SodukuBuilder.csproj", "{4360BBC9-DCE8-4938-8C18-D2ABA53FED87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodukuQuestion", "SodukuQuestion\SodukuQuestion.csproj", "{D7B70BD9-08B4-4C9C-B9A7-4F8D6A701F58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodukuFactory", "SodukuQuestion\SodukuFactory.csproj", "{D7B70BD9-08B4-4C9C-B9A7-4F8D6A701F58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodukuSolver", "SodukuSolver\SodukuSolver.csproj", "{6D97C8A3-6F76-4FFC-9FCB-EDEAB3B961C9}"
 EndProject

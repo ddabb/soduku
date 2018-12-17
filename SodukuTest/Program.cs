@@ -5,8 +5,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using SodukuBase;
 using SodukuGenerator;
-using SodukuQuestion;
+using SodukuFactory;
 
 namespace SodukuTest
 {
@@ -61,7 +62,9 @@ namespace SodukuTest
 
         {
             var validSoduku = new SodukuBuilder().MakeSoduku();
-            var validSodukuQuestion = new SodukuQuestion.SodukuQuestion().AutoQuestion(validSoduku, 25);
+
+            var validSodukuQuestion = new SodukuQuestion().AutoQuestion(validSoduku, 30);
+            Console.WriteLine("最终初盘是");
             foreach (var list in validSodukuQuestion)
             {
                 foreach (var value in list)

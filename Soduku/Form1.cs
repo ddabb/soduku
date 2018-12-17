@@ -21,7 +21,7 @@ namespace SodukuUI
 
         private static SodukuBuilder sdkBuilder = new SodukuBuilder();
 
-        private static SodukuQuestion.SodukuQuestion sdkGenerator = new SodukuQuestion.SodukuQuestion();
+        private static SodukuFactory.SodukuQuestion sdkGenerator = new SodukuFactory.SodukuQuestion();
         
 
         private static List<List<int>> questions;
