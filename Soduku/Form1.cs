@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using SodukuBase;
@@ -322,6 +323,13 @@ namespace SodukuUI
             }
 
             resultMessage.Text = sdk.SolveMessage;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Bitmap bit = new Bitmap(tableLayoutPanel1.Width, tableLayoutPanel1.Bottom);//实例化一个和窗体一样大的bitmap
+            tableLayoutPanel1.DrawToBitmap(bit,new Rectangle(0, tableLayoutPanel1.Top, tableLayoutPanel1.Width, tableLayoutPanel1.Bottom));
+            bit.Save("weiboTemp.png");
         }
     }
 }

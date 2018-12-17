@@ -47,42 +47,55 @@ namespace SodukuFactory
 
         public List<List<int>> AutoQuestion(List<List<int>> validInitList, int noticeValue)
         {
+          
+            var tempValue = 0;
+            bool flag = true;
+            var tempvalue = 28;
+            List<int> list1=new List<int>();
+            if (noticeValue >= tempvalue)
+            {
+                #region 多余28个提示数 直接采取随机数生成。
+
+                return SubAutoQuestion(validInitList, noticeValue, list1);
+
+                #endregion
+            }
+            else
+            {
+                #region 少于28个提示数，在合法的28个提示数中减少提示数，看是否依旧构成唯一解。
+
+                return new List<List<int>>();
+
+                #endregion
+            }
+        }
+
+        private static List<List<int>> SubAutoQuestion(List<List<int>> validInitList, int noticeValue,List<int> list1)
+        {
             Random rm = new Random();
             List<List<int>> tempquestion;
-     
             do
             {
                 tempquestion =
                     JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(validInitList));
-                List<int> list1;
+             
                 do
                 {
-                    list1 = RandomHelper.GetRandom(0, true, 80, true,noticeValue, rm, false);
-         
-
+                    list1 = RandomHelper.GetRandom(0, true, 80, true, noticeValue, rm, false);
                 } while (!ValidNoticeList(list1));
 
                 for (int i = 0; i < 9; i++)
                 {
                     for (int j = 0; j < 9; j++)
                     {
-                 
                         if (!list1.Contains(i * 9 + j))
                         {
-                            tempquestion[i ][ j] = 0;
+                            tempquestion[i][j] = 0;
                         }
-           
                     }
-            
                 }
+            } while (!IsVaildQuestion(tempquestion));
 
-
-
-          
-            
-            } while (!isVaildQuestion(tempquestion));
-
-            ;
             return tempquestion;
         }
 
@@ -93,9 +106,10 @@ namespace SodukuFactory
             List<bool> column = new List<bool> {false, false, false, false, false, false, false, false, false,};
             foreach (var value in noticeValue)
             {
-                row[value / 9] =true;
-                column[value % 9] =true;
+                row[value / 9] = true;
+                column[value % 9] = true;
             }
+
             return (row[0] ? 1 : 0) + (row[1] ? 1 : 0) + (row[2] ? 1 : 0) >= 2
                    && (row[3] ? 1 : 0) + (row[4] ? 1 : 0) + (row[5] ? 1 : 0) >= 2
                    && (row[6] ? 1 : 0) + (row[7] ? 1 : 0) + (row[8] ? 1 : 0) >= 2
@@ -106,7 +120,7 @@ namespace SodukuFactory
         }
 
 
-        public static bool isVaildQuestion(List<List<int>> param)
+        public static bool IsVaildQuestion(List<List<int>> param)
         {
             List<List<int>> pu = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(param));
             _resultCount = 0;
@@ -166,7 +180,7 @@ namespace SodukuFactory
         /// <summary>
         /// 显示函数
         /// </summary>
-        static void Show(List<List<int>> pu)
+        static void GetResult(List<List<int>> pu)
 
         {
             _result = "";
@@ -196,7 +210,7 @@ namespace SodukuFactory
             {
                 //是否已经是最后一个格子
 
-                Show(pu);
+                GetResult(pu);
 
                 return;
             }

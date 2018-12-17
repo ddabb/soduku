@@ -115,6 +115,7 @@ namespace SodukuUI
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.noticeNumber = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -819,7 +820,7 @@ namespace SodukuUI
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(480, 12);
+            this.button2.Location = new System.Drawing.Point(689, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -838,7 +839,7 @@ namespace SodukuUI
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(399, 12);
+            this.button4.Location = new System.Drawing.Point(589, 12);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 4;
@@ -918,12 +919,23 @@ namespace SodukuUI
             this.noticeNumber.Size = new System.Drawing.Size(100, 25);
             this.noticeNumber.TabIndex = 12;
             this.noticeNumber.Text = "30";
-            this.noticeNumber.TextChanged+=new EventHandler(noticeNumberChanged);
+            this.noticeNumber.TextChanged += new System.EventHandler(this.noticeNumberChanged);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(399, 12);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(123, 23);
+            this.button5.TabIndex = 13;
+            this.button5.Text = "导出棋盘图片";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(919, 540);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.noticeNumber);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -1055,5 +1067,6 @@ namespace SodukuUI
         private Label label2;
         private Label label3;
         private TextBox noticeNumber;
+        private Button button5;
     }
 }
