@@ -52,5 +52,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SodukuGenerator\SodukuBuilder.csproj">
+      <Project>{4360bbc9-dce8-4938-8c18-d2aba53fed87}</Project>
+      <Name>SodukuBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SodukuQuestion\SodukuQuestion.csproj">
+      <Project>{d7b70bd9-08b4-4c9c-b9a7-4f8d6a701f58}</Project>
+      <Name>SodukuQuestion</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

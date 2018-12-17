@@ -52,6 +52,7 @@
     <Compile Include="CellInfo.cs" />
     <Compile Include="MethodDiction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomHelper.cs" />
     <Compile Include="Soduku.cs" />
   </ItemGroup>
   <ItemGroup>
