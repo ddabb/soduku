@@ -61,8 +61,19 @@ namespace SodukuTest
         static void Main(string[] args)
 
         {
-            var validSoduku = new SodukuBuilder().MakeSoduku();
+       
+            Random rm=new Random();
+            List<int> int1=new List<int>();
+            int1.AddRange(RandomHelper.GetRandom(0, true, 2, true, 3, rm, false));
+            int1.AddRange(RandomHelper.GetRandom(3, true, 5, true, 3, rm, false));
+            int1.AddRange(RandomHelper.GetRandom(6, true, 8, true, 3, rm, false));
+            foreach (var value in int1)
+            {
+                Console.Write(value + "  ");
+            }
 
+            Console.ReadKey();
+            var validSoduku = new SodukuBuilder().MakeSoduku();
             var validSodukuQuestion = new SodukuQuestion().AutoQuestion(validSoduku, 30);
             Console.WriteLine("最终初盘是");
             foreach (var list in validSodukuQuestion)

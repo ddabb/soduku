@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using MathNet.Numerics;
+using MathNet.Numerics.LinearAlgebra.Double;
 using SodukuBase;
 
 namespace SodukuGenerator
@@ -25,8 +27,55 @@ namespace SodukuGenerator
             var list7 = moveToTail(list1, 2);
             var list8 = moveToTail(list1, 5);
             var list9 = moveToTail(list1, 8);
-            return new List<List<int>> { list1, list2, list3, list4, list5, list6, list7, list8, list9 };
+            var a= new List<List<int>> { list1, list2, list3, list4, list5, list6, list7, list8, list9 };
+            return Upset(a);
         }
+
+        public List<List<int>> Upset(List<List<int>> a)
+        {
+            double[,] doubles=new double[9,9];
+            for (int i = 0; i < a.Count; i++)
+            {
+                var inner = a[i];
+                for (int j = 0; j < inner.Count; j++)
+                {
+
+                    doubles[i, j] = a[i][j];
+                }
+
+            }
+
+            var matrix = DenseMatrix.OfArray(doubles);
+            for (int i = 0; i < 10; i++)
+            {
+                var permutations = new Permutation(unorderlist());
+
+                matrix.PermuteRows(permutations);
+                var permutations1 = new Permutation(unorderlist());
+                matrix.PermuteColumns(permutations1);
+            }
+
+            for (int i = 0; i < matrix.RowCount; i++)
+            {
+                for (int j = 0; j < matrix.ColumnCount; j++)
+                {
+                    a[i][j] =(int) matrix[i,j];
+                }
+            }
+
+            return a;
+        }
+
+        public int[] unorderlist()
+        {
+            Random rm = new Random();
+            List<int> int1 = new List<int>();
+            int1.AddRange(RandomHelper.GetRandom(0, true, 2, true, 3, rm, false));
+            int1.AddRange(RandomHelper.GetRandom(3, true, 5, true, 3, rm, false));
+            int1.AddRange(RandomHelper.GetRandom(6, true, 8, true, 3, rm, false));
+            return int1.ToArray();
+        }
+
 
         /// <summary>
         /// 交换两行

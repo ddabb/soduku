@@ -32,28 +32,28 @@ namespace SodukuUI
 
         private void noticeNumberChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(noticeNumber.Text))
-            {
-                noticeNumber.Text = "30";
-            }
+            //if (String.IsNullOrEmpty(noticeNumber.Text))
+            //{
+            //    noticeNumber.Text = "30";
+            //}
 
-            int value = 0;
-            if (int.TryParse(noticeNumber.Text,out value))
-            {
-                if (value<17)
-                {
-                    noticeNumber.Text += "17";
-                }
+            //int value = 0;
+            //if (int.TryParse(noticeNumber.Text,out value))
+            //{
+            //    if (value<17)
+            //    {
+            //        noticeNumber.Text += "17";
+            //    }
 
-                if (value > 81)
-                {
-                    noticeNumber.Text += "80";
-                }
-            }
-            else
-            {
-                noticeNumber.Text = "30";
-            }
+            //    if (value > 81)
+            //    {
+            //        noticeNumber.Text += "80";
+            //    }
+            //}
+            //else
+            //{
+            //    noticeNumber.Text = "30";
+            //}
 
            
         }
