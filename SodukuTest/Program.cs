@@ -12,7 +12,7 @@ namespace SodukuTest
     {
         //出题，采用静态数组
 
-        static int[,] pu = new int[9, 9]
+        static int[,] param  = new int[9, 9]
 
         {
             {0, 4, 2, 1, 9, 7, 5, 8, 0},
@@ -33,6 +33,7 @@ namespace SodukuTest
 
             {9, 3, 6, 5, 2, 4, 8, 1, 7}
         };
+        static int[,] pu  = (int[,])param.Clone();
 
         private static int[,] pu1 = new int[9, 9]
         {
@@ -56,8 +57,11 @@ namespace SodukuTest
         static void Main(string[] args)
 
         {
+            Console.WriteLine(JsonConvert.SerializeObject(param));
             GetAnswer(0);
             Console.WriteLine(_resultCount);
+            Console.WriteLine(JsonConvert.SerializeObject(param));
+          
             Console.ReadLine();
         }
 
