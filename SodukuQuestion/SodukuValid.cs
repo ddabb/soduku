@@ -19,6 +19,7 @@ namespace SodukuFactory
             this.resultList = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(param)); ;
         }
 
+
         public bool IsVaildQuestion()
         {
            

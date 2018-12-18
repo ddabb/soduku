@@ -285,6 +285,7 @@ namespace SodukuUI
                     TextBox testBox = (TextBox) obj;
                     if (testBox == null) continue;
                     testBox.Text = "" + value;
+                    testBox.ForeColor = Color.Black;
                     testBox.BackColor = Color.White;
                     resultMessage.Text = null;
                 }
@@ -329,7 +330,8 @@ namespace SodukuUI
         {
             Bitmap bit = new Bitmap(tableLayoutPanel1.Width, tableLayoutPanel1.Bottom);//实例化一个和窗体一样大的bitmap
             tableLayoutPanel1.DrawToBitmap(bit,new Rectangle(0, tableLayoutPanel1.Top, tableLayoutPanel1.Width, tableLayoutPanel1.Bottom));
-            bit.Save("weiboTemp.png");
+            var time = DateTime.Now.ToString();
+            bit.Save(time+".png");
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Newtonsoft.Json;
 using SodukuBase;
 
@@ -45,32 +47,99 @@ namespace SodukuFactory
             }
         }
 
-        public List<List<int>> AutoQuestion(List<List<int>> validInitList, int noticeValue)
+        /// <summary>
+        /// 生成初盘提示数个数为noticeValue的具有唯一解的初盘
+        /// </summary>
+        /// <param name="wholeSoduku">完整数独</param>
+        /// <param name="noticeCounts">提示数个数</param>
+        /// <returns></returns>
+        public List<List<int>> AutoQuestion(List<List<int>> wholeSoduku, int noticeCounts)
         {
-          
             var tempValue = 0;
             bool flag = true;
-            var tempvalue = 28;
-            List<int> list1=new List<int>();
-            if (noticeValue >= tempvalue)
+            var RandomValue = 30;
+            if (noticeCounts >= 81)
             {
-                #region 多余28个提示数 直接采取随机数生成。
+                noticeCounts = 80;
+            }
 
-                return SubAutoQuestion(validInitList, noticeValue, list1);
+            if (noticeCounts < 17)
+            {
+                noticeCounts = 17;
+            }
 
+            List<int> locations = new List<int>();
+            List<List<int>> result;
+            if (noticeCounts >= RandomValue)
+            {
+                #region 多余30个提示数 直接采取随机数生成。
+                return SubAutoQuestion(wholeSoduku, noticeCounts, ref locations);
                 #endregion
             }
             else
             {
+                result = SubAutoQuestion(wholeSoduku, RandomValue, ref locations);
+
                 #region 少于28个提示数，在合法的28个提示数中减少提示数，看是否依旧构成唯一解。
 
-                return SubAutoQuestion(validInitList, tempvalue, list1);
+
+                SodukuSets sets = new SodukuSets();
+                DFS(result, locations, noticeCounts,ref sets);
+
+
+                if (sets.marketList.ContainsKey(noticeCounts))
+                {
+                    return sets.marketList[noticeCounts].First().market;
+                }
+                else
+                {
+                    return sets.marketList[sets.marketList.Keys.Min()].First().market;
+                }
+
+         
 
                 #endregion
             }
+
+
         }
 
-        private static List<List<int>> SubAutoQuestion(List<List<int>> validInitList, int noticeValue,List<int> list1)
+        public void DFS(List<List<int>> tempSoduku, List<int> locations, int noticeCount,ref SodukuSets sets)
+        {
+            if (sets.marketList.ContainsKey(noticeCount))
+            {
+                return;
+            }
+
+
+      
+            foreach (var location in locations)
+            {
+                var allcount = 0;
+                foreach (var variable in sets.marketList)
+                {
+                    allcount += variable.Value.Count;
+                }
+
+                var c = allcount;
+                if (sets.minValue <= noticeCount)
+                {
+                    break;
+                }
+                var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(tempSoduku));
+
+                valueCopy[location / 9][location % 9] = 0;
+                if (ValidNoticeList(locations)&&new SodukuValid(valueCopy).IsVaildQuestion())
+                {
+                    SodukuMarket market = new SodukuMarket(valueCopy);
+
+                    sets.AddMarket(market, locations.Count - 1);
+                    DFS(valueCopy, locations.Except(new List<int> {location}).ToList(), noticeCount, ref sets);
+                }
+            }
+        }
+
+        public  List<List<int>> SubAutoQuestion(List<List<int>> validInitList, int noticeValue,ref List<int> list1)
         {
             Random rm = new Random();
             List<List<int>> tempquestion;
@@ -78,7 +147,7 @@ namespace SodukuFactory
             {
                 tempquestion =
                     JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(validInitList));
-             
+
                 do
                 {
                     list1 = RandomHelper.GetRandom(0, true, 80, true, noticeValue, rm, false);
@@ -118,15 +187,5 @@ namespace SodukuFactory
                    && (column[6] ? 1 : 0) + (column[7] ? 1 : 0) + (column[8] ? 1 : 0) >= 2
                 ;
         }
-
-
-
-
-
-
-  
-
-
-
     }
 }

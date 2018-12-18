@@ -15,6 +15,8 @@ namespace SodukuTest
     {
         //出题，采用静态数组
 
+       
+
         static List<List<int>> param = new List<List<int>>()
 
         {
