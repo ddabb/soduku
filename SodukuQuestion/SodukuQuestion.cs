@@ -84,6 +84,7 @@ namespace SodukuFactory
 
 
                 SodukuSets sets = new SodukuSets();
+                locations.Sort();
                 DFS(result, locations, noticeCounts,ref sets);
 
 
@@ -93,6 +94,7 @@ namespace SodukuFactory
                 }
                 else
                 {
+               
                     return sets.marketList[sets.marketList.Keys.Min()].First().market;
                 }
 
@@ -115,13 +117,6 @@ namespace SodukuFactory
       
             foreach (var location in locations)
             {
-                var allcount = 0;
-                foreach (var variable in sets.marketList)
-                {
-                    allcount += variable.Value.Count;
-                }
-
-                var c = allcount;
                 if (sets.minValue <= noticeCount)
                 {
                     break;
@@ -129,13 +124,21 @@ namespace SodukuFactory
                 var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(tempSoduku));
 
                 valueCopy[location / 9][location % 9] = 0;
-                if (ValidNoticeList(locations)&&new SodukuValid(valueCopy).IsVaildQuestion())
+                if ((!sets.InUseLessList(locations))&&ValidNoticeList(locations)&& new SodukuValid(valueCopy).IsVaildQuestion())
                 {
-                    SodukuMarket market = new SodukuMarket(valueCopy);
+                  
+                        SodukuMarket market = new SodukuMarket(valueCopy);
 
-                    sets.AddMarket(market, locations.Count - 1);
-                    DFS(valueCopy, locations.Except(new List<int> {location}).ToList(), noticeCount, ref sets);
+                        sets.AddMarket(market, locations.Count - 1);
+                        DFS(valueCopy, locations.Except(new List<int> { location }).ToList(), noticeCount, ref sets);
+                 
+                 
                 }
+                else
+                {
+                    sets.AddUseless(locations.Except(new List<int> { location }).ToList());
+                }
+
             }
         }
 
