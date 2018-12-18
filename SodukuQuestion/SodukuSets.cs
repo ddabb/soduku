@@ -13,35 +13,39 @@ namespace SodukuFactory
         public int minValue=100;
 
         /// <summary>
-        /// 具有多解的初盘的一维数组的集合
+        /// 不能移除的元素的集合的集合
         /// </summary>
-        public List<List<int>> uselessList;
+        public List<List<int>> CanNotRemoveItemsList;
 
         /// <summary>
         /// 添加无效初盘
         /// </summary>
-        /// <param name="useless"></param>
-        public void AddUseless(List<int> useless)
+        /// <param name="UnRemovebleItems"></param>
+        public void AddUseless(List<int> UnRemovebleItems)
         {
-            var newList = new List<int>();
-            foreach (var i in useless)
+            var items = new List<int>();
+            foreach (var i in UnRemovebleItems)
             {
-                newList.Add(i);
+                items.Add(i);
             }
-            this.uselessList.Add(newList);
+            this.CanNotRemoveItemsList.Add(items);
         }
 
         /// <summary>
-        /// 是否任意初盘包含该出牌的所有元素
+        /// 是否存在待删除元素集合A包含任意不能删除的集合B中的所有元素
         /// </summary>
-        /// <param name="smallList"></param>
+        /// <param name="moreDeleteItemList"></param>
         /// <returns></returns>
-        public bool InUseLessList(List<int> smallList)
+        public bool ContainsAnyUnRemovebleList(List<int> moreDeleteItemList)
         {
-            var result = false;
-            foreach (var onelist in uselessList.Where(c=>c.Count> smallList.Count))
+            if (CanNotRemoveItemsList.Count==0)
             {
-                result |= ALlContains(onelist, smallList);
+                return false;
+            }
+            var result = false;
+            foreach (var onelist in CanNotRemoveItemsList.Where(c=>c.Count< moreDeleteItemList.Count))
+            {
+                result |= ALlContains(moreDeleteItemList, onelist);
                 if (result)
                 {
                     break;
@@ -70,7 +74,7 @@ namespace SodukuFactory
         {
             marketList=new Dictionary<int, List<SodukuMarket>>();
 
-            uselessList=new List<List<int>>();
+            CanNotRemoveItemsList=new List<List<int>>();
         }
 
         public void AddMarket(SodukuMarket market, int newNoticeCount)

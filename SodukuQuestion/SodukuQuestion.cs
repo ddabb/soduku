@@ -85,7 +85,12 @@ namespace SodukuFactory
 
                 SodukuSets sets = new SodukuSets();
                 locations.Sort();
-                DFS(result, locations, noticeCounts,ref sets);
+                var inits=new List<int>();
+                foreach (var location in locations)
+                {
+                    inits.Add(location);
+                }
+                DFS(result, inits, locations, noticeCounts,ref sets);
 
 
                 if (sets.marketList.ContainsKey(noticeCounts))
@@ -106,7 +111,7 @@ namespace SodukuFactory
 
         }
 
-        public void DFS(List<List<int>> tempSoduku, List<int> locations, int noticeCount,ref SodukuSets sets)
+        public void DFS(List<List<int>> tempSoduku, List<int> inits,List<int> locations, int noticeCount,ref SodukuSets sets)
         {
             if (sets.marketList.ContainsKey(noticeCount))
             {
@@ -121,22 +126,36 @@ namespace SodukuFactory
                 {
                     break;
                 }
+
+                if (locations.Count< noticeCount)
+                {
+                    break;
+                }
                 var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(tempSoduku));
 
                 valueCopy[location / 9][location % 9] = 0;
-                if ((!sets.InUseLessList(locations))&&ValidNoticeList(locations)&& new SodukuValid(valueCopy).IsVaildQuestion())
+                var leftValues = locations.Except(new List<int> { location}).ToList();
+
+            
+                var deleteList = inits.Except(leftValues).ToList();
+                var vaildlist = ValidNoticeList(leftValues);
+                if (!vaildlist)
+                {
+                    var b = 0;
+                }
+                if (vaildlist && (!sets.ContainsAnyUnRemovebleList(deleteList))&& new SodukuValid(valueCopy).IsVaildQuestion())
                 {
                   
                         SodukuMarket market = new SodukuMarket(valueCopy);
 
                         sets.AddMarket(market, locations.Count - 1);
-                        DFS(valueCopy, locations.Except(new List<int> { location }).ToList(), noticeCount, ref sets);
+                        DFS(valueCopy, inits, locations.Except(new List<int> { location }).ToList(), noticeCount, ref sets);
                  
                  
                 }
                 else
                 {
-                    sets.AddUseless(locations.Except(new List<int> { location }).ToList());
+                    sets.AddUseless(deleteList);
                 }
 
             }
