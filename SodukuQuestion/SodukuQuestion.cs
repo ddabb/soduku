@@ -64,7 +64,7 @@ namespace SodukuFactory
             {
                 #region 少于28个提示数，在合法的28个提示数中减少提示数，看是否依旧构成唯一解。
 
-                return new List<List<int>>();
+                return SubAutoQuestion(validInitList, tempvalue, list1);
 
                 #endregion
             }
