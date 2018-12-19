@@ -331,11 +331,10 @@ namespace SodukuUI
                 tableLayoutPanel1.DrawToBitmap(bit,
                     new Rectangle(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height));
                 var time = DateTime.Now.ToString("yyyyMMddHHmmss");
-                var c = System.IO.Directory.GetCurrentDirectory();
-                var path = new DirectoryInfo("../../").FullName + "QuestionImages\\" + time + ".png";
-                var dirpath = new DirectoryInfo("../../").FullName + "QuestionImages";
-                if (!Directory.Exists(dirpath))
-                    Directory.CreateDirectory(dirpath);
+                var warpath = new DirectoryInfo("../../").FullName + "QuestionImages";
+                var path = warpath + time + ".png";
+                if (!Directory.Exists(warpath))
+                    Directory.CreateDirectory(warpath);
                 bit.Save(path, ImageFormat.Png);
             }
             catch (Exception exception)
