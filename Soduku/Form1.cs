@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -25,7 +26,7 @@ namespace SodukuUI
         private static SodukuBuilder sdkBuilder = new SodukuBuilder();
 
         private static SodukuQuestion sdkGenerator = new SodukuQuestion();
-        
+
 
         private static List<List<int>> questions;
 
@@ -56,8 +57,6 @@ namespace SodukuUI
             //{
             //    noticeNumber.Text = "30";
             //}
-
-           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -128,9 +127,9 @@ namespace SodukuUI
                 var message2 = JsonConvert.SerializeObject(Soduku.rowDatas[cell.row]);
                 var message3 = JsonConvert.SerializeObject(Soduku.columnDatas[cell.column]);
                 var message4 = JsonConvert.SerializeObject(Soduku.blockDatas[cell.block]);
-                helpMessage.Text = "当前鼠标位置为"+(cell.row+1)+"行"+ (cell.column + 1)+"列\r\n";
+                helpMessage.Text = "当前鼠标位置为" + (cell.row + 1) + "行" + (cell.column + 1) + "列\r\n";
                 helpMessage.Text += @"可选值范围为：" + message + "\r\n行已经填充" + message2 + "\r\n列已经填充" + message3 +
-                                   "\r\n宫已经填充" + message4;
+                                    "\r\n宫已经填充" + message4;
             }
             else
             {
@@ -154,7 +153,9 @@ namespace SodukuUI
                     if (testBox == null) continue;
 
 
-                    testBox.BackColor = !string.IsNullOrEmpty(thisValue)&& thisValue == testBox.Text.Trim() ? Color.Orange : Color.White;
+                    testBox.BackColor = !string.IsNullOrEmpty(thisValue) && thisValue == testBox.Text.Trim()
+                        ? Color.Orange
+                        : Color.White;
                 }
             }
         }
@@ -192,7 +193,7 @@ namespace SodukuUI
             {
                 ControlPaint.DrawBorder(e.Graphics,
                     e.CellBounds,
-                    Color.Black, 
+                    Color.Black,
                     0,
                     ButtonBorderStyle.Solid,
                     Color.Black,
@@ -231,10 +232,6 @@ namespace SodukuUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-      
-
-   
-
             var result = sdkBuilder.MakeSoduku();
             for (int i = 0; i < result.Count; i++)
             {
@@ -261,17 +258,15 @@ namespace SodukuUI
 
         private void makeQuestion_Click(object sender, EventArgs e)
         {
-
-
             if (false)
             {
                 questions = sdkGenerator.Question();
             }
             else
             {
-                questions  = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
+                questions = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
             }
-      
+
             for (int i = 0; i < questions.Count; i++)
             {
                 var list = questions[i];
@@ -331,37 +326,22 @@ namespace SodukuUI
         {
             try
             {
-                Bitmap bit = new Bitmap(tableLayoutPanel1.Width, tableLayoutPanel1.Bottom);//实例化一个和窗体一样大的bitmap
-                tableLayoutPanel1.DrawToBitmap(bit, new Rectangle(0, tableLayoutPanel1.Top, tableLayoutPanel1.Width, tableLayoutPanel1.Bottom));
+                Bitmap bit = new Bitmap(tableLayoutPanel1.Width, tableLayoutPanel1.Height); //实例化一个和窗体一样大的bitmap
+
+                tableLayoutPanel1.DrawToBitmap(bit,
+                    new Rectangle(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height));
                 var time = DateTime.Now.ToString("yyyyMMddhhmmss");
                 var c = System.IO.Directory.GetCurrentDirectory();
-              var path=  new DirectoryInfo("../../").FullName + "QuestionImages\\" + time + ".png";
-
-                SaveBMP(ref bit, path);
+                var path = new DirectoryInfo("../../").FullName + "QuestionImages\\" + time + ".png";
+                var dirpath = new DirectoryInfo("../../").FullName + "QuestionImages";
+                if (!Directory.Exists(dirpath))
+                    Directory.CreateDirectory(dirpath);
+                bit.Save(path, ImageFormat.Png);
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
                 throw new Exception("请检查文件夹权限！");
-            }
-
-        }
-
-        private void SaveBMP(ref Bitmap bmp,string path) // now 'ref' parameter
-        {
-            try
-            {
-                bmp.Save(path);
-            }
-            catch
-            {
-                Bitmap bitmap = new Bitmap(bmp.Width, bmp.Height, bmp.PixelFormat);
-                Graphics g = Graphics.FromImage(bitmap);
-                g.DrawImage(bmp, new Point(0, 0));
-                g.Dispose();
-                bmp.Dispose();
-                bitmap.Save(path);
-                bmp = bitmap; // preserve clone        
             }
         }
     }
