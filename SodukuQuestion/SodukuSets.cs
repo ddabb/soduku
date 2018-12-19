@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SodukuBase;
 
 namespace SodukuFactory
 {
@@ -96,15 +97,5 @@ namespace SodukuFactory
 
 
       
-    }
-
-    public class SodukuMarket
-    {
-        public List<List<int>> market;
-
-        public SodukuMarket(List<List<int>> market)
-        {
-            this.market = market;
-        }
     }
 }
