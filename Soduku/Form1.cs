@@ -330,7 +330,7 @@ namespace SodukuUI
 
                 tableLayoutPanel1.DrawToBitmap(bit,
                     new Rectangle(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height));
-                var time = DateTime.Now.ToString("yyyyMMddhhmmss");
+                var time = DateTime.Now.ToString("yyyyMMddHHmmss");
                 var c = System.IO.Directory.GetCurrentDirectory();
                 var path = new DirectoryInfo("../../").FullName + "QuestionImages\\" + time + ".png";
                 var dirpath = new DirectoryInfo("../../").FullName + "QuestionImages";
