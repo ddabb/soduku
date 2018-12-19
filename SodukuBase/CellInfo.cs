@@ -6,6 +6,10 @@ namespace SodukuBase
     public class CellInfo
     {
         /// <summary>
+        /// 当前初盘
+        /// </summary>
+        public SodukuMarket currentMarket;
+        /// <summary>
         /// 行
         /// </summary>
         public int row;
@@ -15,9 +19,11 @@ namespace SodukuBase
         /// </summary>
         public int column;
 
-  
 
-
+        /// <summary>
+        /// 初始化初盘之后,该单元格可填数据
+        /// </summary>
+        public List<int> initrest=new List<int>();
 
         /// <summary>
         /// 宫格
@@ -26,9 +32,9 @@ namespace SodukuBase
 
 
         /// <summary>
-        /// 剩余可选项
+        /// 求解过程中,剩余可选项
         /// </summary>
-        private List<int> rests;
+        private List<int> solveRests;
 
 
         /// <summary>
@@ -111,8 +117,8 @@ namespace SodukuBase
             blockList = new List<int>();
             UrList=new List<int>();
             Conflict=new List<int>();
-            rests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
-            rests = GetRest();
+            solveRests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            //solveRests = GetRest();
         }
 
         /// <summary>
@@ -136,60 +142,60 @@ namespace SodukuBase
         {
             Value = value;
 
-            Soduku.rowDatas[row].Add(value);
-            Soduku.columnDatas[column].Add(value);
-            Soduku.blockDatas[block].Add(value);
-            if (value != 0)
-            {
-                rests.Clear();
-            }
-            else
-            {
-                rests = GetRest();
-            }
+            currentMarket.rowDatas[row].Add(value);
+            currentMarket.columnDatas[column].Add(value);
+            currentMarket.blockDatas[block].Add(value);
+            //if (value != 0)
+            //{
+            //    solveRests.Clear();
+            //}
+            //else
+            //{
+            //    solveRests = GetRest();
+            //}
         }
 
         public List<int> GetRest()
         {
-            foreach (var rowExists in Soduku.rowDatas[row])
+            foreach (var rowExists in currentMarket.rowDatas[row])
             {
-                rests.Remove(rowExists);
+                solveRests.Remove(rowExists);
             }
 
-            foreach (var columnExists in Soduku.columnDatas[column])
+            foreach (var columnExists in currentMarket.columnDatas[column])
             {
-                rests.Remove(columnExists);
+                solveRests.Remove(columnExists);
             }
 
-            foreach (var gongExists in Soduku.blockDatas[block])
+            foreach (var gongExists in currentMarket.blockDatas[block])
             {
-                rests.Remove(gongExists);
+                solveRests.Remove(gongExists);
             }
 
             foreach (var xwingexists in xwing)
             {
-                rests.Remove(xwingexists);
+                solveRests.Remove(xwingexists);
             }
             foreach (var xwingexists in hiddenTripletList)
             {
-                rests.Remove(xwingexists);
+                solveRests.Remove(xwingexists);
             }
             foreach (var xwingexists in blockList)
             {
-                rests.Remove(xwingexists);
+                solveRests.Remove(xwingexists);
             }
 
             foreach (var xwingexists in UrList)
             {
-                rests.Remove(xwingexists);
+                solveRests.Remove(xwingexists);
             }
 
             foreach (var xwingexists in Conflict)
             {
-                rests.Remove(xwingexists);
+                solveRests.Remove(xwingexists);
             }
-            rests.Sort();
-            return rests;
+            solveRests.Sort();
+            return solveRests;
         }
     }
 }

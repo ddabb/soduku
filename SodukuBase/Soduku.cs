@@ -12,39 +12,9 @@ namespace SodukuBase
     /// </summary>
     public class Soduku
     {
-        /// <summary>
-        /// 横向9个链表
-        /// 纵向9个链表
-        /// 九宫格9个链表
-        /// </summary>
-        /// <returns></returns>
-        public List<List<int>> FilledDatas()
-        {
-            List<List<int>> result = new List<List<int>>();
-            for (int i = 0; i < 9; i++)
-            {
-                result.Add(new List<int>());
-            }
-
-            return result;
-        }
 
 
-        /// <summary>
-        /// 行已填充数据
-        /// </summary>
-        public static List<List<int>> rowDatas;
 
-        /// <summary>
-        /// 列已填充数据
-        /// </summary>
-        public static List<List<int>> columnDatas;
-
-
-        /// <summary>
-        /// 宫已填充数据
-        /// </summary>
-        public static List<List<int>> blockDatas;
 
         /// <summary>
         /// 坐标与单元格的信息
@@ -118,9 +88,9 @@ namespace SodukuBase
         public void Solve(List<List<int>> values, bool firsttime)
 
         {
-            rowDatas = FilledDatas();
-            columnDatas = FilledDatas();
-            blockDatas = FilledDatas();
+            //SodukuMarket.rowDatas = FilledDatas();
+            //SodukuMarket.columnDatas = FilledDatas();
+            //SodukuMarket.blockDatas = FilledDatas();
             cellInfos = new Dictionary<string, CellInfo>();
 
             int row = 0;

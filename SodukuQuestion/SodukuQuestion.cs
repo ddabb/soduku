@@ -89,6 +89,7 @@ namespace SodukuFactory
                 foreach (var location in locations)
                 {
                     inits.Add(location);
+
                 }
                 DFS(result, inits, locations, noticeCounts,ref sets);
 

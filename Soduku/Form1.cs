@@ -121,15 +121,15 @@ namespace SodukuUI
                     message = message.Remove(message.LastIndexOf(","));
                 }
 
-                Soduku.rowDatas[cell.row].Sort();
-                Soduku.columnDatas[cell.column].Sort();
-                Soduku.blockDatas[cell.block].Sort();
-                var message2 = JsonConvert.SerializeObject(Soduku.rowDatas[cell.row]);
-                var message3 = JsonConvert.SerializeObject(Soduku.columnDatas[cell.column]);
-                var message4 = JsonConvert.SerializeObject(Soduku.blockDatas[cell.block]);
-                helpMessage.Text = "当前鼠标位置为" + (cell.row + 1) + "行" + (cell.column + 1) + "列\r\n";
-                helpMessage.Text += @"可选值范围为：" + message + "\r\n行已经填充" + message2 + "\r\n列已经填充" + message3 +
-                                    "\r\n宫已经填充" + message4;
+                //SodukuMarket.rowDatas[cell.row].Sort();
+                //SodukuMarket.columnDatas[cell.column].Sort();
+                //SodukuMarket.blockDatas[cell.block].Sort();
+                //var message2 = JsonConvert.SerializeObject(SodukuMarket.rowDatas[cell.row]);
+                //var message3 = JsonConvert.SerializeObject(SodukuMarket.columnDatas[cell.column]);
+                //var message4 = JsonConvert.SerializeObject(SodukuMarket.blockDatas[cell.block]);
+                //helpMessage.Text = "当前鼠标位置为" + (cell.row + 1) + "行" + (cell.column + 1) + "列\r\n";
+                //helpMessage.Text += @"可选值范围为：" + message + "\r\n行已经填充" + message2 + "\r\n列已经填充" + message3 +
+                //                    "\r\n宫已经填充" + message4;
             }
             else
             {
@@ -266,7 +266,7 @@ namespace SodukuUI
             {
                 var market = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
                 questions = market.market;
-                label4.Text = "数独难度为：  " + Math.Round(market.difficult, 2); 
+                label4.Text = "平均候选数个数为：  " + Math.Round(market.difficult, 2); 
             }
 
             for (int i = 0; i < questions.Count; i++)

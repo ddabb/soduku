@@ -21,5 +21,7 @@ namespace SodukuBase
         72,73,74,75,76,77,78,79,80
 
         };
+
+        public static readonly List<int> baseFillList=new List<int>{1,2,3,4,5,6,7,8,9};
     }
 }
