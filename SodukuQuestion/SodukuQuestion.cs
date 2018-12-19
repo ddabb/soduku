@@ -53,7 +53,7 @@ namespace SodukuFactory
         /// <param name="wholeSoduku">完整数独</param>
         /// <param name="noticeCounts">提示数个数</param>
         /// <returns></returns>
-        public List<List<int>> AutoQuestion(List<List<int>> wholeSoduku, int noticeCounts)
+        public SodukuMarket AutoQuestion(List<List<int>> wholeSoduku, int noticeCounts)
         {
             var tempValue = 0;
             bool flag = true;
@@ -78,7 +78,7 @@ namespace SodukuFactory
             }
             else
             {
-                result = SubAutoQuestion(wholeSoduku, RandomValue, ref locations);
+                result = SubAutoQuestion(wholeSoduku, RandomValue, ref locations).market;
 
                 #region 少于28个提示数，在合法的28个提示数中减少提示数，看是否依旧构成唯一解。
 
@@ -95,12 +95,12 @@ namespace SodukuFactory
 
                 if (sets.marketList.ContainsKey(noticeCounts))
                 {
-                    return sets.marketList[noticeCounts].First().market;
+                    return sets.marketList[noticeCounts].First();
                 }
                 else
                 {
                
-                    return sets.marketList[sets.marketList.Keys.Min()].First().market;
+                    return sets.marketList[sets.marketList.Keys.Min()].First();
                 }
 
          
@@ -146,7 +146,7 @@ namespace SodukuFactory
                 if (vaildlist && (!sets.ContainsAnyUnRemovebleList(deleteList))&& new SodukuValid(valueCopy).IsVaildQuestion())
                 {
                   
-                        SodukuMarket market = new SodukuMarket(valueCopy);
+                        SodukuMarket market = new SodukuMarket(valueCopy, leftValues);
 
                         sets.AddMarket(market, locations.Count - 1);
                         DFS(valueCopy, inits, locations.Except(new List<int> { location }).ToList(), noticeCount, ref sets);
@@ -161,7 +161,7 @@ namespace SodukuFactory
             }
         }
 
-        public  List<List<int>> SubAutoQuestion(List<List<int>> validInitList, int noticeValue,ref List<int> list1)
+        public  SodukuMarket SubAutoQuestion(List<List<int>> validInitList, int noticeValue,ref List<int> list1)
         {
             Random rm = new Random();
             List<List<int>> tempquestion;
@@ -187,7 +187,7 @@ namespace SodukuFactory
                 }
             } while (!new SodukuValid(tempquestion).IsVaildQuestion());
 
-            return tempquestion;
+            return new SodukuMarket(tempquestion, list1);
         }
 
 

@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StaticInfos.cs" />
     <Compile Include="blocksInfo.cs" />
     <Compile Include="CellInfo.cs" />
     <Compile Include="MethodDiction.cs" />

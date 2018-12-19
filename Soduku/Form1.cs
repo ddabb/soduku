@@ -264,7 +264,9 @@ namespace SodukuUI
             }
             else
             {
-                questions = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
+                var market = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
+                questions = market.market;
+                label4.Text = "数独难度为：  " + Math.Round(market.difficult, 2); 
             }
 
             for (int i = 0; i < questions.Count; i++)
@@ -286,7 +288,7 @@ namespace SodukuUI
                     resultMessage.Text = null;
                 }
             }
-
+           
             var breakouot = 0;
         }
 

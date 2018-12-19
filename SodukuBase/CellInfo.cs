@@ -92,6 +92,8 @@ namespace SodukuBase
             return (x / 3) * 3 + (y / 3);
         }
 
+
+
         public bool Equals(CellInfo x)
         {
             return ProgramPostion == x.ProgramPostion;
