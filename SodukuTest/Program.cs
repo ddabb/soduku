@@ -15,7 +15,7 @@ namespace SodukuTest
     {
         //出题，采用静态数组
 
-       
+
 
         static List<List<int>> param = new List<List<int>>()
 
@@ -59,41 +59,31 @@ namespace SodukuTest
             new List<int> {0, 0, 0, 0, 0, 5, 0, 0, 0}
         };
 
-        static List<List<int>> pu3 = new List<List<int>>()
-        {
-            new List<int> {0, 0, 7, 0, 0, 2, 5, 8, 0},
-            new List<int> {3, 0, 0, 0, 0, 0, 0, 0, 9},
-            new List<int> {0, 5, 0, 7, 0, 0, 0, 0, 3},
-            new List<int> {0, 0, 0, 9, 6, 0, 8, 3, 0},
-            new List<int> {0, 4, 0, 3, 0, 0, 0, 0, 0},
-            new List<int> {0, 0, 0, 0, 5, 0, 0, 0, 6},
-            new List<int> {0, 1, 0, 5, 7, 0, 0, 0, 0},
-            new List<int> {0, 0, 0, 6, 0, 0, 0, 0, 8},
-            new List<int> {0, 0, 0, 2, 0, 9, 5, 0, 0}
-        };
-
 
         static void Main(string[] args)
 
         {
 
-          ;
-
-    
-            var validSoduku = new SodukuBuilder().MakeSoduku();
-            var validSodukuQuestion = new SodukuQuestion().AutoQuestion(validSoduku, 30);
-            Console.WriteLine("最终初盘是");
-            var temp = new SodukuMarket(param);
-            foreach (var list in temp.market)
-            {
-                foreach (var value in list)
-                {
-                    Console.Write(value+"  ");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine(temp.difficult);
+            List<int> a1 =new List<int> { 2, 3, 4 };
+            List<int> b1= new List<int> {2,5};
+            Console.WriteLine(b1.Except(a1).Count());
             Console.ReadKey();
+           return;
+            Random rm=new Random();
+            List<int> int1=new List<int>();
+            int1.AddRange(RandomHelper.GetRandom(0, true, 2, true, 3, rm, false));
+            int1.AddRange(RandomHelper.GetRandom(3, true, 5, true, 3, rm, false));
+            int1.AddRange(RandomHelper.GetRandom(6, true, 8, true, 3, rm, false));
+            foreach (var value in int1)
+            {
+                Console.Write(value + "  ");
+            }
+
+            Console.ReadKey();
+            var validSoduku = new SodukuBuilder().MakeSoduku();
+   
+            
+
 
 
 
