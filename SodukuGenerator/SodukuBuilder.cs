@@ -31,6 +31,8 @@ namespace SodukuGenerator
             return Upset(a);
         }
 
+
+
         public List<List<int>> Upset(List<List<int>> a)
         {
             double[,] doubles=new double[9,9];

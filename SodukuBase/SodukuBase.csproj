@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PermutationAndCombination.cs" />
+    <Compile Include="RemoveValueStep.cs" />
+    <Compile Include="SetValueStep.cs" />
     <Compile Include="StaticInfos.cs" />
     <Compile Include="blocksInfo.cs" />
     <Compile Include="CellInfo.cs" />

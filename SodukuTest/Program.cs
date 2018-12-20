@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using MathNet.Numerics;
 using Newtonsoft.Json;
 using SodukuBase;
 using SodukuGenerator;
@@ -15,8 +16,7 @@ namespace SodukuTest
     {
         //出题，采用静态数组
 
-
-
+       
         static List<List<int>> param = new List<List<int>>()
 
         {
@@ -63,10 +63,19 @@ namespace SodukuTest
         static void Main(string[] args)
 
         {
+            int[] IntArr = new int[] { 1, 2, 3, 4, 5 }; //整型数组
+            List<int[]> ListCombination = PermutationAndCombination<int>.GetCombination(IntArr, 3); //求全部的3-3组合
+            foreach (int[] arr in ListCombination)
+            {
+                foreach (int item in arr)
+                {
+                    Console.Write(item + " ");
+                }
+                Console.WriteLine("");
+            }
+            Console.ReadKey();
 
-            List<int> a1 =new List<int> { 2, 3, 4 };
-            List<int> b1= new List<int> {2,5};
-            Console.WriteLine(b1.Except(a1).Count());
+
             Console.ReadKey();
            return;
             Random rm=new Random();

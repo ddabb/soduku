@@ -27,6 +27,7 @@ namespace SodukuUI
 
         private static SodukuQuestion sdkGenerator = new SodukuQuestion();
 
+        private static SodukuMarket currentMarket;
 
         private static List<List<int>> questions;
 
@@ -258,16 +259,10 @@ namespace SodukuUI
 
         private void makeQuestion_Click(object sender, EventArgs e)
         {
-            if (false)
-            {
-                questions = sdkGenerator.Question();
-            }
-            else
-            {
-                var market = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
-                questions = market.market;
-                label4.Text = "平均候选数个数为：  " + Math.Round(market.difficult, 2); 
-            }
+            currentMarket = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
+            questions = currentMarket.initValues;
+            label4.Text = "平均候选数个数为：  " + Math.Round(currentMarket.difficult, 2);
+            label5.Text = "实际提示数个数为:   " + currentMarket.initLists.Count;
 
             for (int i = 0; i < questions.Count; i++)
             {
@@ -288,18 +283,18 @@ namespace SodukuUI
                     resultMessage.Text = null;
                 }
             }
-           
+
             var breakouot = 0;
         }
 
         private void SolveSoduku_Click(object sender, EventArgs e)
         {
-            if (questions == null)
+            if (currentMarket == null)
             {
                 helpMessage.Text = "请提供数独题目";
                 return;
             }
-
+          new  Solver.SodukuSolver().Solve(currentMarket);
             sdk.Solve(questions, true);
             for (int i = 0; i < questions.Count; i++)
             {

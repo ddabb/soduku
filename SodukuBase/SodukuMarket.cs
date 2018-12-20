@@ -6,7 +6,15 @@ namespace SodukuBase
 {
     public class SodukuMarket
     {
-        public List<List<int>> market;
+        /// <summary>
+        /// 初始化链表个数
+        /// </summary>
+        public List<List<int>> initValues;
+
+        public List<SetValueStep> setSteps;
+
+        public List<RemoveValueStep> removeValueSteps;
+
 
         private double _difficult;
 
@@ -130,7 +138,7 @@ namespace SodukuBase
         {
             int x = 0;
             int location = 0;
-            foreach (var lists in market)
+            foreach (var lists in initValues)
             {
                 int y = 0;
                 foreach (var value in lists)
@@ -183,11 +191,11 @@ namespace SodukuBase
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="market">数独初盘</param>
+        /// <param name="initValues">数独初盘</param>
         /// <param name="initLists">剩余的有数据的位置</param>
-        public SodukuMarket(List<List<int>> market, List<int> initLists) 
+        public SodukuMarket(List<List<int>> initValues, List<int> initLists) 
         {
-            this.market = market;
+            this.initValues = initValues;
             this.initLists = initLists;
             rowDatas = FilledDatas();
             columnDatas = FilledDatas();
@@ -200,14 +208,14 @@ namespace SodukuBase
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="market">数独初盘</param>
+        /// <param name="initValues">数独初盘</param>
         /// <param name="initLists">剩余的有数据的位置</param>
-        public SodukuMarket(List<List<int>> market) 
+        public SodukuMarket(List<List<int>> initValues) 
         {
-            this.market = market;
+            this.initValues = initValues;
             int location = 0;
             this.initLists = new List<int>();
-            foreach (var lists in market)
+            foreach (var lists in initValues)
             {
                 foreach (var value in lists)
                 {
