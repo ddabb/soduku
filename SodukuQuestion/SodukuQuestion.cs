@@ -90,6 +90,11 @@ namespace SodukuFactory
                 {
                     inits.Add(location);
                 }
+                //提示数小于28 先做一次广度优先搜索。
+                if (noticeCounts < 28)
+                {
+                    BFS(result, locations, ref sets);
+                }
                 DFS(result, inits, locations, noticeCounts,ref sets);
 
 
@@ -111,7 +116,47 @@ namespace SodukuFactory
 
         }
 
-        public void DFS(List<List<int>> tempSoduku, List<int> inits,List<int> locations, int noticeCount,ref SodukuSets sets)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tempSoduku"></param>
+        /// <param name="locations"></param>
+        /// <param name="sets"></param>
+        private void BFS(List<List<int>> tempSoduku, List<int> locations, ref SodukuSets sets)
+        {
+
+            foreach (var location in locations)
+            {
+                var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(tempSoduku));
+
+                valueCopy[location / 9][location % 9] = 0;
+
+
+                var validthis = ValidNoticeList(locations.Except(new List<int> { location }).ToList());
+                if (!validthis )
+                {
+                    sets.AddUnRemoveableList(new List<int> { location });
+                }
+
+                if (!new SodukuValid(valueCopy).IsVaildQuestion())
+                {
+                    var c = new List<int>{location};
+                    sets.AddUnRemoveableList(c);
+                }
+       
+
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tempSoduku"></param>
+        /// <param name="inits"></param>
+        /// <param name="locations"></param>
+        /// <param name="noticeCount"></param>
+        /// <param name="sets"></param>
+        private void DFS(List<List<int>> tempSoduku, List<int> inits,List<int> locations, int noticeCount,ref SodukuSets sets)
         {
             if (sets.marketList.ContainsKey(noticeCount))
             {
@@ -155,7 +200,7 @@ namespace SodukuFactory
                 }
                 else
                 {
-                    sets.AddUseless(deleteList);
+                    sets.AddUnRemoveableList(deleteList);
                 }
 
             }

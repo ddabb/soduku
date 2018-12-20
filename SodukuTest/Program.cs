@@ -15,7 +15,7 @@ namespace SodukuTest
     {
         //出题，采用静态数组
 
-       
+
 
         static List<List<int>> param = new List<List<int>>()
 
@@ -63,7 +63,12 @@ namespace SodukuTest
         static void Main(string[] args)
 
         {
-       
+
+            List<int> a1 =new List<int> { 2, 3, 4 };
+            List<int> b1= new List<int> {2,5};
+            Console.WriteLine(b1.Except(a1).Count());
+            Console.ReadKey();
+           return;
             Random rm=new Random();
             List<int> int1=new List<int>();
             int1.AddRange(RandomHelper.GetRandom(0, true, 2, true, 3, rm, false));
@@ -76,16 +81,7 @@ namespace SodukuTest
 
             Console.ReadKey();
             var validSoduku = new SodukuBuilder().MakeSoduku();
-            var validSodukuQuestion = new SodukuQuestion().AutoQuestion(validSoduku, 30);
-            Console.WriteLine("最终初盘是");
-            foreach (var list in validSodukuQuestion)
-            {
-                foreach (var value in list)
-                {
-                    Console.Write(value+"  ");
-                }
-                Console.WriteLine();
-            }
+   
             
 
 

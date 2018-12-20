@@ -21,11 +21,11 @@ namespace SodukuFactory
         /// <summary>
         /// 添加无效初盘
         /// </summary>
-        /// <param name="UnRemovebleItems"></param>
-        public void AddUseless(List<int> UnRemovebleItems)
+        /// <param name="unRemovebleItems"></param>
+        public void AddUnRemoveableList(List<int> unRemovebleItems)
         {
             var items = new List<int>();
-            foreach (var i in UnRemovebleItems)
+            foreach (var i in unRemovebleItems)
             {
                 items.Add(i);
             }
@@ -56,19 +56,9 @@ namespace SodukuFactory
             return result;
         }
 
-        public bool ALlContains(List<int> big, List<int> small)
+        private bool ALlContains(List<int> big, List<int> small)
         {
-            var result = true;
-            foreach (var item in small)
-            {
-                if (!big.Contains(item))
-                {
-                    result = false;
-                    break;
-                }
-            }
-
-            return result;
+            return !small.Except(big).Any();
         }
 
         public SodukuSets()
