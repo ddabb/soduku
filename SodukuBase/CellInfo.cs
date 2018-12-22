@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace SodukuBase
@@ -23,7 +24,14 @@ namespace SodukuBase
         /// <summary>
         /// 初始化初盘之后,该单元格可填数据
         /// </summary>
-        public List<int> initrest=new List<int>();
+        public List<int> initrest
+        {
+            get
+            {
+                return StaticInfos.baseFillList.Except(currentMarket.rowDatas[row]
+                    .Union(currentMarket.columnDatas[column]).Union(currentMarket.blockDatas[block])).ToList();
+            }
+        }
 
         /// <summary>
         /// 宫格

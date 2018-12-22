@@ -15,7 +15,16 @@ namespace SodukuBase
 
         public List<RemoveValueStep> removeValueSteps;
 
+        /// <summary>
+        /// 坐标与单元格的信息
+        /// </summary>
+        private Dictionary<string, CellInfo> cellInfos=new Dictionary<string, CellInfo>();
 
+
+        public Dictionary<string, CellInfo> GetCellInfos()
+        {
+            return cellInfos;
+        }
         private double _difficult;
 
         private List<int> _emptyLists;
@@ -146,7 +155,7 @@ namespace SodukuBase
                     CellInfo cell = new CellInfo(x, y);
                     cell.currentMarket = this;
                     cell.InitValue(value);
-               
+                    cellInfos.Add("postion_" + x + "_" + y, cell);
 
                     blockCells[cell.block].Add(cell);
                     columnCells[cell.column].Add(cell);

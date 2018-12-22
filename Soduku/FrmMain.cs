@@ -35,6 +35,8 @@ namespace SodukuUI
         private static readonly List<string> vaildValues =
             new List<string> {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
+      
+
         private void noticeNumberChanged(object sender, EventArgs e)
         {
             //if (String.IsNullOrEmpty(noticeNumber.Text))
@@ -67,17 +69,102 @@ namespace SodukuUI
                 .GetProperty("DoubleBuffered",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
                 ?.SetValue(this, true, null);
+            NoticePanels = new Dictionary<string, CtlNoticePanel>();
+            this.tableLayoutPanel1.GetType()
+                .GetProperty("DoubleBuffered",
+                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                ?.SetValue(tableLayoutPanel1, true, null);
             helpMessage.Text = null;
             resultMessage.Text = null;
+            TextBoxdic.Add("postion_0_0", postion_0_0);
+            TextBoxdic.Add("postion_0_1", postion_0_1);
+            TextBoxdic.Add("postion_0_2", postion_0_2);
+            TextBoxdic.Add("postion_0_3", postion_0_3);
+            TextBoxdic.Add("postion_0_4", postion_0_4);
+            TextBoxdic.Add("postion_0_5", postion_0_5);
+            TextBoxdic.Add("postion_0_6", postion_0_6);
+            TextBoxdic.Add("postion_0_7", postion_0_7);
+            TextBoxdic.Add("postion_0_8", postion_0_8);
+            TextBoxdic.Add("postion_1_0", postion_1_0);
+            TextBoxdic.Add("postion_1_1", postion_1_1);
+            TextBoxdic.Add("postion_1_2", postion_1_2);
+            TextBoxdic.Add("postion_1_3", postion_1_3);
+            TextBoxdic.Add("postion_1_4", postion_1_4);
+            TextBoxdic.Add("postion_1_5", postion_1_5);
+            TextBoxdic.Add("postion_1_6", postion_1_6);
+            TextBoxdic.Add("postion_1_7", postion_1_7);
+            TextBoxdic.Add("postion_1_8", postion_1_8);
+            TextBoxdic.Add("postion_2_0", postion_2_0);
+            TextBoxdic.Add("postion_2_1", postion_2_1);
+            TextBoxdic.Add("postion_2_2", postion_2_2);
+            TextBoxdic.Add("postion_2_3", postion_2_3);
+            TextBoxdic.Add("postion_2_4", postion_2_4);
+            TextBoxdic.Add("postion_2_5", postion_2_5);
+            TextBoxdic.Add("postion_2_6", postion_2_6);
+            TextBoxdic.Add("postion_2_7", postion_2_7);
+            TextBoxdic.Add("postion_2_8", postion_2_8);
+            TextBoxdic.Add("postion_3_0", postion_3_0);
+            TextBoxdic.Add("postion_3_1", postion_3_1);
+            TextBoxdic.Add("postion_3_2", postion_3_2);
+            TextBoxdic.Add("postion_3_3", postion_3_3);
+            TextBoxdic.Add("postion_3_4", postion_3_4);
+            TextBoxdic.Add("postion_3_5", postion_3_5);
+            TextBoxdic.Add("postion_3_6", postion_3_6);
+            TextBoxdic.Add("postion_3_7", postion_3_7);
+            TextBoxdic.Add("postion_3_8", postion_3_8);
+            TextBoxdic.Add("postion_4_0", postion_4_0);
+            TextBoxdic.Add("postion_4_1", postion_4_1);
+            TextBoxdic.Add("postion_4_2", postion_4_2);
+            TextBoxdic.Add("postion_4_3", postion_4_3);
+            TextBoxdic.Add("postion_4_4", postion_4_4);
+            TextBoxdic.Add("postion_4_5", postion_4_5);
+            TextBoxdic.Add("postion_4_6", postion_4_6);
+            TextBoxdic.Add("postion_4_7", postion_4_7);
+            TextBoxdic.Add("postion_4_8", postion_4_8);
+            TextBoxdic.Add("postion_5_0", postion_5_0);
+            TextBoxdic.Add("postion_5_1", postion_5_1);
+            TextBoxdic.Add("postion_5_2", postion_5_2);
+            TextBoxdic.Add("postion_5_3", postion_5_3);
+            TextBoxdic.Add("postion_5_4", postion_5_4);
+            TextBoxdic.Add("postion_5_5", postion_5_5);
+            TextBoxdic.Add("postion_5_6", postion_5_6);
+            TextBoxdic.Add("postion_5_7", postion_5_7);
+            TextBoxdic.Add("postion_5_8", postion_5_8);
+            TextBoxdic.Add("postion_6_0", postion_6_0);
+            TextBoxdic.Add("postion_6_1", postion_6_1);
+            TextBoxdic.Add("postion_6_2", postion_6_2);
+            TextBoxdic.Add("postion_6_3", postion_6_3);
+            TextBoxdic.Add("postion_6_4", postion_6_4);
+            TextBoxdic.Add("postion_6_5", postion_6_5);
+            TextBoxdic.Add("postion_6_6", postion_6_6);
+            TextBoxdic.Add("postion_6_7", postion_6_7);
+            TextBoxdic.Add("postion_6_8", postion_6_8);
+            TextBoxdic.Add("postion_7_0", postion_7_0);
+            TextBoxdic.Add("postion_7_1", postion_7_1);
+            TextBoxdic.Add("postion_7_2", postion_7_2);
+            TextBoxdic.Add("postion_7_3", postion_7_3);
+            TextBoxdic.Add("postion_7_4", postion_7_4);
+            TextBoxdic.Add("postion_7_5", postion_7_5);
+            TextBoxdic.Add("postion_7_6", postion_7_6);
+            TextBoxdic.Add("postion_7_7", postion_7_7);
+            TextBoxdic.Add("postion_7_8", postion_7_8);
+            TextBoxdic.Add("postion_8_0", postion_8_0);
+            TextBoxdic.Add("postion_8_1", postion_8_1);
+            TextBoxdic.Add("postion_8_2", postion_8_2);
+            TextBoxdic.Add("postion_8_3", postion_8_3);
+            TextBoxdic.Add("postion_8_4", postion_8_4);
+            TextBoxdic.Add("postion_8_5", postion_8_5);
+            TextBoxdic.Add("postion_8_6", postion_8_6);
+            TextBoxdic.Add("postion_8_7", postion_8_7);
+            TextBoxdic.Add("postion_8_8", postion_8_8);
+
+
+
             for (int i = 0; i < numbers; i++)
             {
                 for (int j = 0; j < numbers; j++)
                 {
-                    object obj = GetType().GetField("postion_" + i + "_" + j,
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                     | System.Reflection.BindingFlags.IgnoreCase)
-                        ?.GetValue(this);
-                    TextBox testBox = (TextBox) obj;
+                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
                     if (testBox == null) continue;
                     testBox.Dock = DockStyle.None;
                     testBox.Margin = new Padding(2);
@@ -94,23 +181,50 @@ namespace SodukuUI
 
             //this.tableLayoutPanel1.Controls.Find("postion_8_8", true).First().Visible = false;
 
-            ShowNoticeInfo();
+     
         }
+        /// <summary>
+        /// 提示面板的缓存
+        /// </summary>
+        public Dictionary<string, CtlNoticePanel> NoticePanels;
+
+        private Dictionary<string, TextBox> TextBoxdic = new Dictionary<string, TextBox>();
+
+     
 
         /// <summary>
         /// 显示提示信息
         /// </summary>
         private void ShowNoticeInfo()
         {
-            CtlNoticePanel newctl = new CtlNoticePanel(new List<int> {1, 2, 3});
-            CtlNoticePanel newct2 = new CtlNoticePanel(new List<int> {4, 5, 3});
-            CtlNoticePanel newct3 = new CtlNoticePanel(new List<int> {4, 7, 8});
-            newctl.Dock = DockStyle.Fill;
-            newct2.Dock = DockStyle.Fill;
-            newct3.Dock = DockStyle.Fill;
-            this.tableLayoutPanel1.Controls.Add(newctl, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(newct2, 4, 5);
-            this.tableLayoutPanel1.Controls.Add(newct3, 3, 8);
+            Dictionary<string,CellInfo> cells = currentMarket.GetCellInfos();
+            foreach (KeyValuePair<string, CellInfo> kv in cells)
+            {
+                var location = kv.Key;
+                CellInfo cell = kv.Value;
+                if (NoticePanels.ContainsKey(location))
+                {
+                    NoticePanels[location].SetClues(cell.initrest);
+                }
+                else
+                {
+
+                    if (!cell.isInit)
+                    {
+                        CtlNoticePanel newctl = new CtlNoticePanel();
+
+                        this.tableLayoutPanel1.Controls.Add(newctl, cell.column, cell.row);
+
+                        newctl.SetClues(cell.initrest);
+                        newctl.Dock = DockStyle.Fill;
+                        NoticePanels.Add(location, newctl);
+
+                    }
+
+                }
+                
+            }
+
         }
 
         private Color borderColor = Color.Black;
@@ -362,6 +476,9 @@ namespace SodukuUI
             }
         }
 
-
+        private void isShowHelp_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowNoticeInfo();
+        }
     }
 }

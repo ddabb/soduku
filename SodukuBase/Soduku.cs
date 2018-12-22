@@ -16,12 +16,9 @@ namespace SodukuBase
 
 
 
-        /// <summary>
-        /// 坐标与单元格的信息
-        /// </summary>
-        private static Dictionary<string, CellInfo> cellInfos;
 
 
+        private Dictionary<string, CellInfo> cellInfos = new Dictionary<string, CellInfo>();
         /// <summary>
         /// 每一个宫对应的单元格信息
         /// </summary>
