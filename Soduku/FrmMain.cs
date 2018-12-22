@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using SodukuBase;
@@ -12,9 +13,9 @@ using SodukuGenerator;
 
 namespace SodukuUI
 {
-    public partial class Form1 : Form
+    public partial class FrmMain : Form
     {
-        public Form1()
+        public FrmMain()
         {
             InitializeComponent();
         }
@@ -90,6 +91,26 @@ namespace SodukuUI
                     testBox.MouseEnter += new EventHandler(MouseEntere);
                 }
             }
+
+            //this.tableLayoutPanel1.Controls.Find("postion_8_8", true).First().Visible = false;
+
+            ShowNoticeInfo();
+        }
+
+        /// <summary>
+        /// 显示提示信息
+        /// </summary>
+        private void ShowNoticeInfo()
+        {
+            CtlNoticePanel newctl = new CtlNoticePanel(new List<int> {1, 2, 3});
+            CtlNoticePanel newct2 = new CtlNoticePanel(new List<int> {4, 5, 3});
+            CtlNoticePanel newct3 = new CtlNoticePanel(new List<int> {4, 7, 8});
+            newctl.Dock = DockStyle.Fill;
+            newct2.Dock = DockStyle.Fill;
+            newct3.Dock = DockStyle.Fill;
+            this.tableLayoutPanel1.Controls.Add(newctl, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(newct2, 4, 5);
+            this.tableLayoutPanel1.Controls.Add(newct3, 3, 8);
         }
 
         private Color borderColor = Color.Black;
@@ -328,7 +349,7 @@ namespace SodukuUI
                 tableLayoutPanel1.DrawToBitmap(bit,
                     new Rectangle(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height));
                 var time = DateTime.Now.ToString("yyyyMMddHHmmss");
-                var warpath = new DirectoryInfo("../../").FullName + "QuestionImages";
+                var warpath = new DirectoryInfo("../").FullName + "QuestionImages";
                 var path = warpath + time + ".png";
                 if (!Directory.Exists(warpath))
                     Directory.CreateDirectory(warpath);
@@ -340,5 +361,7 @@ namespace SodukuUI
                 throw new Exception("请检查文件夹权限！");
             }
         }
+
+
     }
 }

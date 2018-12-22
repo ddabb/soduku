@@ -50,10 +50,10 @@ namespace SodukuGenerator
             var matrix = DenseMatrix.OfArray(doubles);
             for (int i = 0; i < 10; i++)
             {
-                var permutations = new Permutation(unorderlist());
+                var permutations = new Permutation(Unorderlist());
 
                 matrix.PermuteRows(permutations);
-                var permutations1 = new Permutation(unorderlist());
+                var permutations1 = new Permutation(Unorderlist());
                 matrix.PermuteColumns(permutations1);
             }
 
@@ -68,7 +68,7 @@ namespace SodukuGenerator
             return a;
         }
 
-        public int[] unorderlist()
+        public int[] Unorderlist()
         {
             Random rm = new Random();
             List<int> int1 = new List<int>();

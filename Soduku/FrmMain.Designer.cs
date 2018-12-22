@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace SodukuUI
 {
-    partial class Form1
+    partial class FrmMain
     {
 
         protected override void Dispose(bool disposing)
@@ -19,7 +19,7 @@ namespace SodukuUI
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.postion_0_0 = new System.Windows.Forms.TextBox();
             this.postion_0_1 = new System.Windows.Forms.TextBox();
@@ -929,7 +929,7 @@ namespace SodukuUI
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(123, 23);
             this.button5.TabIndex = 13;
-            this.button5.Text = "导出棋盘图片";
+            this.button5.Text = "导出数独图片";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -950,7 +950,7 @@ namespace SodukuUI
             this.label5.TabIndex = 15;
             this.label5.Text = "实际提示数个数";
             // 
-            // Form1
+            // FrmMain
             // 
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(919, 540);
@@ -972,7 +972,7 @@ namespace SodukuUI
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "FrmMain";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -1091,5 +1091,6 @@ namespace SodukuUI
         private Button button5;
         private Label label4;
         private Label label5;
+    
     }
 }

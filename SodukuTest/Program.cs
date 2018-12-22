@@ -63,6 +63,11 @@ namespace SodukuTest
         static void Main(string[] args)
 
         {
+
+         var test=   MathNet.Numerics.Combinatorics.Combinations(81, 20);
+            Console.Write(test + " ");
+            Console.ReadKey();
+            return;
             int[] IntArr = new int[] { 1, 2, 3, 4, 5 }; //整型数组
             List<int[]> ListCombination = PermutationAndCombination<int>.GetCombination(IntArr, 3); //求全部的3-3组合
             foreach (int[] arr in ListCombination)
