@@ -69,7 +69,7 @@ namespace SodukuUI
                 .GetProperty("DoubleBuffered",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
                 ?.SetValue(this, true, null);
-            NoticePanels = new Dictionary<string, CtlNoticePanel>();
+            locationClues = new Dictionary<string, CtlNoticePanel>();
             this.tableLayoutPanel1.GetType()
                 .GetProperty("DoubleBuffered",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
@@ -157,6 +157,87 @@ namespace SodukuUI
             TextBoxdic.Add("postion_8_6", postion_8_6);
             TextBoxdic.Add("postion_8_7", postion_8_7);
             TextBoxdic.Add("postion_8_8", postion_8_8);
+            locationClues.Add("postion_0_0", clue_0_0);
+            locationClues.Add("postion_0_1", clue_0_1);
+            locationClues.Add("postion_0_2", clue_0_2);
+            locationClues.Add("postion_0_3", clue_0_3);
+            locationClues.Add("postion_0_4", clue_0_4);
+            locationClues.Add("postion_0_5", clue_0_5);
+            locationClues.Add("postion_0_6", clue_0_6);
+            locationClues.Add("postion_0_7", clue_0_7);
+            locationClues.Add("postion_0_8", clue_0_8);
+            locationClues.Add("postion_1_0", clue_1_0);
+            locationClues.Add("postion_1_1", clue_1_1);
+            locationClues.Add("postion_1_2", clue_1_2);
+            locationClues.Add("postion_1_3", clue_1_3);
+            locationClues.Add("postion_1_4", clue_1_4);
+            locationClues.Add("postion_1_5", clue_1_5);
+            locationClues.Add("postion_1_6", clue_1_6);
+            locationClues.Add("postion_1_7", clue_1_7);
+            locationClues.Add("postion_1_8", clue_1_8);
+            locationClues.Add("postion_2_0", clue_2_0);
+            locationClues.Add("postion_2_1", clue_2_1);
+            locationClues.Add("postion_2_2", clue_2_2);
+            locationClues.Add("postion_2_3", clue_2_3);
+            locationClues.Add("postion_2_4", clue_2_4);
+            locationClues.Add("postion_2_5", clue_2_5);
+            locationClues.Add("postion_2_6", clue_2_6);
+            locationClues.Add("postion_2_7", clue_2_7);
+            locationClues.Add("postion_2_8", clue_2_8);
+            locationClues.Add("postion_3_0", clue_3_0);
+            locationClues.Add("postion_3_1", clue_3_1);
+            locationClues.Add("postion_3_2", clue_3_2);
+            locationClues.Add("postion_3_3", clue_3_3);
+            locationClues.Add("postion_3_4", clue_3_4);
+            locationClues.Add("postion_3_5", clue_3_5);
+            locationClues.Add("postion_3_6", clue_3_6);
+            locationClues.Add("postion_3_7", clue_3_7);
+            locationClues.Add("postion_3_8", clue_3_8);
+            locationClues.Add("postion_4_0", clue_4_0);
+            locationClues.Add("postion_4_1", clue_4_1);
+            locationClues.Add("postion_4_2", clue_4_2);
+            locationClues.Add("postion_4_3", clue_4_3);
+            locationClues.Add("postion_4_4", clue_4_4);
+            locationClues.Add("postion_4_5", clue_4_5);
+            locationClues.Add("postion_4_6", clue_4_6);
+            locationClues.Add("postion_4_7", clue_4_7);
+            locationClues.Add("postion_4_8", clue_4_8);
+            locationClues.Add("postion_5_0", clue_5_0);
+            locationClues.Add("postion_5_1", clue_5_1);
+            locationClues.Add("postion_5_2", clue_5_2);
+            locationClues.Add("postion_5_3", clue_5_3);
+            locationClues.Add("postion_5_4", clue_5_4);
+            locationClues.Add("postion_5_5", clue_5_5);
+            locationClues.Add("postion_5_6", clue_5_6);
+            locationClues.Add("postion_5_7", clue_5_7);
+            locationClues.Add("postion_5_8", clue_5_8);
+            locationClues.Add("postion_6_0", clue_6_0);
+            locationClues.Add("postion_6_1", clue_6_1);
+            locationClues.Add("postion_6_2", clue_6_2);
+            locationClues.Add("postion_6_3", clue_6_3);
+            locationClues.Add("postion_6_4", clue_6_4);
+            locationClues.Add("postion_6_5", clue_6_5);
+            locationClues.Add("postion_6_6", clue_6_6);
+            locationClues.Add("postion_6_7", clue_6_7);
+            locationClues.Add("postion_6_8", clue_6_8);
+            locationClues.Add("postion_7_0", clue_7_0);
+            locationClues.Add("postion_7_1", clue_7_1);
+            locationClues.Add("postion_7_2", clue_7_2);
+            locationClues.Add("postion_7_3", clue_7_3);
+            locationClues.Add("postion_7_4", clue_7_4);
+            locationClues.Add("postion_7_5", clue_7_5);
+            locationClues.Add("postion_7_6", clue_7_6);
+            locationClues.Add("postion_7_7", clue_7_7);
+            locationClues.Add("postion_7_8", clue_7_8);
+            locationClues.Add("postion_8_0", clue_8_0);
+            locationClues.Add("postion_8_1", clue_8_1);
+            locationClues.Add("postion_8_2", clue_8_2);
+            locationClues.Add("postion_8_3", clue_8_3);
+            locationClues.Add("postion_8_4", clue_8_4);
+            locationClues.Add("postion_8_5", clue_8_5);
+            locationClues.Add("postion_8_6", clue_8_6);
+            locationClues.Add("postion_8_7", clue_8_7);
+            locationClues.Add("postion_8_8", clue_8_8);
 
 
 
@@ -164,8 +245,8 @@ namespace SodukuUI
             {
                 for (int j = 0; j < numbers; j++)
                 {
-                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
-                    if (testBox == null) continue;
+                    var location = "postion_" + i + "_" + j;
+                    TextBox testBox = TextBoxdic[location];
                     testBox.Dock = DockStyle.None;
                     testBox.Margin = new Padding(2);
                     testBox.BorderStyle = BorderStyle.None;
@@ -176,6 +257,16 @@ namespace SodukuUI
                     testBox.Font = new Font("Dotum", 30f, FontStyle.Regular, GraphicsUnit.Point, ((byte) (134)));
                     testBox.TextChanged += new EventHandler(textChanged);
                     testBox.MouseEnter += new EventHandler(MouseEntere);
+                    CtlNoticePanel cluePanel = locationClues[location];
+                    cluePanel.Dock = DockStyle.None;
+                    cluePanel.Margin = new Padding(2);
+                    cluePanel.BorderStyle = BorderStyle.None;
+
+                    cluePanel.Size = new Size(50, 50);
+                    cluePanel.TabIndex = 0;
+                    cluePanel.Visible = false;
+
+
                 }
             }
 
@@ -186,7 +277,7 @@ namespace SodukuUI
         /// <summary>
         /// 提示面板的缓存
         /// </summary>
-        public Dictionary<string, CtlNoticePanel> NoticePanels;
+        public Dictionary<string, CtlNoticePanel> locationClues=new Dictionary<string, CtlNoticePanel>();
 
         private Dictionary<string, TextBox> TextBoxdic = new Dictionary<string, TextBox>();
 
@@ -197,32 +288,28 @@ namespace SodukuUI
         /// </summary>
         private void ShowNoticeInfo()
         {
-            Dictionary<string,CellInfo> cells = currentMarket.GetCellInfos();
+            Dictionary<string, CellInfo> cells = currentMarket.GetCellInfos();
             foreach (KeyValuePair<string, CellInfo> kv in cells)
             {
                 var location = kv.Key;
                 CellInfo cell = kv.Value;
-                if (NoticePanels.ContainsKey(location))
+                var clue = locationClues[location];
+                var text = TextBoxdic[location];
+                if (!cell.isInit)
                 {
-                    NoticePanels[location].SetClues(cell.initrest);
+                
+
+                    clue.Visible = true;
+                    clue.SetClues(cell.initrest);
+                    text.Visible = false;
+
                 }
                 else
                 {
-
-                    if (!cell.isInit)
-                    {
-                        CtlNoticePanel newctl = new CtlNoticePanel();
-
-                        this.tableLayoutPanel1.Controls.Add(newctl, cell.column, cell.row);
-
-                        newctl.SetClues(cell.initrest);
-                        newctl.Dock = DockStyle.Fill;
-                        NoticePanels.Add(location, newctl);
-
-                    }
-
+                    clue.Visible = false;
+                    text.Visible = true;
                 }
-                
+
             }
 
         }
@@ -419,6 +506,7 @@ namespace SodukuUI
                 }
             }
 
+            ShowNoticeInfo();
             var breakouot = 0;
         }
 
