@@ -463,11 +463,7 @@ namespace SodukuUI
                 {
                     var value = list[j];
 
-                    object obj = GetType().GetField("postion_" + i + "_" + j,
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                     | System.Reflection.BindingFlags.IgnoreCase)
-                        ?.GetValue(this);
-                    TextBox testBox = (TextBox) obj;
+                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
                     if (testBox == null) continue;
                     testBox.Text = "" + value;
                     testBox.BackColor = Color.White;
@@ -475,9 +471,21 @@ namespace SodukuUI
                 }
             }
 
+            invisibleNotice();
             var breakouot = 0;
         }
 
+        private void invisibleNotice()
+        {
+            foreach (var variable in locationClues)
+            {
+                variable.Value.Visible = false;
+            }
+            foreach (var variable in TextBoxdic)
+            {
+                variable.Value.Visible = true;
+            }
+        }
 
         private void makeQuestion_Click(object sender, EventArgs e)
         {
@@ -493,11 +501,7 @@ namespace SodukuUI
                 {
                     var value = list[j];
 
-                    object obj = GetType().GetField("postion_" + i + "_" + j,
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                     | System.Reflection.BindingFlags.IgnoreCase)
-                        ?.GetValue(this);
-                    TextBox testBox = (TextBox) obj;
+                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
                     if (testBox == null) continue;
                     testBox.Text = "" + value;
                     testBox.ForeColor = Color.Black;
@@ -525,13 +529,9 @@ namespace SodukuUI
                 for (int j = 0; j < list.Count; j++)
                 {
                     var value = list[j];
-                    var location = "postion_" + i + "_" + j;
+          var location="postion_" + i + "_" + j;
                     var cellinfo = sdk.GetCellInfo(location);
-                    object obj = GetType().GetField(location,
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                     | System.Reflection.BindingFlags.IgnoreCase)
-                        ?.GetValue(this);
-                    TextBox testBox = (TextBox) obj;
+                    TextBox testBox = TextBoxdic[location];
                     if (testBox == null) continue;
                     testBox.Text = "" + cellinfo.Value;
                     testBox.ForeColor = cellinfo.isInit ? Color.Black : Color.Blue;
@@ -567,6 +567,29 @@ namespace SodukuUI
         private void isShowHelp_CheckedChanged(object sender, EventArgs e)
         {
             ShowNoticeInfo();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var result = sdkBuilder.MakeJuchiSoduku();
+            for (int i = 0; i < result.Count; i++)
+            {
+                var list = result[i];
+                for (int j = 0; j < list.Count; j++)
+                {
+                    var value = list[j];
+
+                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
+                    if (testBox == null) continue;
+                    testBox.Text = "" + value;
+                    testBox.BackColor = Color.White;
+                    resultMessage.Text = null;
+                }
+            }
+
+            invisibleNotice();
+            var breakouot = 0;
+
         }
     }
 }
