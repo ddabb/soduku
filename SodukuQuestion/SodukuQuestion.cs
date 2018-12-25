@@ -293,7 +293,7 @@ namespace SodukuFactory
             return new SodukuMarket(tempquestion, list1);
         }
 
-        private static void InitQuestion(List<int> list1, List<List<int>> tempquestion)
+        public static void InitQuestion(List<int> list1, List<List<int>> tempquestion)
         {
             for (int i = 0; i < 9; i++)
             {

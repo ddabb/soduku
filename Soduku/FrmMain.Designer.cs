@@ -200,6 +200,7 @@ namespace SodukuUI
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1943,10 +1944,21 @@ namespace SodukuUI
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(711, 92);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 17;
+            this.button7.Text = "固定位置的数独";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // FrmMain
             // 
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(919, 540);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -2169,5 +2181,6 @@ namespace SodukuUI
         private Label label5;
         private CheckBox isShowHelp;
         private Button button6;
+        private Button button7;
     }
 }

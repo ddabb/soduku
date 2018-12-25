@@ -64,39 +64,32 @@ namespace SodukuTest
 
         {
 
-         var test=   MathNet.Numerics.Combinatorics.Combinations(81, 20);
-            Console.Write(test + " ");
-            Console.ReadKey();
-            return;
-            int[] IntArr = new int[] { 1, 2, 3, 4, 5 }; //整型数组
-            List<int[]> ListCombination = PermutationAndCombination<int>.GetCombination(IntArr, 3); //求全部的3-3组合
-            foreach (int[] arr in ListCombination)
+
+         
+            List<int> locations = new List<int> {0, 10, 20, 30, 40, 50, 60, 70, 80, 8, 16, 24, 32, 48, 56, 64, 72
+                //,4,12,14,28,36,46,34,44,52,66,68,76
+
+            };
+            List<List<int>> tempquestion;
+            List<List<int>> validSoduku;
+            do
             {
-                foreach (int item in arr)
+                validSoduku = new SodukuBuilder().MakeSoduku();
+                tempquestion =
+                    JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(validSoduku));
+       
+
+                SodukuQuestion.InitQuestion(locations, tempquestion);
+            } while (!new SodukuValid(tempquestion).IsVaildQuestion());
+
+            foreach (var list in tempquestion)
+            {
+                foreach (var value in list)
                 {
-                    Console.Write(item + " ");
+                    Console.Write(" " +value);
                 }
-                Console.WriteLine("");
+                Console.WriteLine();
             }
-            Console.ReadKey();
-
-
-            Console.ReadKey();
-           return;
-            Random rm=new Random();
-            List<int> int1=new List<int>();
-            int1.AddRange(RandomHelper.GetRandom(0, true, 2, true, 3, rm, false));
-            int1.AddRange(RandomHelper.GetRandom(3, true, 5, true, 3, rm, false));
-            int1.AddRange(RandomHelper.GetRandom(6, true, 8, true, 3, rm, false));
-            foreach (var value in int1)
-            {
-                Console.Write(value + "  ");
-            }
-
-            Console.ReadKey();
-            var validSoduku = new SodukuBuilder().MakeSoduku();
-   
-            
 
 
 
