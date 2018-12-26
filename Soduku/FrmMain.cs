@@ -299,9 +299,9 @@ namespace SodukuUI
                 {
                 
 
-                    clue.Visible = isShowHelp.Checked&&true;
+                    clue.Visible = true;
                     clue.SetClues(cell.initrest);
-                    text.Visible = !isShowHelp.Checked;
+                    text.Visible = false;
 
                 }
                 else
@@ -463,7 +463,11 @@ namespace SodukuUI
                 {
                     var value = list[j];
 
-                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
+                    object obj = GetType().GetField("postion_" + i + "_" + j,
+                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
+                                                                     | System.Reflection.BindingFlags.IgnoreCase)
+                        ?.GetValue(this);
+                    TextBox testBox = (TextBox) obj;
                     if (testBox == null) continue;
                     testBox.Text = "" + value;
                     testBox.BackColor = Color.White;
@@ -471,21 +475,9 @@ namespace SodukuUI
                 }
             }
 
-            invisibleNotice();
             var breakouot = 0;
         }
 
-        private void invisibleNotice()
-        {
-            foreach (var variable in locationClues)
-            {
-                variable.Value.Visible = false;
-            }
-            foreach (var variable in TextBoxdic)
-            {
-                variable.Value.Visible = true;
-            }
-        }
 
         private void makeQuestion_Click(object sender, EventArgs e)
         {
@@ -501,7 +493,11 @@ namespace SodukuUI
                 {
                     var value = list[j];
 
-                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
+                    object obj = GetType().GetField("postion_" + i + "_" + j,
+                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
+                                                                     | System.Reflection.BindingFlags.IgnoreCase)
+                        ?.GetValue(this);
+                    TextBox testBox = (TextBox) obj;
                     if (testBox == null) continue;
                     testBox.Text = "" + value;
                     testBox.ForeColor = Color.Black;
@@ -511,7 +507,7 @@ namespace SodukuUI
             }
 
             ShowNoticeInfo();
-    
+            var breakouot = 0;
         }
 
         private void SolveSoduku_Click(object sender, EventArgs e)
@@ -529,9 +525,13 @@ namespace SodukuUI
                 for (int j = 0; j < list.Count; j++)
                 {
                     var value = list[j];
-          var location="postion_" + i + "_" + j;
+                    var location = "postion_" + i + "_" + j;
                     var cellinfo = sdk.GetCellInfo(location);
-                    TextBox testBox = TextBoxdic[location];
+                    object obj = GetType().GetField(location,
+                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
+                                                                     | System.Reflection.BindingFlags.IgnoreCase)
+                        ?.GetValue(this);
+                    TextBox testBox = (TextBox) obj;
                     if (testBox == null) continue;
                     testBox.Text = "" + cellinfo.Value;
                     testBox.ForeColor = cellinfo.isInit ? Color.Black : Color.Blue;
@@ -567,82 +567,6 @@ namespace SodukuUI
         private void isShowHelp_CheckedChanged(object sender, EventArgs e)
         {
             ShowNoticeInfo();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            var result = sdkBuilder.MakeJuchiSoduku();
-            for (int i = 0; i < result.Count; i++)
-            {
-                var list = result[i];
-                for (int j = 0; j < list.Count; j++)
-                {
-                    var value = list[j];
-
-                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
-                    if (testBox == null) continue;
-                    testBox.Text = "" + value;
-                    testBox.BackColor = Color.White;
-                    resultMessage.Text = null;
-                }
-            }
-
-            invisibleNotice();
-            var breakouot = 0;
-
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-            List<int> locations = new List<int> { 0, 10, 20, 30, 40, 50, 60, 70, 80, 8, 16, 24, 32, 48, 56, 64, 72, 4, 12, 14, 28, 36, 46, 34, 44, 52, 66, 68, 76 };
-            Dictionary<string,List<int>> jieri=new Dictionary<string, List<int>>();
-            jieri.Add("元", new List<int> { 11,12,13,14,15,24,28,29,30,31,32,33,34,39,41,48,50,57,59,64,65,61,68,69,70
-            });
-            jieri.Add("旦", new List<int> { 11,12,13,14,15,20,24,29,33,38,39,40,41,42,47,51,56,60,73,74,75,76,77,78,79
-            });
-            jieri.Add("快", new List<int> { 10,14,19,21,22,23,24,25,28,32,34,36,37,38,39,40,41,42,43,44,46,50,51,55,64,65,57,60,70
-            });
-            jieri.Add("乐", new List<int> { 6,14,20,21,22,29,31,38,39,40,41,42,43,49,56,64,58,67,76,66,60,70
-
-            });
-            locations = jieri["元"];
-            List<List<int>> tempquestion;
-            List<List<int>> validSoduku;
-            do
-            {
-                validSoduku = new SodukuBuilder().MakeSoduku();
-                tempquestion =
-                    JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(validSoduku));
-
-
-                SodukuQuestion.InitQuestion(locations, tempquestion);
-            } while (!new SodukuValid(tempquestion).IsVaildQuestion());
-
-
-            currentMarket = new SodukuMarket(tempquestion, locations);
-            questions = currentMarket.initValues;
-            label4.Text = "平均候选数个数为：  " + Math.Round(currentMarket.difficult, 2);
-            label5.Text = "实际提示数个数为:   " + currentMarket.initLists.Count;
-
-            for (int i = 0; i < questions.Count; i++)
-            {
-                var list = questions[i];
-                for (int j = 0; j < list.Count; j++)
-                {
-                    var value = list[j];
-
-                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
-                    if (testBox == null) continue;
-                    testBox.Text = "" + value;
-                    testBox.ForeColor = Color.Black;
-                    testBox.BackColor = Color.White;
-                    resultMessage.Text = null;
-                }
-            }
-
-            ShowNoticeInfo();
-
         }
     }
 }

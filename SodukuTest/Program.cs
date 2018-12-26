@@ -70,26 +70,43 @@ namespace SodukuTest
                 //,4,12,14,28,36,46,34,44,52,66,68,76
 
             };
-            List<List<int>> tempquestion;
-            List<List<int>> validSoduku;
-            do
-            {
-                validSoduku = new SodukuBuilder().MakeSoduku();
-                tempquestion =
-                    JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(validSoduku));
-       
+            Dictionary<string, List<int>> dic=new Dictionary<string, List<int>>();
+            dic.Add("快", new List<int> { 10, 14, 19, 21, 22, 23, 24, 25, 28, 32, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 46, 50, 51, 55, 64, 65, 57, 60, 70 });
+            dic.Add("旦", new List<int> { 72,80,11, 12, 13, 14, 15, 20, 24, 29, 33, 38, 39, 40, 41, 42, 47, 51, 56, 60, 73, 74, 75, 76, 77, 78, 79 });
+            dic.Add("元",new List<int>{ 27,35,11, 12, 13, 14, 15, 24, 28, 29, 30, 31, 32, 33, 34, 39, 41,48, 50, 57, 59, 64, 65, 61, 68, 69, 70 });
 
-                SodukuQuestion.InitQuestion(locations, tempquestion);
-            } while (!new SodukuValid(tempquestion).IsVaildQuestion());
 
-            foreach (var list in tempquestion)
+            dic.Add("乐", new List<int> { 6, 14, 20, 21, 22, 29, 31, 38, 39, 40, 41, 42, 43, 49, 56, 64, 58, 67, 76, 66, 60, 70 });
+
+            foreach (var kv in dic)
             {
-                foreach (var value in list)
+                Console.WriteLine("现在生成"+kv.Key+"开始");
+                List<List<int>> tempquestion;
+                List<List<int>> validSoduku;
+                do
                 {
-                    Console.Write(" " +value);
+                    validSoduku = new SodukuBuilder().MakeSoduku();
+                    tempquestion =
+                        JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(validSoduku));
+
+
+                    SodukuQuestion.InitQuestion(locations, tempquestion);
+                } while (!new SodukuValid(tempquestion).IsVaildQuestion());
+
+                foreach (var list in tempquestion)
+                {
+                    foreach (var value in list)
+                    {
+                        Console.Write(" " + value);
+                    }
+                    Console.WriteLine();
                 }
-                Console.WriteLine();
+
+                Console.WriteLine("现在生成" + kv.Key + "结束");
+
             }
+
+
 
 
 
