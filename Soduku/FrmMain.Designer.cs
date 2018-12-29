@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace SodukuUI
 {
@@ -209,8 +210,6 @@ namespace SodukuUI
             this.导出图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出文本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.显示提示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.提示数个数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -229,6 +228,8 @@ namespace SodukuUI
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
             this.颜色设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -434,572 +435,574 @@ namespace SodukuUI
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel1_CellPaint);
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawBorder);
+            this.MouseDown+=new MouseEventHandler(Form1_MouseDown);
+            this.MouseMove += new MouseEventHandler(Form1_MouseMove);
             // 
             // postion_0_0
             // 
             this.postion_0_0.Location = new System.Drawing.Point(55, 4);
             this.postion_0_0.Name = "postion_0_0";
-            this.postion_0_0.Size = new System.Drawing.Size(44, 21);
+            this.postion_0_0.Size = new System.Drawing.Size(44, 25);
             this.postion_0_0.TabIndex = 0;
             // 
             // postion_0_1
             // 
             this.postion_0_1.Location = new System.Drawing.Point(106, 4);
             this.postion_0_1.Name = "postion_0_1";
-            this.postion_0_1.Size = new System.Drawing.Size(44, 21);
+            this.postion_0_1.Size = new System.Drawing.Size(44, 25);
             this.postion_0_1.TabIndex = 1;
             // 
             // postion_0_2
             // 
             this.postion_0_2.Location = new System.Drawing.Point(259, 4);
             this.postion_0_2.Name = "postion_0_2";
-            this.postion_0_2.Size = new System.Drawing.Size(44, 21);
+            this.postion_0_2.Size = new System.Drawing.Size(44, 25);
             this.postion_0_2.TabIndex = 2;
             // 
             // postion_0_3
             // 
             this.postion_0_3.Location = new System.Drawing.Point(310, 4);
             this.postion_0_3.Name = "postion_0_3";
-            this.postion_0_3.Size = new System.Drawing.Size(44, 21);
+            this.postion_0_3.Size = new System.Drawing.Size(44, 25);
             this.postion_0_3.TabIndex = 3;
             // 
             // postion_0_4
             // 
             this.postion_0_4.Location = new System.Drawing.Point(4, 55);
             this.postion_0_4.Name = "postion_0_4";
-            this.postion_0_4.Size = new System.Drawing.Size(44, 21);
+            this.postion_0_4.Size = new System.Drawing.Size(44, 25);
             this.postion_0_4.TabIndex = 4;
             // 
             // postion_0_5
             // 
             this.postion_0_5.Location = new System.Drawing.Point(106, 55);
             this.postion_0_5.Name = "postion_0_5";
-            this.postion_0_5.Size = new System.Drawing.Size(44, 21);
+            this.postion_0_5.Size = new System.Drawing.Size(44, 25);
             this.postion_0_5.TabIndex = 5;
             // 
             // postion_0_6
             // 
             this.postion_0_6.Location = new System.Drawing.Point(208, 55);
             this.postion_0_6.Name = "postion_0_6";
-            this.postion_0_6.Size = new System.Drawing.Size(44, 21);
+            this.postion_0_6.Size = new System.Drawing.Size(44, 25);
             this.postion_0_6.TabIndex = 6;
             // 
             // postion_0_7
             // 
             this.postion_0_7.Location = new System.Drawing.Point(259, 55);
             this.postion_0_7.Name = "postion_0_7";
-            this.postion_0_7.Size = new System.Drawing.Size(44, 21);
+            this.postion_0_7.Size = new System.Drawing.Size(44, 25);
             this.postion_0_7.TabIndex = 7;
             // 
             // postion_0_8
             // 
             this.postion_0_8.Location = new System.Drawing.Point(412, 55);
             this.postion_0_8.Name = "postion_0_8";
-            this.postion_0_8.Size = new System.Drawing.Size(44, 21);
+            this.postion_0_8.Size = new System.Drawing.Size(44, 25);
             this.postion_0_8.TabIndex = 8;
             // 
             // postion_1_0
             // 
             this.postion_1_0.Location = new System.Drawing.Point(4, 106);
             this.postion_1_0.Name = "postion_1_0";
-            this.postion_1_0.Size = new System.Drawing.Size(44, 21);
+            this.postion_1_0.Size = new System.Drawing.Size(44, 25);
             this.postion_1_0.TabIndex = 9;
             // 
             // postion_1_1
             // 
             this.postion_1_1.Location = new System.Drawing.Point(106, 106);
             this.postion_1_1.Name = "postion_1_1";
-            this.postion_1_1.Size = new System.Drawing.Size(44, 21);
+            this.postion_1_1.Size = new System.Drawing.Size(44, 25);
             this.postion_1_1.TabIndex = 10;
             // 
             // postion_1_2
             // 
             this.postion_1_2.Location = new System.Drawing.Point(259, 106);
             this.postion_1_2.Name = "postion_1_2";
-            this.postion_1_2.Size = new System.Drawing.Size(44, 21);
+            this.postion_1_2.Size = new System.Drawing.Size(44, 25);
             this.postion_1_2.TabIndex = 11;
             // 
             // postion_1_3
             // 
             this.postion_1_3.Location = new System.Drawing.Point(310, 106);
             this.postion_1_3.Name = "postion_1_3";
-            this.postion_1_3.Size = new System.Drawing.Size(44, 21);
+            this.postion_1_3.Size = new System.Drawing.Size(44, 25);
             this.postion_1_3.TabIndex = 12;
             // 
             // postion_1_4
             // 
             this.postion_1_4.Location = new System.Drawing.Point(4, 157);
             this.postion_1_4.Name = "postion_1_4";
-            this.postion_1_4.Size = new System.Drawing.Size(44, 21);
+            this.postion_1_4.Size = new System.Drawing.Size(44, 25);
             this.postion_1_4.TabIndex = 13;
             // 
             // postion_1_5
             // 
             this.postion_1_5.Location = new System.Drawing.Point(106, 157);
             this.postion_1_5.Name = "postion_1_5";
-            this.postion_1_5.Size = new System.Drawing.Size(44, 21);
+            this.postion_1_5.Size = new System.Drawing.Size(44, 25);
             this.postion_1_5.TabIndex = 14;
             // 
             // postion_1_6
             // 
             this.postion_1_6.Location = new System.Drawing.Point(208, 157);
             this.postion_1_6.Name = "postion_1_6";
-            this.postion_1_6.Size = new System.Drawing.Size(44, 21);
+            this.postion_1_6.Size = new System.Drawing.Size(44, 25);
             this.postion_1_6.TabIndex = 15;
             // 
             // postion_1_7
             // 
             this.postion_1_7.Location = new System.Drawing.Point(259, 157);
             this.postion_1_7.Name = "postion_1_7";
-            this.postion_1_7.Size = new System.Drawing.Size(44, 21);
+            this.postion_1_7.Size = new System.Drawing.Size(44, 25);
             this.postion_1_7.TabIndex = 16;
             // 
             // postion_1_8
             // 
             this.postion_1_8.Location = new System.Drawing.Point(412, 157);
             this.postion_1_8.Name = "postion_1_8";
-            this.postion_1_8.Size = new System.Drawing.Size(44, 21);
+            this.postion_1_8.Size = new System.Drawing.Size(44, 25);
             this.postion_1_8.TabIndex = 17;
             // 
             // postion_2_0
             // 
             this.postion_2_0.Location = new System.Drawing.Point(55, 208);
             this.postion_2_0.Name = "postion_2_0";
-            this.postion_2_0.Size = new System.Drawing.Size(44, 21);
+            this.postion_2_0.Size = new System.Drawing.Size(44, 25);
             this.postion_2_0.TabIndex = 18;
             // 
             // postion_2_1
             // 
             this.postion_2_1.Location = new System.Drawing.Point(157, 208);
             this.postion_2_1.Name = "postion_2_1";
-            this.postion_2_1.Size = new System.Drawing.Size(44, 21);
+            this.postion_2_1.Size = new System.Drawing.Size(44, 25);
             this.postion_2_1.TabIndex = 19;
             // 
             // postion_2_2
             // 
             this.postion_2_2.Location = new System.Drawing.Point(259, 208);
             this.postion_2_2.Name = "postion_2_2";
-            this.postion_2_2.Size = new System.Drawing.Size(44, 21);
+            this.postion_2_2.Size = new System.Drawing.Size(44, 25);
             this.postion_2_2.TabIndex = 20;
             // 
             // postion_2_3
             // 
             this.postion_2_3.Location = new System.Drawing.Point(361, 208);
             this.postion_2_3.Name = "postion_2_3";
-            this.postion_2_3.Size = new System.Drawing.Size(44, 21);
+            this.postion_2_3.Size = new System.Drawing.Size(44, 25);
             this.postion_2_3.TabIndex = 21;
             // 
             // postion_2_4
             // 
             this.postion_2_4.Location = new System.Drawing.Point(4, 259);
             this.postion_2_4.Name = "postion_2_4";
-            this.postion_2_4.Size = new System.Drawing.Size(44, 21);
+            this.postion_2_4.Size = new System.Drawing.Size(44, 25);
             this.postion_2_4.TabIndex = 22;
             // 
             // postion_2_5
             // 
             this.postion_2_5.Location = new System.Drawing.Point(106, 259);
             this.postion_2_5.Name = "postion_2_5";
-            this.postion_2_5.Size = new System.Drawing.Size(44, 21);
+            this.postion_2_5.Size = new System.Drawing.Size(44, 25);
             this.postion_2_5.TabIndex = 23;
             // 
             // postion_2_6
             // 
             this.postion_2_6.Location = new System.Drawing.Point(157, 259);
             this.postion_2_6.Name = "postion_2_6";
-            this.postion_2_6.Size = new System.Drawing.Size(44, 21);
+            this.postion_2_6.Size = new System.Drawing.Size(44, 25);
             this.postion_2_6.TabIndex = 24;
             // 
             // postion_2_7
             // 
             this.postion_2_7.Location = new System.Drawing.Point(259, 259);
             this.postion_2_7.Name = "postion_2_7";
-            this.postion_2_7.Size = new System.Drawing.Size(44, 21);
+            this.postion_2_7.Size = new System.Drawing.Size(44, 25);
             this.postion_2_7.TabIndex = 25;
             // 
             // postion_2_8
             // 
             this.postion_2_8.Location = new System.Drawing.Point(361, 259);
             this.postion_2_8.Name = "postion_2_8";
-            this.postion_2_8.Size = new System.Drawing.Size(44, 21);
+            this.postion_2_8.Size = new System.Drawing.Size(44, 25);
             this.postion_2_8.TabIndex = 26;
             // 
             // postion_3_0
             // 
             this.postion_3_0.Location = new System.Drawing.Point(55, 310);
             this.postion_3_0.Name = "postion_3_0";
-            this.postion_3_0.Size = new System.Drawing.Size(44, 21);
+            this.postion_3_0.Size = new System.Drawing.Size(44, 25);
             this.postion_3_0.TabIndex = 27;
             // 
             // postion_3_1
             // 
             this.postion_3_1.Location = new System.Drawing.Point(157, 310);
             this.postion_3_1.Name = "postion_3_1";
-            this.postion_3_1.Size = new System.Drawing.Size(44, 21);
+            this.postion_3_1.Size = new System.Drawing.Size(44, 25);
             this.postion_3_1.TabIndex = 28;
             // 
             // postion_3_2
             // 
             this.postion_3_2.Location = new System.Drawing.Point(208, 310);
             this.postion_3_2.Name = "postion_3_2";
-            this.postion_3_2.Size = new System.Drawing.Size(44, 21);
+            this.postion_3_2.Size = new System.Drawing.Size(44, 25);
             this.postion_3_2.TabIndex = 29;
             // 
             // postion_3_3
             // 
             this.postion_3_3.Location = new System.Drawing.Point(310, 310);
             this.postion_3_3.Name = "postion_3_3";
-            this.postion_3_3.Size = new System.Drawing.Size(44, 21);
+            this.postion_3_3.Size = new System.Drawing.Size(44, 25);
             this.postion_3_3.TabIndex = 30;
             // 
             // postion_3_4
             // 
             this.postion_3_4.Location = new System.Drawing.Point(412, 310);
             this.postion_3_4.Name = "postion_3_4";
-            this.postion_3_4.Size = new System.Drawing.Size(44, 21);
+            this.postion_3_4.Size = new System.Drawing.Size(44, 25);
             this.postion_3_4.TabIndex = 31;
             // 
             // postion_3_5
             // 
             this.postion_3_5.Location = new System.Drawing.Point(106, 361);
             this.postion_3_5.Name = "postion_3_5";
-            this.postion_3_5.Size = new System.Drawing.Size(44, 21);
+            this.postion_3_5.Size = new System.Drawing.Size(44, 25);
             this.postion_3_5.TabIndex = 32;
             // 
             // postion_3_6
             // 
             this.postion_3_6.Location = new System.Drawing.Point(157, 361);
             this.postion_3_6.Name = "postion_3_6";
-            this.postion_3_6.Size = new System.Drawing.Size(44, 21);
+            this.postion_3_6.Size = new System.Drawing.Size(44, 25);
             this.postion_3_6.TabIndex = 33;
             // 
             // postion_3_7
             // 
             this.postion_3_7.Location = new System.Drawing.Point(259, 361);
             this.postion_3_7.Name = "postion_3_7";
-            this.postion_3_7.Size = new System.Drawing.Size(44, 21);
+            this.postion_3_7.Size = new System.Drawing.Size(44, 25);
             this.postion_3_7.TabIndex = 34;
             // 
             // postion_3_8
             // 
             this.postion_3_8.Location = new System.Drawing.Point(412, 361);
             this.postion_3_8.Name = "postion_3_8";
-            this.postion_3_8.Size = new System.Drawing.Size(44, 21);
+            this.postion_3_8.Size = new System.Drawing.Size(44, 25);
             this.postion_3_8.TabIndex = 35;
             // 
             // postion_4_0
             // 
             this.postion_4_0.Location = new System.Drawing.Point(55, 412);
             this.postion_4_0.Name = "postion_4_0";
-            this.postion_4_0.Size = new System.Drawing.Size(44, 21);
+            this.postion_4_0.Size = new System.Drawing.Size(44, 25);
             this.postion_4_0.TabIndex = 36;
             // 
             // postion_4_1
             // 
             this.postion_4_1.Location = new System.Drawing.Point(157, 412);
             this.postion_4_1.Name = "postion_4_1";
-            this.postion_4_1.Size = new System.Drawing.Size(44, 21);
+            this.postion_4_1.Size = new System.Drawing.Size(44, 25);
             this.postion_4_1.TabIndex = 37;
             // 
             // postion_4_2
             // 
             this.postion_4_2.Location = new System.Drawing.Point(208, 412);
             this.postion_4_2.Name = "postion_4_2";
-            this.postion_4_2.Size = new System.Drawing.Size(44, 21);
+            this.postion_4_2.Size = new System.Drawing.Size(44, 25);
             this.postion_4_2.TabIndex = 38;
             // 
             // postion_4_3
             // 
             this.postion_4_3.Location = new System.Drawing.Point(310, 412);
             this.postion_4_3.Name = "postion_4_3";
-            this.postion_4_3.Size = new System.Drawing.Size(44, 21);
+            this.postion_4_3.Size = new System.Drawing.Size(44, 25);
             this.postion_4_3.TabIndex = 39;
             // 
             // postion_4_4
             // 
             this.postion_4_4.Location = new System.Drawing.Point(412, 412);
             this.postion_4_4.Name = "postion_4_4";
-            this.postion_4_4.Size = new System.Drawing.Size(44, 21);
+            this.postion_4_4.Size = new System.Drawing.Size(44, 25);
             this.postion_4_4.TabIndex = 40;
             // 
             // postion_4_5
             // 
             this.postion_4_5.Location = new System.Drawing.Point(106, 463);
             this.postion_4_5.Name = "postion_4_5";
-            this.postion_4_5.Size = new System.Drawing.Size(44, 21);
+            this.postion_4_5.Size = new System.Drawing.Size(44, 25);
             this.postion_4_5.TabIndex = 41;
             // 
             // postion_4_6
             // 
             this.postion_4_6.Location = new System.Drawing.Point(157, 463);
             this.postion_4_6.Name = "postion_4_6";
-            this.postion_4_6.Size = new System.Drawing.Size(44, 21);
+            this.postion_4_6.Size = new System.Drawing.Size(44, 25);
             this.postion_4_6.TabIndex = 42;
             // 
             // postion_4_7
             // 
             this.postion_4_7.Location = new System.Drawing.Point(259, 463);
             this.postion_4_7.Name = "postion_4_7";
-            this.postion_4_7.Size = new System.Drawing.Size(44, 21);
+            this.postion_4_7.Size = new System.Drawing.Size(44, 25);
             this.postion_4_7.TabIndex = 43;
             // 
             // postion_4_8
             // 
             this.postion_4_8.Location = new System.Drawing.Point(412, 463);
             this.postion_4_8.Name = "postion_4_8";
-            this.postion_4_8.Size = new System.Drawing.Size(44, 21);
+            this.postion_4_8.Size = new System.Drawing.Size(44, 25);
             this.postion_4_8.TabIndex = 44;
             // 
             // postion_5_0
             // 
             this.postion_5_0.Location = new System.Drawing.Point(4, 484);
             this.postion_5_0.Name = "postion_5_0";
-            this.postion_5_0.Size = new System.Drawing.Size(44, 21);
+            this.postion_5_0.Size = new System.Drawing.Size(44, 25);
             this.postion_5_0.TabIndex = 45;
             // 
             // postion_5_1
             // 
             this.postion_5_1.Location = new System.Drawing.Point(106, 484);
             this.postion_5_1.Name = "postion_5_1";
-            this.postion_5_1.Size = new System.Drawing.Size(44, 21);
+            this.postion_5_1.Size = new System.Drawing.Size(44, 25);
             this.postion_5_1.TabIndex = 46;
             // 
             // postion_5_2
             // 
             this.postion_5_2.Location = new System.Drawing.Point(208, 484);
             this.postion_5_2.Name = "postion_5_2";
-            this.postion_5_2.Size = new System.Drawing.Size(44, 21);
+            this.postion_5_2.Size = new System.Drawing.Size(44, 25);
             this.postion_5_2.TabIndex = 47;
             // 
             // postion_5_3
             // 
             this.postion_5_3.Location = new System.Drawing.Point(310, 484);
             this.postion_5_3.Name = "postion_5_3";
-            this.postion_5_3.Size = new System.Drawing.Size(44, 21);
+            this.postion_5_3.Size = new System.Drawing.Size(44, 25);
             this.postion_5_3.TabIndex = 48;
             // 
             // postion_5_4
             // 
             this.postion_5_4.Location = new System.Drawing.Point(4, 505);
             this.postion_5_4.Name = "postion_5_4";
-            this.postion_5_4.Size = new System.Drawing.Size(44, 21);
+            this.postion_5_4.Size = new System.Drawing.Size(44, 25);
             this.postion_5_4.TabIndex = 49;
             // 
             // postion_5_5
             // 
             this.postion_5_5.Location = new System.Drawing.Point(106, 505);
             this.postion_5_5.Name = "postion_5_5";
-            this.postion_5_5.Size = new System.Drawing.Size(44, 21);
+            this.postion_5_5.Size = new System.Drawing.Size(44, 25);
             this.postion_5_5.TabIndex = 50;
             // 
             // postion_5_6
             // 
             this.postion_5_6.Location = new System.Drawing.Point(208, 505);
             this.postion_5_6.Name = "postion_5_6";
-            this.postion_5_6.Size = new System.Drawing.Size(44, 21);
+            this.postion_5_6.Size = new System.Drawing.Size(44, 25);
             this.postion_5_6.TabIndex = 51;
             // 
             // postion_5_7
             // 
             this.postion_5_7.Location = new System.Drawing.Point(310, 505);
             this.postion_5_7.Name = "postion_5_7";
-            this.postion_5_7.Size = new System.Drawing.Size(44, 21);
+            this.postion_5_7.Size = new System.Drawing.Size(44, 25);
             this.postion_5_7.TabIndex = 52;
             // 
             // postion_5_8
             // 
             this.postion_5_8.Location = new System.Drawing.Point(412, 505);
             this.postion_5_8.Name = "postion_5_8";
-            this.postion_5_8.Size = new System.Drawing.Size(44, 21);
+            this.postion_5_8.Size = new System.Drawing.Size(44, 25);
             this.postion_5_8.TabIndex = 53;
             // 
             // postion_6_0
             // 
             this.postion_6_0.Location = new System.Drawing.Point(4, 526);
             this.postion_6_0.Name = "postion_6_0";
-            this.postion_6_0.Size = new System.Drawing.Size(44, 21);
+            this.postion_6_0.Size = new System.Drawing.Size(44, 25);
             this.postion_6_0.TabIndex = 54;
             // 
             // postion_6_1
             // 
             this.postion_6_1.Location = new System.Drawing.Point(106, 526);
             this.postion_6_1.Name = "postion_6_1";
-            this.postion_6_1.Size = new System.Drawing.Size(44, 21);
+            this.postion_6_1.Size = new System.Drawing.Size(44, 25);
             this.postion_6_1.TabIndex = 55;
             // 
             // postion_6_2
             // 
             this.postion_6_2.Location = new System.Drawing.Point(259, 526);
             this.postion_6_2.Name = "postion_6_2";
-            this.postion_6_2.Size = new System.Drawing.Size(44, 21);
+            this.postion_6_2.Size = new System.Drawing.Size(44, 25);
             this.postion_6_2.TabIndex = 56;
             // 
             // postion_6_3
             // 
             this.postion_6_3.Location = new System.Drawing.Point(310, 526);
             this.postion_6_3.Name = "postion_6_3";
-            this.postion_6_3.Size = new System.Drawing.Size(44, 21);
+            this.postion_6_3.Size = new System.Drawing.Size(44, 25);
             this.postion_6_3.TabIndex = 57;
             // 
             // postion_6_4
             // 
             this.postion_6_4.Location = new System.Drawing.Point(412, 526);
             this.postion_6_4.Name = "postion_6_4";
-            this.postion_6_4.Size = new System.Drawing.Size(44, 21);
+            this.postion_6_4.Size = new System.Drawing.Size(44, 25);
             this.postion_6_4.TabIndex = 58;
             // 
             // postion_6_5
             // 
             this.postion_6_5.Location = new System.Drawing.Point(106, 547);
             this.postion_6_5.Name = "postion_6_5";
-            this.postion_6_5.Size = new System.Drawing.Size(44, 21);
+            this.postion_6_5.Size = new System.Drawing.Size(44, 25);
             this.postion_6_5.TabIndex = 59;
             // 
             // postion_6_6
             // 
             this.postion_6_6.Location = new System.Drawing.Point(208, 547);
             this.postion_6_6.Name = "postion_6_6";
-            this.postion_6_6.Size = new System.Drawing.Size(44, 21);
+            this.postion_6_6.Size = new System.Drawing.Size(44, 25);
             this.postion_6_6.TabIndex = 60;
             // 
             // postion_6_7
             // 
             this.postion_6_7.Location = new System.Drawing.Point(310, 547);
             this.postion_6_7.Name = "postion_6_7";
-            this.postion_6_7.Size = new System.Drawing.Size(44, 21);
+            this.postion_6_7.Size = new System.Drawing.Size(44, 25);
             this.postion_6_7.TabIndex = 61;
             // 
             // postion_6_8
             // 
             this.postion_6_8.Location = new System.Drawing.Point(412, 547);
             this.postion_6_8.Name = "postion_6_8";
-            this.postion_6_8.Size = new System.Drawing.Size(44, 21);
+            this.postion_6_8.Size = new System.Drawing.Size(44, 25);
             this.postion_6_8.TabIndex = 62;
             // 
             // postion_7_0
             // 
             this.postion_7_0.Location = new System.Drawing.Point(4, 568);
             this.postion_7_0.Name = "postion_7_0";
-            this.postion_7_0.Size = new System.Drawing.Size(44, 21);
+            this.postion_7_0.Size = new System.Drawing.Size(44, 25);
             this.postion_7_0.TabIndex = 63;
             // 
             // postion_7_1
             // 
             this.postion_7_1.Location = new System.Drawing.Point(157, 568);
             this.postion_7_1.Name = "postion_7_1";
-            this.postion_7_1.Size = new System.Drawing.Size(44, 21);
+            this.postion_7_1.Size = new System.Drawing.Size(44, 25);
             this.postion_7_1.TabIndex = 64;
             // 
             // postion_7_2
             // 
             this.postion_7_2.Location = new System.Drawing.Point(208, 568);
             this.postion_7_2.Name = "postion_7_2";
-            this.postion_7_2.Size = new System.Drawing.Size(44, 21);
+            this.postion_7_2.Size = new System.Drawing.Size(44, 25);
             this.postion_7_2.TabIndex = 65;
             // 
             // postion_7_3
             // 
             this.postion_7_3.Location = new System.Drawing.Point(310, 568);
             this.postion_7_3.Name = "postion_7_3";
-            this.postion_7_3.Size = new System.Drawing.Size(44, 21);
+            this.postion_7_3.Size = new System.Drawing.Size(44, 25);
             this.postion_7_3.TabIndex = 66;
             // 
             // postion_7_4
             // 
             this.postion_7_4.Location = new System.Drawing.Point(4, 589);
             this.postion_7_4.Name = "postion_7_4";
-            this.postion_7_4.Size = new System.Drawing.Size(44, 21);
+            this.postion_7_4.Size = new System.Drawing.Size(44, 25);
             this.postion_7_4.TabIndex = 67;
             // 
             // postion_7_5
             // 
             this.postion_7_5.Location = new System.Drawing.Point(106, 589);
             this.postion_7_5.Name = "postion_7_5";
-            this.postion_7_5.Size = new System.Drawing.Size(44, 21);
+            this.postion_7_5.Size = new System.Drawing.Size(44, 25);
             this.postion_7_5.TabIndex = 68;
             // 
             // postion_7_6
             // 
             this.postion_7_6.Location = new System.Drawing.Point(157, 589);
             this.postion_7_6.Name = "postion_7_6";
-            this.postion_7_6.Size = new System.Drawing.Size(44, 21);
+            this.postion_7_6.Size = new System.Drawing.Size(44, 25);
             this.postion_7_6.TabIndex = 69;
             // 
             // postion_7_7
             // 
             this.postion_7_7.Location = new System.Drawing.Point(259, 589);
             this.postion_7_7.Name = "postion_7_7";
-            this.postion_7_7.Size = new System.Drawing.Size(44, 21);
+            this.postion_7_7.Size = new System.Drawing.Size(44, 25);
             this.postion_7_7.TabIndex = 70;
             // 
             // postion_7_8
             // 
             this.postion_7_8.Location = new System.Drawing.Point(412, 589);
             this.postion_7_8.Name = "postion_7_8";
-            this.postion_7_8.Size = new System.Drawing.Size(44, 21);
+            this.postion_7_8.Size = new System.Drawing.Size(44, 25);
             this.postion_7_8.TabIndex = 71;
             // 
             // postion_8_0
             // 
             this.postion_8_0.Location = new System.Drawing.Point(4, 610);
             this.postion_8_0.Name = "postion_8_0";
-            this.postion_8_0.Size = new System.Drawing.Size(44, 21);
+            this.postion_8_0.Size = new System.Drawing.Size(44, 25);
             this.postion_8_0.TabIndex = 72;
             // 
             // postion_8_1
             // 
             this.postion_8_1.Location = new System.Drawing.Point(157, 610);
             this.postion_8_1.Name = "postion_8_1";
-            this.postion_8_1.Size = new System.Drawing.Size(44, 21);
+            this.postion_8_1.Size = new System.Drawing.Size(44, 25);
             this.postion_8_1.TabIndex = 73;
             // 
             // postion_8_2
             // 
             this.postion_8_2.Location = new System.Drawing.Point(259, 610);
             this.postion_8_2.Name = "postion_8_2";
-            this.postion_8_2.Size = new System.Drawing.Size(44, 21);
+            this.postion_8_2.Size = new System.Drawing.Size(44, 25);
             this.postion_8_2.TabIndex = 74;
             // 
             // postion_8_3
             // 
             this.postion_8_3.Location = new System.Drawing.Point(310, 610);
             this.postion_8_3.Name = "postion_8_3";
-            this.postion_8_3.Size = new System.Drawing.Size(44, 21);
+            this.postion_8_3.Size = new System.Drawing.Size(44, 25);
             this.postion_8_3.TabIndex = 75;
             // 
             // postion_8_4
             // 
             this.postion_8_4.Location = new System.Drawing.Point(412, 610);
             this.postion_8_4.Name = "postion_8_4";
-            this.postion_8_4.Size = new System.Drawing.Size(44, 21);
+            this.postion_8_4.Size = new System.Drawing.Size(44, 25);
             this.postion_8_4.TabIndex = 76;
             // 
             // postion_8_5
             // 
             this.postion_8_5.Location = new System.Drawing.Point(55, 631);
             this.postion_8_5.Name = "postion_8_5";
-            this.postion_8_5.Size = new System.Drawing.Size(44, 21);
+            this.postion_8_5.Size = new System.Drawing.Size(44, 25);
             this.postion_8_5.TabIndex = 77;
             // 
             // postion_8_6
             // 
             this.postion_8_6.Location = new System.Drawing.Point(157, 631);
             this.postion_8_6.Name = "postion_8_6";
-            this.postion_8_6.Size = new System.Drawing.Size(44, 21);
+            this.postion_8_6.Size = new System.Drawing.Size(44, 25);
             this.postion_8_6.TabIndex = 78;
             // 
             // postion_8_7
             // 
             this.postion_8_7.Location = new System.Drawing.Point(259, 631);
             this.postion_8_7.Name = "postion_8_7";
-            this.postion_8_7.Size = new System.Drawing.Size(44, 21);
+            this.postion_8_7.Size = new System.Drawing.Size(44, 25);
             this.postion_8_7.TabIndex = 79;
             // 
             // postion_8_8
             // 
             this.postion_8_8.Location = new System.Drawing.Point(412, 631);
             this.postion_8_8.Name = "postion_8_8";
-            this.postion_8_8.Size = new System.Drawing.Size(44, 21);
+            this.postion_8_8.Size = new System.Drawing.Size(44, 25);
             this.postion_8_8.TabIndex = 80;
             // 
             // clue_0_0
@@ -1836,7 +1839,7 @@ namespace SodukuUI
             this.isShowHelp.AutoSize = true;
             this.isShowHelp.Location = new System.Drawing.Point(498, 97);
             this.isShowHelp.Name = "isShowHelp";
-            this.isShowHelp.Size = new System.Drawing.Size(72, 16);
+            this.isShowHelp.Size = new System.Drawing.Size(89, 19);
             this.isShowHelp.TabIndex = 7;
             this.isShowHelp.Text = "一键提示";
             this.isShowHelp.UseVisualStyleBackColor = true;
@@ -1847,7 +1850,7 @@ namespace SodukuUI
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(496, 121);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.Size = new System.Drawing.Size(82, 15);
             this.label1.TabIndex = 9;
             this.label1.Text = "帮助信息：";
             // 
@@ -1856,7 +1859,7 @@ namespace SodukuUI
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(496, 336);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 10;
             this.label2.Text = "结果信息";
             // 
@@ -1865,7 +1868,7 @@ namespace SodukuUI
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(499, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 12);
+            this.label3.Size = new System.Drawing.Size(159, 15);
             this.label3.TabIndex = 11;
             this.label3.Text = "提示数个数(最小17个)";
             // 
@@ -1873,7 +1876,7 @@ namespace SodukuUI
             // 
             this.noticeNumber.Location = new System.Drawing.Point(664, 34);
             this.noticeNumber.Name = "noticeNumber";
-            this.noticeNumber.Size = new System.Drawing.Size(100, 21);
+            this.noticeNumber.Size = new System.Drawing.Size(100, 25);
             this.noticeNumber.TabIndex = 12;
             this.noticeNumber.Text = "30";
             this.noticeNumber.TextChanged += new System.EventHandler(this.noticeNumberChanged);
@@ -1883,7 +1886,7 @@ namespace SodukuUI
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(501, 79);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 12);
+            this.label4.Size = new System.Drawing.Size(0, 15);
             this.label4.TabIndex = 14;
             // 
             // label5
@@ -1891,12 +1894,13 @@ namespace SodukuUI
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(501, 64);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 12);
+            this.label5.Size = new System.Drawing.Size(112, 15);
             this.label5.TabIndex = 15;
             this.label5.Text = "实际提示数个数";
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.菜单ToolStripMenuItem,
             this.设置ToolStripMenuItem,
@@ -1904,7 +1908,7 @@ namespace SodukuUI
             this.关于ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(919, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(919, 28);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1918,13 +1922,13 @@ namespace SodukuUI
             this.导出数独ToolStripMenuItem,
             this.退出ToolStripMenuItem});
             this.菜单ToolStripMenuItem.Name = "菜单ToolStripMenuItem";
-            this.菜单ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.菜单ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.菜单ToolStripMenuItem.Text = "菜单";
             // 
             // StartGameToolStripMenuItem
             // 
             this.StartGameToolStripMenuItem.Name = "StartGameToolStripMenuItem";
-            this.StartGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.StartGameToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.StartGameToolStripMenuItem.Text = "开始游戏";
             this.StartGameToolStripMenuItem.Click += new System.EventHandler(this.开始游戏ToolStripMenuItem_Click);
             // 
@@ -1935,27 +1939,27 @@ namespace SodukuUI
             this.标准数独ToolStripMenuItem,
             this.锯齿数独ToolStripMenuItem});
             this.生成数独ToolStripMenuItem.Name = "生成数独ToolStripMenuItem";
-            this.生成数独ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.生成数独ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.生成数独ToolStripMenuItem.Text = "生成数独";
             // 
             // 完整数独ToolStripMenuItem
             // 
             this.完整数独ToolStripMenuItem.Name = "完整数独ToolStripMenuItem";
-            this.完整数独ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.完整数独ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.完整数独ToolStripMenuItem.Text = "完整数独";
             this.完整数独ToolStripMenuItem.Click += new System.EventHandler(this.完整数独ToolStripMenuItem_Click);
             // 
             // 标准数独ToolStripMenuItem
             // 
             this.标准数独ToolStripMenuItem.Name = "标准数独ToolStripMenuItem";
-            this.标准数独ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.标准数独ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.标准数独ToolStripMenuItem.Text = "标准数独";
             this.标准数独ToolStripMenuItem.Click += new System.EventHandler(this.标准数独ToolStripMenuItem_Click);
             // 
             // 锯齿数独ToolStripMenuItem
             // 
             this.锯齿数独ToolStripMenuItem.Name = "锯齿数独ToolStripMenuItem";
-            this.锯齿数独ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.锯齿数独ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.锯齿数独ToolStripMenuItem.Text = "锯齿数独";
             this.锯齿数独ToolStripMenuItem.Click += new System.EventHandler(this.锯齿数独ToolStripMenuItem_Click);
             // 
@@ -1965,19 +1969,19 @@ namespace SodukuUI
             this.暴力求解ToolStripMenuItem,
             this.理论求解ToolStripMenuItem});
             this.数独求解ToolStripMenuItem.Name = "数独求解ToolStripMenuItem";
-            this.数独求解ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.数独求解ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.数独求解ToolStripMenuItem.Text = "数独求解";
             // 
             // 暴力求解ToolStripMenuItem
             // 
             this.暴力求解ToolStripMenuItem.Name = "暴力求解ToolStripMenuItem";
-            this.暴力求解ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.暴力求解ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.暴力求解ToolStripMenuItem.Text = "暴力求解";
             // 
             // 理论求解ToolStripMenuItem
             // 
             this.理论求解ToolStripMenuItem.Name = "理论求解ToolStripMenuItem";
-            this.理论求解ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.理论求解ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.理论求解ToolStripMenuItem.Text = "理论求解";
             this.理论求解ToolStripMenuItem.Click += new System.EventHandler(this.理论求解ToolStripMenuItem_Click);
             // 
@@ -1987,19 +1991,19 @@ namespace SodukuUI
             this.导入图片ToolStripMenuItem,
             this.导入文本ToolStripMenuItem});
             this.导入数独ToolStripMenuItem.Name = "导入数独ToolStripMenuItem";
-            this.导入数独ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.导入数独ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.导入数独ToolStripMenuItem.Text = "导入数独";
             // 
             // 导入图片ToolStripMenuItem
             // 
             this.导入图片ToolStripMenuItem.Name = "导入图片ToolStripMenuItem";
-            this.导入图片ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.导入图片ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.导入图片ToolStripMenuItem.Text = "导入图片";
             // 
             // 导入文本ToolStripMenuItem
             // 
             this.导入文本ToolStripMenuItem.Name = "导入文本ToolStripMenuItem";
-            this.导入文本ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.导入文本ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.导入文本ToolStripMenuItem.Text = "导入文本";
             // 
             // 导出数独ToolStripMenuItem
@@ -2008,40 +2012,28 @@ namespace SodukuUI
             this.导出图片ToolStripMenuItem,
             this.导出文本ToolStripMenuItem});
             this.导出数独ToolStripMenuItem.Name = "导出数独ToolStripMenuItem";
-            this.导出数独ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.导出数独ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.导出数独ToolStripMenuItem.Text = "导出数独";
             // 
             // 导出图片ToolStripMenuItem
             // 
             this.导出图片ToolStripMenuItem.Name = "导出图片ToolStripMenuItem";
-            this.导出图片ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.导出图片ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.导出图片ToolStripMenuItem.Text = "导出图片";
             this.导出图片ToolStripMenuItem.Click += new System.EventHandler(this.导出图片ToolStripMenuItem_Click);
             // 
             // 导出文本ToolStripMenuItem
             // 
             this.导出文本ToolStripMenuItem.Name = "导出文本ToolStripMenuItem";
-            this.导出文本ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.导出文本ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.导出文本ToolStripMenuItem.Text = "导出文本";
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.退出ToolStripMenuItem.Text = "退出";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
-            // 
-            // 帮助ToolStripMenuItem
-            // 
-            this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.帮助ToolStripMenuItem.Text = "帮助";
-            // 
-            // 关于ToolStripMenuItem
-            // 
-            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.关于ToolStripMenuItem.Text = "关于";
             // 
             // 设置ToolStripMenuItem
             // 
@@ -2050,7 +2042,7 @@ namespace SodukuUI
             this.提示数个数ToolStripMenuItem,
             this.颜色设置ToolStripMenuItem});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.设置ToolStripMenuItem.Text = "设置";
             // 
             // 显示提示ToolStripMenuItem
@@ -2058,7 +2050,7 @@ namespace SodukuUI
             this.显示提示ToolStripMenuItem.Checked = true;
             this.显示提示ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.显示提示ToolStripMenuItem.Name = "显示提示ToolStripMenuItem";
-            this.显示提示ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.显示提示ToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.显示提示ToolStripMenuItem.Text = "显示提示";
             // 
             // 提示数个数ToolStripMenuItem
@@ -2079,98 +2071,110 @@ namespace SodukuUI
             this.toolStripMenuItem14,
             this.toolStripMenuItem15});
             this.提示数个数ToolStripMenuItem.Name = "提示数个数ToolStripMenuItem";
-            this.提示数个数ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.提示数个数ToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.提示数个数ToolStripMenuItem.Text = "提示数个数";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem2.Text = "17";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem3.Text = "18";
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem4.Text = "19";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem5.Text = "20";
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem6.Text = "21";
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem7.Text = "22";
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem8.Text = "23";
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem9.Text = "24";
             // 
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem10.Text = "25";
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem11.Text = "26";
             // 
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem12.Text = "27";
             // 
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem13.Text = "28";
             // 
             // toolStripMenuItem14
             // 
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
-            this.toolStripMenuItem14.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem14.Text = "29";
             // 
             // toolStripMenuItem15
             // 
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-            this.toolStripMenuItem15.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem15.Text = "30";
             // 
             // 颜色设置ToolStripMenuItem
             // 
             this.颜色设置ToolStripMenuItem.Name = "颜色设置ToolStripMenuItem";
-            this.颜色设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.颜色设置ToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.颜色设置ToolStripMenuItem.Text = "颜色设置";
+            // 
+            // 帮助ToolStripMenuItem
+            // 
+            this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
+            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.帮助ToolStripMenuItem.Text = "帮助";
+            // 
+            // 关于ToolStripMenuItem
+            // 
+            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.关于ToolStripMenuItem.Text = "关于";
             // 
             // FrmMain
             // 
@@ -2199,6 +2203,26 @@ namespace SodukuUI
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+        private Point offset;
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (MouseButtons.Left != e.Button) return;
+
+            Point cur = MousePosition;
+            this.Location = new Point(cur.X - offset.X, cur.Y - offset.Y);
+
+  
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (MouseButtons.Left != e.Button) return;
+
+            Point cur = this.PointToScreen(e.Location);
+            offset = new Point(cur.X - this.Left, cur.Y - this.Top);
+
+   
         }
 
         private void button7_Click(object sender, EventArgs e)

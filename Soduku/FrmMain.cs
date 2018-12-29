@@ -35,7 +35,6 @@ namespace SodukuUI
         private static readonly List<string> vaildValues =
             new List<string> {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
-      
 
         private void noticeNumberChanged(object sender, EventArgs e)
         {
@@ -240,7 +239,6 @@ namespace SodukuUI
             locationClues.Add("postion_8_8", clue_8_8);
 
 
-
             for (int i = 0; i < numbers; i++)
             {
                 for (int j = 0; j < numbers; j++)
@@ -265,23 +263,19 @@ namespace SodukuUI
                     cluePanel.Size = new Size(50, 50);
                     cluePanel.TabIndex = 0;
                     cluePanel.Visible = false;
-
-
                 }
             }
 
             //this.tableLayoutPanel1.Controls.Find("postion_8_8", true).First().Visible = false;
-
-     
         }
+
         /// <summary>
         /// 提示面板的缓存
         /// </summary>
-        public Dictionary<string, CtlNoticePanel> locationClues=new Dictionary<string, CtlNoticePanel>();
+        public Dictionary<string, CtlNoticePanel> locationClues = new Dictionary<string, CtlNoticePanel>();
 
         private Dictionary<string, TextBox> TextBoxdic = new Dictionary<string, TextBox>();
 
-     
 
         /// <summary>
         /// 显示提示信息
@@ -297,21 +291,16 @@ namespace SodukuUI
                 var text = TextBoxdic[location];
                 if (!cell.isInit)
                 {
-                
-
-                    clue.Visible = true;
                     clue.SetClues(cell.initrest);
+                    clue.Visible = true;
                     text.Visible = false;
-
                 }
                 else
                 {
                     clue.Visible = false;
                     text.Visible = true;
                 }
-
             }
-
         }
 
         private Color borderColor = Color.Black;
@@ -368,11 +357,8 @@ namespace SodukuUI
             {
                 for (int j = 0; j < numbers; j++)
                 {
-                    object obj = GetType().GetField("postion_" + i + "_" + j,
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                     | System.Reflection.BindingFlags.IgnoreCase)
-                        ?.GetValue(this);
-                    TextBox testBox = (TextBox) obj;
+
+                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
                     if (testBox == null) continue;
 
 
@@ -462,12 +448,7 @@ namespace SodukuUI
                 for (int j = 0; j < list.Count; j++)
                 {
                     var value = list[j];
-
-                    object obj = GetType().GetField("postion_" + i + "_" + j,
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                     | System.Reflection.BindingFlags.IgnoreCase)
-                        ?.GetValue(this);
-                    TextBox testBox = (TextBox) obj;
+                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
                     if (testBox == null) continue;
                     testBox.Text = "" + value;
                     testBox.BackColor = Color.White;
@@ -481,17 +462,14 @@ namespace SodukuUI
 
         private void makeQuestion_Click(object sender, EventArgs e)
         {
-
         }
 
         private void SolveSoduku_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-          
         }
 
         private void isShowHelp_CheckedChanged(object sender, EventArgs e)
@@ -501,7 +479,6 @@ namespace SodukuUI
 
         private void 开始游戏ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -519,11 +496,7 @@ namespace SodukuUI
                 {
                     var value = list[j];
 
-                    object obj = GetType().GetField("postion_" + i + "_" + j,
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                     | System.Reflection.BindingFlags.IgnoreCase)
-                        ?.GetValue(this);
-                    TextBox testBox = (TextBox)obj;
+                       TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
                     if (testBox == null) continue;
                     testBox.Text = "" + value;
                     testBox.BackColor = Color.White;
@@ -547,12 +520,7 @@ namespace SodukuUI
                 for (int j = 0; j < list.Count; j++)
                 {
                     var value = list[j];
-
-                    object obj = GetType().GetField("postion_" + i + "_" + j,
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                     | System.Reflection.BindingFlags.IgnoreCase)
-                        ?.GetValue(this);
-                    TextBox testBox = (TextBox)obj;
+                    TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
                     if (testBox == null) continue;
                     testBox.Text = "" + value;
                     testBox.ForeColor = Color.Black;
@@ -567,12 +535,10 @@ namespace SodukuUI
 
         private void 锯齿数独ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
         }
 
         private void 导出图片ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -604,6 +570,7 @@ namespace SodukuUI
                 helpMessage.Text = "请提供数独题目";
                 return;
             }
+
             new Solver.SodukuSolver().Solve(currentMarket);
             sdk.Solve(questions, true);
             for (int i = 0; i < questions.Count; i++)
@@ -614,11 +581,7 @@ namespace SodukuUI
                     var value = list[j];
                     var location = "postion_" + i + "_" + j;
                     var cellinfo = sdk.GetCellInfo(location);
-                    object obj = GetType().GetField(location,
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                     | System.Reflection.BindingFlags.IgnoreCase)
-                        ?.GetValue(this);
-                    TextBox testBox = (TextBox)obj;
+                    TextBox testBox = TextBoxdic[location];
                     if (testBox == null) continue;
                     testBox.Text = "" + cellinfo.Value;
                     testBox.ForeColor = cellinfo.isInit ? Color.Black : Color.Blue;
@@ -631,7 +594,6 @@ namespace SodukuUI
 
         private void button4_Click(object sender, EventArgs e)
         {
-
         }
     }
 }
