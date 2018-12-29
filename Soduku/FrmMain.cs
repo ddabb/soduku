@@ -481,6 +481,61 @@ namespace SodukuUI
 
         private void makeQuestion_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void SolveSoduku_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void isShowHelp_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowNoticeInfo();
+        }
+
+        private void 开始游戏ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void 完整数独ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = sdkBuilder.MakeSoduku();
+            for (int i = 0; i < result.Count; i++)
+            {
+                var list = result[i];
+                for (int j = 0; j < list.Count; j++)
+                {
+                    var value = list[j];
+
+                    object obj = GetType().GetField("postion_" + i + "_" + j,
+                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
+                                                                     | System.Reflection.BindingFlags.IgnoreCase)
+                        ?.GetValue(this);
+                    TextBox testBox = (TextBox)obj;
+                    if (testBox == null) continue;
+                    testBox.Text = "" + value;
+                    testBox.BackColor = Color.White;
+                    resultMessage.Text = null;
+                }
+            }
+
+            var breakouot = 0;
+        }
+
+        private void 标准数独ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             currentMarket = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
             questions = currentMarket.initValues;
             label4.Text = "平均候选数个数为：  " + Math.Round(currentMarket.difficult, 2);
@@ -497,7 +552,7 @@ namespace SodukuUI
                             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
                                                                      | System.Reflection.BindingFlags.IgnoreCase)
                         ?.GetValue(this);
-                    TextBox testBox = (TextBox) obj;
+                    TextBox testBox = (TextBox)obj;
                     if (testBox == null) continue;
                     testBox.Text = "" + value;
                     testBox.ForeColor = Color.Black;
@@ -510,39 +565,17 @@ namespace SodukuUI
             var breakouot = 0;
         }
 
-        private void SolveSoduku_Click(object sender, EventArgs e)
+        private void 锯齿数独ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (currentMarket == null)
-            {
-                helpMessage.Text = "请提供数独题目";
-                return;
-            }
-          new  Solver.SodukuSolver().Solve(currentMarket);
-            sdk.Solve(questions, true);
-            for (int i = 0; i < questions.Count; i++)
-            {
-                var list = questions[i];
-                for (int j = 0; j < list.Count; j++)
-                {
-                    var value = list[j];
-                    var location = "postion_" + i + "_" + j;
-                    var cellinfo = sdk.GetCellInfo(location);
-                    object obj = GetType().GetField(location,
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                     | System.Reflection.BindingFlags.IgnoreCase)
-                        ?.GetValue(this);
-                    TextBox testBox = (TextBox) obj;
-                    if (testBox == null) continue;
-                    testBox.Text = "" + cellinfo.Value;
-                    testBox.ForeColor = cellinfo.isInit ? Color.Black : Color.Blue;
-                    testBox.BackColor = Color.White;
-                }
-            }
 
-            resultMessage.Text = sdk.SolveMessage;
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 导出图片ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -564,9 +597,41 @@ namespace SodukuUI
             }
         }
 
-        private void isShowHelp_CheckedChanged(object sender, EventArgs e)
+        private void 理论求解ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowNoticeInfo();
+            if (currentMarket == null)
+            {
+                helpMessage.Text = "请提供数独题目";
+                return;
+            }
+            new Solver.SodukuSolver().Solve(currentMarket);
+            sdk.Solve(questions, true);
+            for (int i = 0; i < questions.Count; i++)
+            {
+                var list = questions[i];
+                for (int j = 0; j < list.Count; j++)
+                {
+                    var value = list[j];
+                    var location = "postion_" + i + "_" + j;
+                    var cellinfo = sdk.GetCellInfo(location);
+                    object obj = GetType().GetField(location,
+                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
+                                                                     | System.Reflection.BindingFlags.IgnoreCase)
+                        ?.GetValue(this);
+                    TextBox testBox = (TextBox)obj;
+                    if (testBox == null) continue;
+                    testBox.Text = "" + cellinfo.Value;
+                    testBox.ForeColor = cellinfo.isInit ? Color.Black : Color.Blue;
+                    testBox.BackColor = Color.White;
+                }
+            }
+
+            resultMessage.Text = sdk.SolveMessage;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
