@@ -69,6 +69,10 @@
       <Project>{d7b70bd9-08b4-4c9c-b9a7-4f8d6a701f58}</Project>
       <Name>SodukuFactory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SodukuSolver\SodukuSolver.csproj">
+      <Project>{6D97C8A3-6F76-4FFC-9FCB-EDEAB3B961C9}</Project>
+      <Name>SodukuSolver</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

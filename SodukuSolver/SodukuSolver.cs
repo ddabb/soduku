@@ -1,4 +1,7 @@
-﻿using SodukuBase;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using SodukuBase;
 
 namespace Solver
 {
@@ -9,7 +12,11 @@ namespace Solver
     {
         public void Solve(SodukuMarket market)
         {
+            var tempquestion = new List<List<int>>();
+            StringBuilder sb = new StringBuilder();
 
+
+            Console.WriteLine(sb.ToString());
         }
 
     }
