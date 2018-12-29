@@ -22,20 +22,42 @@ namespace SodukuSolver
 
         char[] ch = new char[RR + 9];
 
+        /// <summary>
+        /// 每列结点个数
+        /// </summary>
         int[] cnt = new int[CC + 9];
 
+        /// <summary>
+        /// 结点
+        /// </summary>
         class node
 
         {
+            /// <summary>
+            /// 所在行
+            /// </summary>
+            public int row;
 
-            public int r, c;
+            /// <summary>
+            /// 所在列
+            /// </summary>
+            public int column;
 
+            /// <summary>
+            /// 上边结点
+            /// </summary>
             public node up;
-
+            /// <summary>
+            /// 下面结点
+            /// </summary>
             public node down;
-
+            /// <summary>
+            /// 左边结点
+            /// </summary>
             public node left;
-
+            /// <summary>
+            /// 右边结点
+            /// </summary>
             public node right;
 
         };
@@ -70,9 +92,9 @@ namespace SodukuSolver
 
             all_t++;
 
-            t.r = r;
+            t.row = r;
 
-            t.c = c;
+            t.column = c;
 
             t.left = row[r];
 
@@ -110,7 +132,7 @@ namespace SodukuSolver
 
                 {
 
-                    cnt[tt.c]--;
+                    cnt[tt.column]--;
 
                     tt.up.down = tt.down;
 
@@ -144,7 +166,7 @@ namespace SodukuSolver
 
                 {
 
-                    cnt[tt.c]++;
+                    cnt[tt.column]++;
 
                     tt.down.up = tt;
 
@@ -176,13 +198,13 @@ namespace SodukuSolver
 
             {
 
-                if (cnt[t.c] < min)
+                if (cnt[t.column] < min)
 
                 {
 
-                    min = cnt[t.c];
+                    min = cnt[t.column];
 
-                    tc = t.c;
+                    tc = t.column;
 
                     if (min <= 1) break;
 
@@ -198,7 +220,7 @@ namespace SodukuSolver
 
             {
 
-                mem[k] = t.r;
+                mem[k] = t.row;
 
                 t.left.right = t;
 
@@ -206,7 +228,7 @@ namespace SodukuSolver
 
                 {
 
-                    remove(tt.c);
+                    remove(tt.column);
 
                 }
 
@@ -230,7 +252,7 @@ namespace SodukuSolver
 
                 {
 
-                    resume(tt.c);
+                    resume(tt.column);
 
                 }
 
@@ -322,9 +344,9 @@ namespace SodukuSolver
 
                 head.down = head;
 
-                head.r = RR;
+                head.row = RR;
 
-                head.c = CC;
+                head.column = CC;
 
                 for (i = 0; i < CC; i++)
 
@@ -332,9 +354,9 @@ namespace SodukuSolver
 
                     col[i] = new node();
 
-                    col[i].c = i;
+                    col[i].column = i;
 
-                    col[i].r = RR;
+                    col[i].row = RR;
 
                     col[i].up = col[i];
 
@@ -356,9 +378,9 @@ namespace SodukuSolver
 
                     row[i] = new node();
 
-                    row[i].r = i;
+                    row[i].row = i;
 
-                    row[i].c = CC;
+                    row[i].column = CC;
 
                     row[i].left = row[i];
 

@@ -472,6 +472,7 @@ namespace SodukuUI
             this.postion_0_4.Name = "postion_0_4";
             this.postion_0_4.Size = new System.Drawing.Size(44, 25);
             this.postion_0_4.TabIndex = 4;
+            this.tableLayoutPanel1.MouseLeave+=new EventHandler(panel_mouseleave);
             // 
             // postion_0_5
             // 
@@ -2204,6 +2205,15 @@ namespace SodukuUI
             this.PerformLayout();
 
         }
+
+        private void panel_mouseleave(object sender, EventArgs e)
+        {
+            foreach (var VARIABLE in TextBoxdic)
+            {
+                VARIABLE.Value.BackColor = Color.White;
+            }
+        }
+
         private Point offset;
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
