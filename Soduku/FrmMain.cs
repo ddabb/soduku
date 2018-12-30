@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using SodukuBase;
 using SodukuFactory;
 using SodukuGenerator;
-
+using System.Runtime.InteropServices;
 namespace SodukuUI
 {
     public partial class FrmMain : Form
@@ -245,7 +245,7 @@ namespace SodukuUI
                 {
                     var location = "postion_" + i + "_" + j;
                     TextBox testBox = TextBoxdic[location];
-                    testBox.Dock = DockStyle.None;
+                    testBox.Dock = DockStyle.Fill;
                     testBox.Margin = new Padding(2);
                     testBox.BorderStyle = BorderStyle.None;
                     testBox.Multiline = true;
@@ -256,7 +256,7 @@ namespace SodukuUI
                     testBox.TextChanged += new EventHandler(textChanged);
                     testBox.MouseEnter += new EventHandler(MouseEntere);
                     CtlNoticePanel cluePanel = locationClues[location];
-                    cluePanel.Dock = DockStyle.None;
+                    cluePanel.Dock = DockStyle.Fill;
                     cluePanel.Margin = new Padding(2);
                     cluePanel.BorderStyle = BorderStyle.None;
 
@@ -377,7 +377,24 @@ namespace SodukuUI
                 ctx.Text = null;
             }
         }
+       
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        [DllImport("user32.dll")]
+        public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
 
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            //常量
+            int WM_SYSCOMMAND = 0x0112;
+
+            //窗体移动
+            int SC_MOVE = 0xF010;
+            int HTCAPTION = 0x0002;
+
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
+        }
         private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
             if (e.Row == 2 || e.Row == 5)

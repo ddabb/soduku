@@ -52,12 +52,14 @@ namespace SodukuUI
             foreach (var kv in controlDic)
             {
                 kv.Value.Text = "";
+                kv.Value.Visible = false;
             }
 
             foreach (var notice in list)
             {
-                controlDic["notice" + notice].Text = "" + notice;
-
+              var control=  controlDic["notice" + notice];
+                control.Text = "" + notice;
+                control.Visible = true;
             }
         }
 
