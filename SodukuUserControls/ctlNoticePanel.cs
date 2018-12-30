@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SodukuUserControls;
 
 namespace SodukuUI
 {
@@ -15,7 +16,17 @@ namespace SodukuUI
         public CtlNoticePanel()
         {
             InitializeComponent();
-  
+            controlDic.Add("notice1", notice1);
+            controlDic.Add("notice2", notice2);
+            controlDic.Add("notice3", notice3);
+            controlDic.Add("notice4", notice4);
+            controlDic.Add("notice5", notice5);
+            controlDic.Add("notice6", notice6);
+            controlDic.Add("notice7", notice7);
+            controlDic.Add("notice8", notice8);
+            controlDic.Add("notice9", notice9);
+
+
         }
 
         private static readonly List<string> clueList = new List<string>
@@ -31,30 +42,22 @@ namespace SodukuUI
             "notice8",
             "notice9",
         };
+
+        private Dictionary<string, EllipseButton> controlDic = new Dictionary<string, EllipseButton>();
+
         public void SetClues(List<int> list)
         {
-      
-            //先全部清空
-            foreach (var filedname in clueList)
+
+    
+            foreach (var kv in controlDic)
             {
-                object obj = GetType().GetField(filedname,
-                        System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                 | System.Reflection.BindingFlags.IgnoreCase)
-                    ?.GetValue(this);
-                TextBox testBox = (TextBox)obj;
-                if (testBox == null) continue;
-                testBox.Text = "" ;
+                kv.Value.Text = "";
             }
 
             foreach (var notice in list)
             {
-                object obj = GetType().GetField("notice" + notice,
-                        System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                                                                 | System.Reflection.BindingFlags.IgnoreCase)
-                    ?.GetValue(this);
-                TextBox testBox = (TextBox)obj;
-                if (testBox == null) continue;
-                testBox.Text = "" + notice;
+                controlDic["notice" + notice].Text = "" + notice;
+
             }
         }
 
