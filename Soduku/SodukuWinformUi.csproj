@@ -52,6 +52,18 @@
     <Compile Include="DemoTableLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="FrmColorConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmColorConfig.Designer.cs">
+      <DependentUpon>FrmColorConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGenConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGenConfig.Designer.cs">
+      <DependentUpon>FrmGenConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +75,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelationShip.cs" />
+    <EmbeddedResource Include="FrmColorConfig.resx">
+      <DependentUpon>FrmColorConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGenConfig.resx">
+      <DependentUpon>FrmGenConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
