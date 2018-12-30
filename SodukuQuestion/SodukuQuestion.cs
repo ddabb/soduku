@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text;
 using Newtonsoft.Json;
 using SodukuBase;
+using SodukuSolver;
 
 namespace SodukuFactory
 {
@@ -98,7 +100,7 @@ namespace SodukuFactory
                     {
                         var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(result));
                         InitQuestion(needlist, valueCopy);
-                        if (new SodukuValid(valueCopy).IsVaildQuestion())
+                        if (IsVaildSoduku(valueCopy))
                         {
                             return new SodukuMarket(valueCopy);
                         }
@@ -107,9 +109,9 @@ namespace SodukuFactory
                     {
                         var chooseValue = noticeCounts - needlist.Count;
                         var values = locations.Except(needlist).ToArray();
-                        List<int[]> ListCombination = PermutationAndCombination<int>.GetCombination(values, chooseValue);
+                        List<int[]> listCombination = PermutationAndCombination<int>.GetCombination(values, chooseValue);
                         int index = 0;
-                        foreach (var items in ListCombination)
+                        foreach (var items in listCombination)
                         {
                             var c = items.ToList();
                             var location1 = needlist.Union(c).ToList();
@@ -117,7 +119,7 @@ namespace SodukuFactory
                             InitQuestion(location1, valueCopy);
                             if (ValidNoticeList(location1))
                             {
-                                if (new SodukuValid(valueCopy).IsVaildQuestion())
+                                if (IsVaildSoduku(valueCopy))
                                 {
                                     return new SodukuMarket(valueCopy);
                                 }
@@ -144,96 +146,12 @@ namespace SodukuFactory
 
         }
 
-
-        /// <summary>
-        /// 广度搜索
-        /// </summary>
-        /// <param name="tempSoduku"></param>
-        /// <param name="locations"></param>
-        /// <param name="sets"></param>
-        private void BFS(List<List<int>> tempSoduku, List<int> locations, ref SodukuSets sets)
+        public bool IsVaildSoduku(List<List<int>> question)
         {
-
-            foreach (var location in locations)
-            {
-                var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(tempSoduku));
-
-                valueCopy[location / 9][location % 9] = 0;
-
-
-                var validthis = ValidNoticeList(locations.Except(new List<int> { location }).ToList());
-                if (!validthis)
-                {
-                    sets.AddUnRemoveableList(new List<int> { location });
-                }
-
-                if (!new SodukuValid(valueCopy).IsVaildQuestion())
-                {
-                    var c = new List<int> { location };
-                    sets.AddUnRemoveableList(c);
-                }
-
-
-            }
+            return !string.IsNullOrEmpty(new DanceLink().do_solve(StaticTools.ListToString(question)));
         }
 
-        /// <summary>
-        /// 深度搜索
-        /// </summary>
-        /// <param name="tempSoduku"></param>
-        /// <param name="inits"></param>
-        /// <param name="locations"></param>
-        /// <param name="noticeCount"></param>
-        /// <param name="sets"></param>
-        private void DFS(List<List<int>> tempSoduku, List<int> inits, List<int> locations, int noticeCount, ref SodukuSets sets)
-        {
-            if (sets.marketList.ContainsKey(noticeCount))
-            {
-                return;
-            }
 
-
-
-            foreach (var location in locations)
-            {
-                if (sets.minValue <= noticeCount)
-                {
-                    break;
-                }
-
-                if (locations.Count < noticeCount)
-                {
-                    break;
-                }
-                var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(tempSoduku));
-
-                valueCopy[location / 9][location % 9] = 0;
-                var leftValues = locations.Except(new List<int> { location }).ToList();
-
-
-                var deleteList = inits.Except(leftValues).ToList();
-                var vaildlist = ValidNoticeList(leftValues);
-                if (!vaildlist)
-                {
-                    var b = 0;
-                }
-                if (vaildlist && (!sets.ContainsAnyUnRemovebleList(deleteList)) && new SodukuValid(valueCopy).IsVaildQuestion())
-                {
-
-                    SodukuMarket market = new SodukuMarket(valueCopy, leftValues);
-
-                    sets.AddMarket(market, locations.Count - 1);
-                    DFS(valueCopy, inits, locations.Except(new List<int> { location }).ToList(), noticeCount, ref sets);
-
-
-                }
-                else
-                {
-                    sets.AddUnRemoveableList(deleteList);
-                }
-
-            }
-        }
 
         private List<int> GetAllNeedList(List<List<int>> tempSoduku, List<int> locations)
         {
@@ -252,7 +170,7 @@ namespace SodukuFactory
                     needList.Add(location);
                 }
 
-                if (!new SodukuValid(valueCopy).IsVaildQuestion())
+                if (!IsVaildSoduku(valueCopy))
                 {
 
                     needList.Add(location);
@@ -261,10 +179,11 @@ namespace SodukuFactory
 
             }
 
+
             return needList;
         }
 
-
+ 
 
         /// <summary>
         /// 
@@ -288,7 +207,7 @@ namespace SodukuFactory
                 } while (!ValidNoticeList(list1));
 
                 InitQuestion(list1, tempquestion);
-            } while (!new SodukuValid(tempquestion).IsVaildQuestion());
+            } while (!IsVaildSoduku(tempquestion));
 
             return new SodukuMarket(tempquestion, list1);
         }

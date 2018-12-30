@@ -28,7 +28,7 @@ namespace SodukuBase
         {
             get
             {
-                return StaticInfos.baseFillList.Except(currentMarket.rowDatas[row]
+                return StaticTools.baseFillList.Except(currentMarket.rowDatas[row]
                     .Union(currentMarket.columnDatas[column]).Union(currentMarket.blockDatas[block])).ToList();
             }
         }

@@ -7,7 +7,7 @@ namespace SodukuBase
     public class SodukuMarket
     {
         /// <summary>
-        /// 初始化链表个数
+        /// 初始化链表个数,共81位包括0和非0。
         /// </summary>
         public List<List<int>> initValues;
 
@@ -28,6 +28,21 @@ namespace SodukuBase
         private double _difficult;
 
         private List<int> _emptyLists;
+
+        private string _strexpress;
+
+        public string StrExpress
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_strexpress))
+                {
+                    _strexpress = StaticTools.ListToString(initValues);
+                }
+
+                return _strexpress;
+            }
+        }
 
         /// <summary>
         /// 横向9个链表
@@ -120,7 +135,7 @@ namespace SodukuBase
         /// 空余链表位置
         /// </summary>
         public List<int> emptyLists =>
-            _emptyLists ?? (_emptyLists = StaticInfos.allLocations.Except(this.initLists).ToList());
+            _emptyLists ?? (_emptyLists = StaticTools.allLocations.Except(this.initLists).ToList());
 
         /// <summary>
         /// 初始化链表位置
@@ -184,7 +199,7 @@ namespace SodukuBase
                 if (!cell.isInit)
                 {
                     allCount.Add(
-                        StaticInfos.baseFillList.Except(
+                        StaticTools.baseFillList.Except(
                             columnCells[cell.column].Select(c => c.Value).ToList()
                                 .Union(
                                     rowCells[cell.row].Select(c => c.Value).ToList())

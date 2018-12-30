@@ -100,7 +100,7 @@ namespace SodukuTest
 
                     SodukuQuestion.InitQuestion(kv.Value, tempquestion);
 
-                } while (new DanceLink().do_solve(listtostring(tempquestion)).Length<81);
+                } while (new DanceLink().do_solve(Listtostring(tempquestion)).Length<81);
 
     
 
@@ -126,21 +126,7 @@ namespace SodukuTest
             Console.ReadLine();
         }
 
-        public static string listtostring(List<List<int>> tempquestion)
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (var list in tempquestion)
-            {
-                foreach (var value in list)
-                {
-                    sb.Append(value);
 
-                }
-
-            }
-
-            return sb.ToString();
-        }
 
     }
 }

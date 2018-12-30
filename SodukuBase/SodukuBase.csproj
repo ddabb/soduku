@@ -51,7 +51,7 @@
     <Compile Include="PermutationAndCombination.cs" />
     <Compile Include="RemoveValueStep.cs" />
     <Compile Include="SetValueStep.cs" />
-    <Compile Include="StaticInfos.cs" />
+    <Compile Include="StaticTools.cs" />
     <Compile Include="blocksInfo.cs" />
     <Compile Include="CellInfo.cs" />
     <Compile Include="MethodDiction.cs" />

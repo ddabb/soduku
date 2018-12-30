@@ -11,6 +11,8 @@ using SodukuBase;
 using SodukuFactory;
 using SodukuGenerator;
 using System.Runtime.InteropServices;
+using System.Text;
+
 namespace SodukuUI
 {
     public partial class FrmMain : Form
@@ -552,17 +554,25 @@ namespace SodukuUI
         {
         }
 
-        private void 导出图片ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExportPictureToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
+                foreach (var kv in locationClues)
+                {
+                    kv.Value.Visible = false;
+                }
+                foreach (var kv in TextBoxdic)
+                {
+                    kv.Value.Visible = true;
+                }
                 Bitmap bit = new Bitmap(tableLayoutPanel1.Width, tableLayoutPanel1.Height); //实例化一个和窗体一样大的bitmap
 
                 tableLayoutPanel1.DrawToBitmap(bit,
                     new Rectangle(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height));
                 var time = DateTime.Now.ToString("yyyyMMddHHmmss");
-                var warpath = new DirectoryInfo("../").FullName + "QuestionImages";
-                var path = warpath + time + ".png";
+                var warpath =  AppDomain.CurrentDomain.BaseDirectory + "QuestionImages";
+                var path = warpath+"/" + time + ".png";
                 if (!Directory.Exists(warpath))
                     Directory.CreateDirectory(warpath);
                 bit.Save(path, ImageFormat.Png);
@@ -616,6 +626,34 @@ namespace SodukuUI
   
 
        
+        }
+
+        private void exportTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(currentMarket==null) return;
+            var express = currentMarket.StrExpress;
+            string dir = AppDomain.CurrentDomain.BaseDirectory;
+            var time = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string configName = Path.Combine(dir, time+"_"+ noticeNumber.Text + ".txt");
+            File.WriteAllText(configName, express, Encoding.UTF8);
+        }
+
+        private void importTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "数独文件(* .txt)|* .txt";
+            dlg.FilterIndex = 0;
+            dlg.Title = "选择数独文件";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string express = File.ReadAllText(dlg.FileName, Encoding.UTF8);
+                if (express.Length<81)
+                {
+                   return;
+                }
+                currentMarket=new SodukuMarket(StaticTools.StringToList(express));
+                ShowNoticeInfo();
+            }
         }
     }
 }
