@@ -59,8 +59,11 @@
     <Compile Include="ctlNoticePanel.Designer.cs">
       <DependentUpon>ctlNoticePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="EllipseButton.cs">
-      <SubType>Component</SubType>
+    <Compile Include="ctlRoundPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlRoundPanel.Designer.cs">
+      <DependentUpon>ctlRoundPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
@@ -74,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctlNoticePanel.resx">
       <DependentUpon>ctlNoticePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlRoundPanel.resx">
+      <DependentUpon>ctlRoundPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

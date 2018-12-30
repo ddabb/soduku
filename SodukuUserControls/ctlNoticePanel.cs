@@ -43,7 +43,7 @@ namespace SodukuUI
             "notice9",
         };
 
-        private Dictionary<string, EllipseButton> controlDic = new Dictionary<string, EllipseButton>();
+        private Dictionary<string, ctlRoundPanel> controlDic = new Dictionary<string, ctlRoundPanel>();
 
         public void SetClues(List<int> list)
         {
@@ -51,16 +51,19 @@ namespace SodukuUI
     
             foreach (var kv in controlDic)
             {
-                kv.Value.Text = "";
-                kv.Value.Visible = false;
+                var control = controlDic[kv.Key];
+                control.label1.Text = "";
+                control.Visible = false;
             }
 
             foreach (var notice in list)
             {
               var control=  controlDic["notice" + notice];
-                control.Text = "" + notice;
+                control.label1.Text = "" + notice;
                 control.Visible = true;
             }
+
+            this.Refresh();
         }
 
         private void CtlNoticePanel_Load(object sender, EventArgs e)
@@ -72,6 +75,6 @@ namespace SodukuUI
 
         }
 
-  
+
     }
 }

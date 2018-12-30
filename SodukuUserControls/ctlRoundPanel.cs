@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Drawing2D;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace SodukuUserControls
 {
-  public  class EllipseButton : Button
+    public partial class ctlRoundPanel : UserControl
     {
+        public ctlRoundPanel()
+        {
+            InitializeComponent();
+
+        }
+
         protected override void OnPaint(PaintEventArgs pevent)
         {
             GraphicsPath gPath = new GraphicsPath();
@@ -22,5 +31,7 @@ namespace SodukuUserControls
             base.OnPaint(pevent);
         }
 
+
+        //参考 原文：https://blog.csdn.net/thanks_hck/article/details/81475378 
     }
 }

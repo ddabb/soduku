@@ -249,7 +249,7 @@ namespace SodukuUI
                     testBox.Margin = new Padding(2);
                     testBox.BorderStyle = BorderStyle.None;
                     testBox.Multiline = true;
-                    testBox.Size = new Size(50, 50);
+                    testBox.Size = new Size(75, 75);
                     testBox.TabIndex = 0;
                     testBox.TextAlign = HorizontalAlignment.Center;
                     testBox.Font = new Font("Dotum", 30f, FontStyle.Regular, GraphicsUnit.Point, ((byte) (134)));
@@ -260,7 +260,7 @@ namespace SodukuUI
                     cluePanel.Margin = new Padding(2);
                     cluePanel.BorderStyle = BorderStyle.None;
 
-                    cluePanel.Size = new Size(50, 50);
+                    cluePanel.Size = new Size(75, 75);
                     cluePanel.TabIndex = 0;
                     cluePanel.Visible = false;
                 }
@@ -291,14 +291,17 @@ namespace SodukuUI
                 var text = TextBoxdic[location];
                 if (!cell.isInit)
                 {
+                  
                     clue.SetClues(cell.initrest);
-                    clue.Visible = true;
-                    text.Visible = false;
+                    clue.Visible = showhelp && true;
+                    text.Visible = showhelp ? false : true;
+
                 }
                 else
                 {
                     clue.Visible = false;
                     text.Visible = true;
+                    text.Enabled = true;
                 }
             }
         }
@@ -333,15 +336,6 @@ namespace SodukuUI
                     message = message.Remove(message.LastIndexOf(","));
                 }
 
-                //SodukuMarket.rowDatas[cell.row].Sort();
-                //SodukuMarket.columnDatas[cell.column].Sort();
-                //SodukuMarket.blockDatas[cell.block].Sort();
-                //var message2 = JsonConvert.SerializeObject(SodukuMarket.rowDatas[cell.row]);
-                //var message3 = JsonConvert.SerializeObject(SodukuMarket.columnDatas[cell.column]);
-                //var message4 = JsonConvert.SerializeObject(SodukuMarket.blockDatas[cell.block]);
-                //helpMessage.Text = "当前鼠标位置为" + (cell.row + 1) + "行" + (cell.column + 1) + "列\r\n";
-                //helpMessage.Text += @"可选值范围为：" + message + "\r\n行已经填充" + message2 + "\r\n列已经填充" + message3 +
-                //                    "\r\n宫已经填充" + message4;
             }
             else
             {
@@ -530,7 +524,7 @@ namespace SodukuUI
             questions = currentMarket.initValues;
             label4.Text = "平均候选数个数为：  " + Math.Round(currentMarket.difficult, 2);
             label5.Text = "实际提示数个数为:   " + currentMarket.initLists.Count;
-
+            showhelp = this.ShowHelpToolStripMenuItem.Checked;
             for (int i = 0; i < questions.Count; i++)
             {
                 var list = questions[i];
@@ -611,6 +605,17 @@ namespace SodukuUI
 
         private void button4_Click(object sender, EventArgs e)
         {
+        }
+        private bool showhelp ;
+        private void ShowHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            ShowNoticeInfo();
+            showhelp = this.ShowHelpToolStripMenuItem.Checked;
+            this.ShowHelpToolStripMenuItem.Checked = !showhelp;
+  
+
+       
         }
     }
 }
