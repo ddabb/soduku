@@ -41,6 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctlColorConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlColorConfig.Designer.cs">
+      <DependentUpon>ctlColorConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctlGenConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlGenConfig.Designer.cs">
+      <DependentUpon>ctlGenConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctlNoticePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -51,6 +63,12 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ctlColorConfig.resx">
+      <DependentUpon>ctlColorConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlGenConfig.resx">
+      <DependentUpon>ctlGenConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctlNoticePanel.resx">
       <DependentUpon>ctlNoticePanel.cs</DependentUpon>
     </EmbeddedResource>

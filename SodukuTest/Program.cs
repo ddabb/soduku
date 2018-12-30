@@ -91,10 +91,10 @@ namespace SodukuTest
                     tempquestion =
                         JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(validSoduku));
                     count += 1;
-                    if (count==10000)
+                    if (count==1000000)
                     {
                         outputCount += 1;
-                        Console.WriteLine("计算次数(万)"+ outputCount);
+                        Console.WriteLine("计算次数(百万)"+ outputCount);
                         count = 0;
                     }
 
