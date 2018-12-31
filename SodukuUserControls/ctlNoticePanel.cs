@@ -27,7 +27,7 @@ namespace SodukuUserControls
             controlDic.Add("notice9", notice9);
         }
 
-        public void SetConfig(ClsAllConfig allConfig)
+        public void SetColors(ClsAllConfig allConfig)
         {
             _allConfig = allConfig;
             foreach (var variable in controlDic)
@@ -36,6 +36,7 @@ namespace SodukuUserControls
                 panel.BackColor = allConfig.ColorConfig.NoticeBackColor;
                 panel.label1.BackColor = allConfig.ColorConfig.NoticeBackColor;
                 panel.label1.ForeColor = allConfig.ColorConfig.NoticeForeColor;
+                panel.Refresh();
             }
         }
 

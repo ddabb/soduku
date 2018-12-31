@@ -104,87 +104,87 @@ namespace SodukuUI
             this.postion_8_6 = new System.Windows.Forms.TextBox();
             this.postion_8_7 = new System.Windows.Forms.TextBox();
             this.postion_8_8 = new System.Windows.Forms.TextBox();
-            this.clue_0_0 = new CtlNoticePanel();
-            this.clue_0_1 = new CtlNoticePanel();
-            this.clue_0_2 = new CtlNoticePanel();
-            this.clue_0_3 = new CtlNoticePanel();
-            this.clue_0_4 = new CtlNoticePanel();
-            this.clue_0_5 = new CtlNoticePanel();
-            this.clue_0_6 = new CtlNoticePanel();
-            this.clue_0_7 = new CtlNoticePanel();
-            this.clue_0_8 = new CtlNoticePanel();
-            this.clue_1_0 = new CtlNoticePanel();
-            this.clue_1_1 = new CtlNoticePanel();
-            this.clue_1_2 = new CtlNoticePanel();
-            this.clue_1_3 = new CtlNoticePanel();
-            this.clue_1_4 = new CtlNoticePanel();
-            this.clue_1_5 = new CtlNoticePanel();
-            this.clue_1_6 = new CtlNoticePanel();
-            this.clue_1_7 = new CtlNoticePanel();
-            this.clue_1_8 = new CtlNoticePanel();
-            this.clue_2_0 = new CtlNoticePanel();
-            this.clue_2_1 = new CtlNoticePanel();
-            this.clue_2_2 = new CtlNoticePanel();
-            this.clue_2_3 = new CtlNoticePanel();
-            this.clue_2_4 = new CtlNoticePanel();
-            this.clue_2_5 = new CtlNoticePanel();
-            this.clue_2_6 = new CtlNoticePanel();
-            this.clue_2_7 = new CtlNoticePanel();
-            this.clue_2_8 = new CtlNoticePanel();
-            this.clue_3_0 = new CtlNoticePanel();
-            this.clue_3_1 = new CtlNoticePanel();
-            this.clue_3_2 = new CtlNoticePanel();
-            this.clue_3_3 = new CtlNoticePanel();
-            this.clue_3_4 = new CtlNoticePanel();
-            this.clue_3_5 = new CtlNoticePanel();
-            this.clue_3_6 = new CtlNoticePanel();
-            this.clue_3_7 = new CtlNoticePanel();
-            this.clue_3_8 = new CtlNoticePanel();
-            this.clue_4_0 = new CtlNoticePanel();
-            this.clue_4_1 = new CtlNoticePanel();
-            this.clue_4_2 = new CtlNoticePanel();
-            this.clue_4_3 = new CtlNoticePanel();
-            this.clue_4_4 = new CtlNoticePanel();
-            this.clue_4_5 = new CtlNoticePanel();
-            this.clue_4_6 = new CtlNoticePanel();
-            this.clue_4_7 = new CtlNoticePanel();
-            this.clue_4_8 = new CtlNoticePanel();
-            this.clue_5_0 = new CtlNoticePanel();
-            this.clue_5_1 = new CtlNoticePanel();
-            this.clue_5_2 = new CtlNoticePanel();
-            this.clue_5_3 = new CtlNoticePanel();
-            this.clue_5_4 = new CtlNoticePanel();
-            this.clue_5_5 = new CtlNoticePanel();
-            this.clue_5_6 = new CtlNoticePanel();
-            this.clue_5_7 = new CtlNoticePanel();
-            this.clue_5_8 = new CtlNoticePanel();
-            this.clue_6_0 = new CtlNoticePanel();
-            this.clue_6_1 = new CtlNoticePanel();
-            this.clue_6_2 = new CtlNoticePanel();
-            this.clue_6_3 = new CtlNoticePanel();
-            this.clue_6_4 = new CtlNoticePanel();
-            this.clue_6_5 = new CtlNoticePanel();
-            this.clue_6_6 = new CtlNoticePanel();
-            this.clue_6_7 = new CtlNoticePanel();
-            this.clue_6_8 = new CtlNoticePanel();
-            this.clue_7_0 = new CtlNoticePanel();
-            this.clue_7_1 = new CtlNoticePanel();
-            this.clue_7_2 = new CtlNoticePanel();
-            this.clue_7_3 = new CtlNoticePanel();
-            this.clue_7_4 = new CtlNoticePanel();
-            this.clue_7_5 = new CtlNoticePanel();
-            this.clue_7_6 = new CtlNoticePanel();
-            this.clue_7_7 = new CtlNoticePanel();
-            this.clue_7_8 = new CtlNoticePanel();
-            this.clue_8_0 = new CtlNoticePanel();
-            this.clue_8_1 = new CtlNoticePanel();
-            this.clue_8_2 = new CtlNoticePanel();
-            this.clue_8_3 = new CtlNoticePanel();
-            this.clue_8_4 = new CtlNoticePanel();
-            this.clue_8_5 = new CtlNoticePanel();
-            this.clue_8_6 = new CtlNoticePanel();
-            this.clue_8_7 = new CtlNoticePanel();
-            this.clue_8_8 = new CtlNoticePanel();
+            this.clue_0_0 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_0_1 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_0_2 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_0_3 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_0_4 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_0_5 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_0_6 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_0_7 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_0_8 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_1_0 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_1_1 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_1_2 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_1_3 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_1_4 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_1_5 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_1_6 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_1_7 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_1_8 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_2_0 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_2_1 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_2_2 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_2_3 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_2_4 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_2_5 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_2_6 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_2_7 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_2_8 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_3_0 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_3_1 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_3_2 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_3_3 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_3_4 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_3_5 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_3_6 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_3_7 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_3_8 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_4_0 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_4_1 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_4_2 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_4_3 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_4_4 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_4_5 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_4_6 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_4_7 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_4_8 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_5_0 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_5_1 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_5_2 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_5_3 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_5_4 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_5_5 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_5_6 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_5_7 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_5_8 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_6_0 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_6_1 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_6_2 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_6_3 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_6_4 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_6_5 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_6_6 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_6_7 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_6_8 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_7_0 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_7_1 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_7_2 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_7_3 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_7_4 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_7_5 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_7_6 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_7_7 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_7_8 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_8_0 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_8_1 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_8_2 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_8_3 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_8_4 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_8_5 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_8_6 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_8_7 = new SodukuUserControls.CtlNoticePanel();
+            this.clue_8_8 = new SodukuUserControls.CtlNoticePanel();
             this.resultMessage = new System.Windows.Forms.TextBox();
             this.helpMessage = new System.Windows.Forms.TextBox();
             this.isShowHelp = new System.Windows.Forms.CheckBox();
@@ -1931,7 +1931,7 @@ namespace SodukuUI
             // StartGameToolStripMenuItem
             // 
             this.StartGameToolStripMenuItem.Name = "StartGameToolStripMenuItem";
-            this.StartGameToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.StartGameToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.StartGameToolStripMenuItem.Text = "开始游戏";
             this.StartGameToolStripMenuItem.Click += new System.EventHandler(this.开始游戏ToolStripMenuItem_Click);
             // 
@@ -1942,7 +1942,7 @@ namespace SodukuUI
             this.normalToolStripMenuItem,
             this.锯齿数独ToolStripMenuItem});
             this.GenToolStripMenuItem.Name = "GenToolStripMenuItem";
-            this.GenToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.GenToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.GenToolStripMenuItem.Text = "生成数独";
             // 
             // 完整数独ToolStripMenuItem
@@ -1972,7 +1972,7 @@ namespace SodukuUI
             this.ForceToolStripMenuItem,
             this.理论求解ToolStripMenuItem});
             this.数独求解ToolStripMenuItem.Name = "数独求解ToolStripMenuItem";
-            this.数独求解ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.数独求解ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.数独求解ToolStripMenuItem.Text = "数独求解";
             // 
             // ForceToolStripMenuItem
@@ -1994,19 +1994,19 @@ namespace SodukuUI
             this.imporPictureToolStripMenuItem,
             this.importTextToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.importToolStripMenuItem.Text = "导入数独";
             // 
             // imporPictureToolStripMenuItem
             // 
             this.imporPictureToolStripMenuItem.Name = "imporPictureToolStripMenuItem";
-            this.imporPictureToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.imporPictureToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.imporPictureToolStripMenuItem.Text = "导入图片";
             // 
             // importTextToolStripMenuItem
             // 
             this.importTextToolStripMenuItem.Name = "importTextToolStripMenuItem";
-            this.importTextToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.importTextToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.importTextToolStripMenuItem.Text = "导入文本";
             this.importTextToolStripMenuItem.Click += new System.EventHandler(this.importTextToolStripMenuItem_Click);
             // 
@@ -2016,7 +2016,7 @@ namespace SodukuUI
             this.exportPictureToolStripMenuItem,
             this.exportTextToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.exportToolStripMenuItem.Text = "导出数独";
             // 
             // exportPictureToolStripMenuItem
@@ -2036,7 +2036,7 @@ namespace SodukuUI
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.ExitToolStripMenuItem.Text = "退出";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
@@ -2055,7 +2055,7 @@ namespace SodukuUI
             this.ShowHelpToolStripMenuItem.Checked = true;
             this.ShowHelpToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ShowHelpToolStripMenuItem.Name = "ShowHelpToolStripMenuItem";
-            this.ShowHelpToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
+            this.ShowHelpToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.ShowHelpToolStripMenuItem.Text = "显示提示";
             this.ShowHelpToolStripMenuItem.Click += new System.EventHandler(this.ShowHelpToolStripMenuItem_Click);
             // 
@@ -2077,7 +2077,7 @@ namespace SodukuUI
             this.toolStripMenuItem14,
             this.toolStripMenuItem15});
             this.noticeCountToolStripMenuItem.Name = "noticeCountToolStripMenuItem";
-            this.noticeCountToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
+            this.noticeCountToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.noticeCountToolStripMenuItem.Text = "提示数个数";
             // 
             // toolStripMenuItem2
@@ -2167,8 +2167,9 @@ namespace SodukuUI
             // colorSetToolStripMenuItem
             // 
             this.colorSetToolStripMenuItem.Name = "colorSetToolStripMenuItem";
-            this.colorSetToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
+            this.colorSetToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.colorSetToolStripMenuItem.Text = "颜色设置";
+            this.colorSetToolStripMenuItem.Click += new System.EventHandler(this.colorSetToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 

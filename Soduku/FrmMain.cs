@@ -273,7 +273,7 @@ namespace SodukuUI
                     cluePanel.Dock = DockStyle.Fill;
                     cluePanel.Margin = new Padding(2);
                     cluePanel.BorderStyle = BorderStyle.None;
-                    cluePanel.SetConfig(_config);
+                    cluePanel.SetColors(_config);
                     cluePanel.Size = new Size(75, 75);
                     cluePanel.TabIndex = 0;
                     cluePanel.Visible = false;
@@ -334,19 +334,28 @@ namespace SodukuUI
         /// </summary>
         private void RefreshPanel()
         {
+            SetColor();
+            if (currentMarket==null)
+            {
+                return;
+            }
+
             Dictionary<string, CellInfo> cells = currentMarket.GetCellInfos();
+            this.BackColor = _config.ColorConfig.FrmColor;
             foreach (KeyValuePair<string, CellInfo> kv in cells)
             {
                 var location = kv.Key;
                 CellInfo cell = kv.Value;
                 var clue = locationClues[location];
                 var text = TextBoxdic[location];
+            
+
                 if (!cell.isInit)
                 {
                   
                     clue.SetClues(cell.initrest);
                     clue.Visible = showhelp && true;
-                    text.Visible = showhelp ? false : true;
+                    text.Visible = !showhelp;
 
                 }
                 else
@@ -355,6 +364,20 @@ namespace SodukuUI
                     text.Visible = true;
                     text.Enabled = true;
                 }
+            }
+        }
+
+        private void SetColor()
+        {
+            var config = _config.ColorConfig;
+            this.BackColor = config.FrmColor;
+            foreach (var variable in TextBoxdic)
+            {
+                variable.Value.ForeColor = config.QuestionForeColor;
+            }
+            foreach (var variable in locationClues)
+            {
+                variable.Value.SetColors(_config);
             }
         }
 
@@ -409,7 +432,7 @@ namespace SodukuUI
 
 
                     testBox.BackColor = !string.IsNullOrEmpty(thisValue) && thisValue == testBox.Text.Trim()
-                        ? Color.Orange
+                        ? _config.ColorConfig.PanelMouseMoveColor
                         : Color.White;
                 }
             }
@@ -586,7 +609,7 @@ namespace SodukuUI
                     TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
                     if (testBox == null) continue;
                     testBox.Text = "" + value;
-                    testBox.ForeColor = Color.Black;
+                    testBox.ForeColor =_config.ColorConfig.QuestionForeColor;
                     testBox.BackColor = Color.White;
                     resultMessage.Text = null;
                 }
@@ -704,6 +727,15 @@ namespace SodukuUI
                 currentMarket=new SodukuMarket(StaticTools.StringToList(express));
                 RefreshPanel();
             }
+        }
+
+        private void colorSetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmColorConfig f2 = new FrmColorConfig(_config);
+            f2.StartPosition = FormStartPosition.CenterScreen;
+
+            f2.ShowDialog();
+            RefreshPanel();
         }
     }
 }
