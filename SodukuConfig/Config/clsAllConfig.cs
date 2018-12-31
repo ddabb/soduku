@@ -1,10 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Xml.Serialization;
-using CommonTools;
 using Newtonsoft.Json;
-
-namespace SodukuUI.Config
+namespace SodukuConfig.Config
 {
     /// <summary>
     /// 所有配置类

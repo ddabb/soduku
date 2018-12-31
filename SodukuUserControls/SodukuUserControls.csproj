@@ -82,5 +82,11 @@
       <DependentUpon>ctlRoundPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SodukuConfig\SodukuConfig.csproj">
+      <Project>{C3ACD9E1-A40D-4422-9E15-E9D7A26B577D}</Project>
+      <Name>SodukuConfig</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

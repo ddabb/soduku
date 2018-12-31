@@ -49,9 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\clsAllConfig.cs" />
-    <Compile Include="Config\clsColorConfig.cs" />
-    <Compile Include="Config\clsGenConfig.cs" />
     <Compile Include="DemoTableLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -119,6 +116,10 @@
     <ProjectReference Include="..\SodukuBase\SodukuBase.csproj">
       <Project>{d8fb1819-787b-433c-9419-b7fe852bd62e}</Project>
       <Name>SodukuBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SodukuConfig\SodukuConfig.csproj">
+      <Project>{c3acd9e1-a40d-4422-9e15-e9d7a26b577d}</Project>
+      <Name>SodukuConfig</Name>
     </ProjectReference>
     <ProjectReference Include="..\SodukuGenerator\SodukuBuilder.csproj">
       <Project>{4360bbc9-dce8-4938-8c18-d2aba53fed87}</Project>

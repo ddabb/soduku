@@ -15,8 +15,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using SodukuUserControls;
 using CommonTools;
-using SodukuUI.Config;
+
 using System.Xml.Serialization;
+using SodukuConfig.Config;
 
 namespace SodukuUI
 {
@@ -24,7 +25,7 @@ namespace SodukuUI
     {
         public FrmMain()
         {
-       
+        
             InitializeComponent();
         }
 
@@ -74,7 +75,7 @@ namespace SodukuUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            InitConfig();
+         
 
             GetType()
                 .GetProperty("DoubleBuffered",
@@ -250,7 +251,7 @@ namespace SodukuUI
             locationClues.Add("postion_8_7", clue_8_7);
             locationClues.Add("postion_8_8", clue_8_8);
 
-
+            InitConfig();
             for (int i = 0; i < numbers; i++)
             {
                 for (int j = 0; j < numbers; j++)
@@ -266,12 +267,13 @@ namespace SodukuUI
                     testBox.TextAlign = HorizontalAlignment.Center;
                     testBox.Font = new Font("Dotum", 30f, FontStyle.Regular, GraphicsUnit.Point, ((byte) (134)));
                     testBox.TextChanged += new EventHandler(textChanged);
+                    
                     testBox.MouseEnter += new EventHandler(MouseEntere);
                     CtlNoticePanel cluePanel = locationClues[location];
                     cluePanel.Dock = DockStyle.Fill;
                     cluePanel.Margin = new Padding(2);
                     cluePanel.BorderStyle = BorderStyle.None;
-
+                    cluePanel.SetConfig(_config);
                     cluePanel.Size = new Size(75, 75);
                     cluePanel.TabIndex = 0;
                     cluePanel.Visible = false;
@@ -299,9 +301,9 @@ namespace SodukuUI
                     AnswerForgerColor = Color.Blue,
                     FrmColor = Color.Gainsboro,
                     PanelMouseMoveColor = Color.Orange,
-                    NoticeBackColor = Color.Transparent,
+                    NoticeBackColor = Color.Gold,
                     QuestionForeColor = Color.Black,
-                    NoticeForeColor = Color.White
+                    NoticeForeColor = Color.BurlyWood
                 };
                 var genConfig = new ClsGenConfig
                 {
@@ -328,9 +330,9 @@ namespace SodukuUI
 
 
         /// <summary>
-        /// 显示提示信息
+        /// 刷新面板
         /// </summary>
-        private void ShowNoticeInfo()
+        private void RefreshPanel()
         {
             Dictionary<string, CellInfo> cells = currentMarket.GetCellInfos();
             foreach (KeyValuePair<string, CellInfo> kv in cells)
@@ -535,7 +537,7 @@ namespace SodukuUI
 
         private void isShowHelp_CheckedChanged(object sender, EventArgs e)
         {
-            ShowNoticeInfo();
+            RefreshPanel();
         }
 
         private void 开始游戏ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -590,7 +592,7 @@ namespace SodukuUI
                 }
             }
 
-            ShowNoticeInfo();
+            RefreshPanel();
             var breakouot = 0;
         }
 
@@ -668,7 +670,7 @@ namespace SodukuUI
         private void ShowHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            ShowNoticeInfo();
+            RefreshPanel();
             showhelp = this.ShowHelpToolStripMenuItem.Checked;
             this.ShowHelpToolStripMenuItem.Checked = !showhelp;
   
@@ -700,7 +702,7 @@ namespace SodukuUI
                    return;
                 }
                 currentMarket=new SodukuMarket(StaticTools.StringToList(express));
-                ShowNoticeInfo();
+                RefreshPanel();
             }
         }
     }

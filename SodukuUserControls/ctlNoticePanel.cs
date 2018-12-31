@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SodukuConfig.Config;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -9,6 +10,12 @@ namespace SodukuUserControls
         public CtlNoticePanel()
         {
             InitializeComponent();
+
+            Init();
+        }
+
+        private void Init()
+        {
             controlDic.Add("notice1", notice1);
             controlDic.Add("notice2", notice2);
             controlDic.Add("notice3", notice3);
@@ -18,13 +25,25 @@ namespace SodukuUserControls
             controlDic.Add("notice7", notice7);
             controlDic.Add("notice8", notice8);
             controlDic.Add("notice9", notice9);
-
-
         }
+
+        public void SetConfig(ClsAllConfig allConfig)
+        {
+            _allConfig = allConfig;
+            foreach (var variable in controlDic)
+            {
+                var panel = variable.Value;
+                panel.BackColor = allConfig.ColorConfig.NoticeBackColor;
+                panel.label1.BackColor = allConfig.ColorConfig.NoticeBackColor;
+                panel.label1.ForeColor = allConfig.ColorConfig.NoticeForeColor;
+            }
+        }
+
+        private ClsAllConfig _allConfig;
+
 
         private static readonly List<string> clueList = new List<string>
         {
-
             "notice1",
             "notice2",
             "notice3",
@@ -38,10 +57,9 @@ namespace SodukuUserControls
 
         private Dictionary<string, ctlRoundPanel> controlDic = new Dictionary<string, ctlRoundPanel>();
 
+
         public void SetClues(List<int> list)
         {
-
-    
             foreach (var kv in controlDic)
             {
                 var control = controlDic[kv.Key];
@@ -51,7 +69,7 @@ namespace SodukuUserControls
 
             foreach (var notice in list)
             {
-              var control=  controlDic["notice" + notice];
+                var control = controlDic["notice" + notice];
                 control.label1.Text = "" + notice;
                 control.Visible = true;
             }
@@ -65,9 +83,6 @@ namespace SodukuUserControls
                 .GetProperty("DoubleBuffered",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
                 ?.SetValue(tableLayoutPanel1, true, null);
-
         }
-
-
     }
 }
