@@ -35,6 +35,6 @@ namespace SodukuConfig.Config
         /// <summary>
         /// 答案前景色
         /// </summary>
-        public Color AnswerForgerColor;
+        public Color AnswerForeColor;
     }
 }

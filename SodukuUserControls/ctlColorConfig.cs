@@ -58,7 +58,7 @@ namespace SodukuUserControls
             button5.BackColor = c.NoticeBackColor;
             NoticeNumberColorButton.BackColor = c.NoticeForeColor;
             button6.BackColor = c.FrmColor;
-            button8.BackColor = c.NoticeForeColor;
+            button8.BackColor = c.AnswerForeColor;
 
             button9.BackColor = c.PanelMouseMoveColor;
             config.SaveToFile();
@@ -72,7 +72,7 @@ namespace SodukuUserControls
             c.NoticeBackColor = button5.BackColor;
             c.NoticeForeColor = NoticeNumberColorButton.BackColor;
             c.FrmColor = button6.BackColor;
-
+            c.AnswerForeColor = button8.BackColor;
 
             c.PanelMouseMoveColor = button9.BackColor;
             config.SaveToFile();

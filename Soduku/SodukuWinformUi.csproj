@@ -94,7 +94,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -109,10 +108,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonTools\CommonTools.csproj">
-      <Project>{f2405815-d19f-4421-a7a2-40f909f4a041}</Project>
-      <Name>CommonTools</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SodukuBase\SodukuBase.csproj">
       <Project>{d8fb1819-787b-433c-9419-b7fe852bd62e}</Project>
       <Name>SodukuBase</Name>

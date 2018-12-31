@@ -48,7 +48,7 @@ namespace SodukuBase
 
         public SodukuMarket LessNoticeNumber()
         {
-            SodukuMarket result=this;
+            SodukuMarket result=new SodukuMarket(this.initValues);
             do
             {
                 if (result.SubMarkets.Count > 0)

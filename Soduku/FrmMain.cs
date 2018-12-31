@@ -14,7 +14,7 @@ using SodukuGenerator;
 using System.Runtime.InteropServices;
 using System.Text;
 using SodukuUserControls;
-using CommonTools;
+
 
 using System.Xml.Serialization;
 using SodukuConfig.Config;
@@ -298,7 +298,7 @@ namespace SodukuUI
             {
                 var colorConfig = new ClsColorConfig
                 {
-                    AnswerForgerColor = Color.Blue,
+                    AnswerForeColor = Color.Blue,
                     FrmColor = Color.Gainsboro,
                     PanelMouseMoveColor = Color.Orange,
                     NoticeBackColor = Color.Gold,
@@ -334,7 +334,8 @@ namespace SodukuUI
         /// </summary>
         private void RefreshPanel()
         {
-            SetColor();
+            var config = _config.ColorConfig;
+            this.BackColor = config.FrmColor;
             if (currentMarket==null)
             {
                 return;
@@ -349,45 +350,42 @@ namespace SodukuUI
                 CellInfo cell = kv.Value;
                 var clue = locationClues[location];
                 var text = TextBoxdic[location];
-
-                if (kv.Key=="postion_6_1")
+                clue.SetColors(_config);
+                if (cell.Value!=0)
                 {
-                    var breakin =0 ;
-
-                }
-                if (!cell.isInit)
-                {
-             
-                    clue.SetClues(cell.initrest);
-                    clue.Visible = showhelp;
-                    text.Visible = cell.Value!=0|| !showhelp;
+                    text.Visible = true;
+                    clue.Visible = false;
                     text.Text = "" + cell.Value;
+                    text.ForeColor = cell.isInit ? config.QuestionForeColor : config.AnswerForeColor;
                 }
                 else
                 {
-                    clue.Visible = false;
-                    text.Visible = true;
-                    text.Text = "" + cell.Value;
-                    text.Enabled = true;
+                    clue.SetClues(cell.initrest);
+                    clue.Visible = showhelp;
+                    text.Visible =  !showhelp;
                 }
+
+                //if (!cell.isInit)
+                //{
+             
+                //    clue.SetClues(cell.initrest);
+                //    clue.Visible = showhelp;
+                //    text.Visible = cell.Value!=0|| !showhelp;
+                //    text.Text = "" + cell.Value;
+                //}
+                //else
+                //{
+                //    clue.Visible = false;
+                //    text.Visible = true;
+                //    text.Text = "" + cell.Value;
+                //    text.Enabled = true;
+                //}
             }
             this.tableLayoutPanel1.Refresh();
           
         }
 
-        private void SetColor()
-        {
-            var config = _config.ColorConfig;
-            this.BackColor = config.FrmColor;
-            foreach (var variable in TextBoxdic)
-            {
-                variable.Value.ForeColor = config.QuestionForeColor;
-            }
-            foreach (var variable in locationClues)
-            {
-                variable.Value.SetColors(_config);
-            }
-        }
+
 
         private Color borderColor = Color.Black;
 

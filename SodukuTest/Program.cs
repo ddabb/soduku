@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using MathNet.Numerics;
 using Newtonsoft.Json;
 using SodukuBase;
 using SodukuGenerator;
-using SodukuFactory;
 
 namespace SodukuTest
 {
