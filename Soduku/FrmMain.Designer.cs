@@ -1897,9 +1897,8 @@ namespace SodukuUI
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(770, 71);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 15);
+            this.label5.Size = new System.Drawing.Size(0, 15);
             this.label5.TabIndex = 15;
-            this.label5.Text = "实际提示数个数";
             // 
             // menuStrip1
             // 
@@ -1912,7 +1911,7 @@ namespace SodukuUI
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(9, 9);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(362, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(212, 28);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1932,7 +1931,7 @@ namespace SodukuUI
             // StartGameToolStripMenuItem
             // 
             this.StartGameToolStripMenuItem.Name = "StartGameToolStripMenuItem";
-            this.StartGameToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.StartGameToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.StartGameToolStripMenuItem.Text = "开始游戏";
             this.StartGameToolStripMenuItem.Click += new System.EventHandler(this.开始游戏ToolStripMenuItem_Click);
             // 
@@ -1943,7 +1942,7 @@ namespace SodukuUI
             this.normalToolStripMenuItem,
             this.锯齿数独ToolStripMenuItem});
             this.GenToolStripMenuItem.Name = "GenToolStripMenuItem";
-            this.GenToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.GenToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.GenToolStripMenuItem.Text = "生成数独";
             // 
             // 完整数独ToolStripMenuItem
@@ -1973,20 +1972,20 @@ namespace SodukuUI
             this.ForceToolStripMenuItem,
             this.理论求解ToolStripMenuItem});
             this.数独求解ToolStripMenuItem.Name = "数独求解ToolStripMenuItem";
-            this.数独求解ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.数独求解ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.数独求解ToolStripMenuItem.Text = "数独求解";
             // 
             // ForceToolStripMenuItem
             // 
             this.ForceToolStripMenuItem.Name = "ForceToolStripMenuItem";
-            this.ForceToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.ForceToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.ForceToolStripMenuItem.Text = "暴力求解";
             this.ForceToolStripMenuItem.Click += new System.EventHandler(this.ForceToolStripMenuItem_Click);
             // 
             // 理论求解ToolStripMenuItem
             // 
             this.理论求解ToolStripMenuItem.Name = "理论求解ToolStripMenuItem";
-            this.理论求解ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.理论求解ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.理论求解ToolStripMenuItem.Text = "理论求解";
             this.理论求解ToolStripMenuItem.Click += new System.EventHandler(this.理论求解ToolStripMenuItem_Click);
             // 
@@ -1996,7 +1995,7 @@ namespace SodukuUI
             this.imporPictureToolStripMenuItem,
             this.importTextToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.importToolStripMenuItem.Text = "导入数独";
             // 
             // imporPictureToolStripMenuItem
@@ -2018,7 +2017,7 @@ namespace SodukuUI
             this.exportPictureToolStripMenuItem,
             this.exportTextToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.exportToolStripMenuItem.Text = "导出数独";
             // 
             // exportPictureToolStripMenuItem
@@ -2038,7 +2037,7 @@ namespace SodukuUI
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.ExitToolStripMenuItem.Text = "退出";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 

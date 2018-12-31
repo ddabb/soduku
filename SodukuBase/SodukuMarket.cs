@@ -53,7 +53,7 @@ namespace SodukuBase
             {
                 if (result.SubMarkets.Count > 0)
                 {
-                    result= result.SubMarkets.OrderBy(c => c.difficult).Last();
+                    result= result.SubMarkets.OrderByDescending(c => c.Common).First();
 
                 }
 
@@ -74,6 +74,62 @@ namespace SodukuBase
             return cellInfos;
         }
         private double _difficult;
+
+        private double _common;
+
+        private bool CommonCounted = false;
+
+        public double Common
+        {
+            get
+            {
+                if (!CommonCounted)
+                {
+                    _common = GetCommon();
+                    CommonCounted = true;
+                }
+
+                return _common;
+            }
+        }
+
+        private double GetCommon()
+        {
+            double sum= 0;
+            restLoction.Add(1, GetRestLoctions(1));
+            restLoction.Add(2, GetRestLoctions(2));
+            restLoction.Add(3, GetRestLoctions(3));
+            restLoction.Add(4, GetRestLoctions(4));
+            restLoction.Add(5, GetRestLoctions(5));
+            restLoction.Add(6, GetRestLoctions(6));
+            restLoction.Add(7, GetRestLoctions(7));
+            restLoction.Add(8, GetRestLoctions(8));
+            restLoction.Add(9, GetRestLoctions(9));
+
+            foreach (var kv in StaticTools.Choose2from9)
+            {
+                var str1s = restLoction[kv[0]];
+                var str12 = restLoction[kv[1]];
+                if (str1s.Count != 0 || str12.Count != 0)
+                {
+                    sum +=1- ((str1s.Intersect(str12).Count()) / (1.0 * (str1s.Count + str12.Count)));
+                }
+            }
+
+            return sum;
+        }
+
+        private List<string> GetRestLoctions(int restValue)
+        {
+        
+            return cellInfos.Where(c => c.Value.GetRest().Contains(restValue)).Select(c => c.Key).ToList();
+        
+       
+            ;
+        }
+
+
+        private Dictionary<int, List<string>> restLoction=new Dictionary<int, List<string>>();
 
         private List<int> _emptyLists;
 
@@ -269,6 +325,7 @@ namespace SodukuBase
         {
             this.initValues = initValues;
             this.initLists = initLists;
+
             rowDatas = FilledDatas();
             columnDatas = FilledDatas();
             blockDatas = FilledDatas();
@@ -285,6 +342,7 @@ namespace SodukuBase
         public SodukuMarket(List<List<int>> initValues) 
         {
             this.initValues = initValues;
+
             int location = 0;
             this.initLists = new List<int>();
             foreach (var lists in initValues)

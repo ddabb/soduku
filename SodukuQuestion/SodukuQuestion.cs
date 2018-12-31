@@ -185,6 +185,7 @@ namespace SodukuFactory
         {
             Random rm = new Random();
             List<List<int>> tempquestion;
+         
             do
             {
                 tempquestion =
@@ -192,7 +193,21 @@ namespace SodukuFactory
 
                 do
                 {
-                    list1 = RandomHelper.GetRandom(0, true, 80, true, noticeValue, rm, false);
+                    List<int> temp1 =new List<int>();
+                    var temp = RandomHelper.GetRandom(0, true, 39, true, noticeValue/2, rm, false);
+                    foreach (var upper in temp)
+                    {
+                        temp1.AddRange(StaticTools.symmetry[upper]);
+                    }
+
+                    if (noticeValue %2!=0)
+                    {
+                        //添加对称位置
+                        temp1.Add(40);
+                    }
+
+                    list1 = temp1;
+
                 } while (!StaticTools.ValidNoticeList(list1));
 
                 StaticTools.InitQuestion(list1, tempquestion);

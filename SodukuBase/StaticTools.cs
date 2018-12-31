@@ -108,5 +108,94 @@ namespace SodukuBase
             return result;
 
         }
+
+        public static List<List<int>> Choose2from9 = new List<List<int>>
+        {
+            new List<int> {8, 9},
+            new List<int> {7, 9},
+            new List<int> {6, 9},
+            new List<int> {5, 9},
+            new List<int> {4, 9},
+            new List<int> {3, 9},
+            new List<int> {2, 9},
+            new List<int> {1, 9},
+            new List<int> {7, 8},
+            new List<int> {6, 8},
+            new List<int> {5, 8},
+            new List<int> {4, 8},
+            new List<int> {3, 8},
+            new List<int> {2, 8},
+            new List<int> {1, 8},
+            new List<int> {6, 7},
+            new List<int> {5, 7},
+            new List<int> {4, 7},
+            new List<int> {3, 7},
+            new List<int> {2, 7},
+            new List<int> {1, 7},
+            new List<int> {5, 6},
+            new List<int> {4, 6},
+            new List<int> {3, 6},
+            new List<int> {2, 6},
+            new List<int> {1, 6},
+            new List<int> {4, 5},
+            new List<int> {3, 5},
+            new List<int> {2, 5},
+            new List<int> {1, 5},
+            new List<int> {3, 4},
+            new List<int> {2, 4},
+            new List<int> {1, 4},
+            new List<int> {2, 3},
+            new List<int> {1, 3},
+            new List<int> {1, 2}
+
+        };
+
+
+        public static List<List<int>> symmetry = new List<List<int>>
+        {
+            new List<int> {0, 80},
+            new List<int> {1, 79},
+            new List<int> {2, 78},
+            new List<int> {3, 77},
+            new List<int> {4, 76},
+            new List<int> {5, 75},
+            new List<int> {6, 74},
+            new List<int> {7, 73},
+            new List<int> {8, 72},
+            new List<int> {9, 71},
+            new List<int> {10, 70},
+            new List<int> {11, 69},
+            new List<int> {12, 68},
+            new List<int> {13, 67},
+            new List<int> {14, 66},
+            new List<int> {15, 65},
+            new List<int> {16, 64},
+            new List<int> {17, 63},
+            new List<int> {18, 62},
+            new List<int> {19, 61},
+            new List<int> {20, 60},
+            new List<int> {21, 59},
+            new List<int> {22, 58},
+            new List<int> {23, 57},
+            new List<int> {24, 56},
+            new List<int> {25, 55},
+            new List<int> {26, 54},
+            new List<int> {27, 53},
+            new List<int> {28, 52},
+            new List<int> {29, 51},
+            new List<int> {30, 50},
+            new List<int> {31, 49},
+            new List<int> {32, 48},
+            new List<int> {33, 47},
+            new List<int> {34, 46},
+            new List<int> {35, 45},
+            new List<int> {36, 44},
+            new List<int> {37, 43},
+            new List<int> {38, 42},
+            new List<int> {39, 41},
+
+        };
+
+
     }
 }

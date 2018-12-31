@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SodukuBase;
 using SodukuGenerator;
+using Console = System.Console;
 
 namespace SodukuTest
 {
@@ -61,8 +63,12 @@ namespace SodukuTest
 
         {
 
+            Random rm = new Random();
+            var list1 = RandomHelper.GetRandom(0, true, 40, true, 25, rm, false);
+            Console.WriteLine(JsonConvert.SerializeObject(list1));
 
-         
+            Console.ReadKey();
+     return;
             List<int> locations = new List<int> {0, 10, 20, 30, 40, 50, 60, 70, 80, 8, 16, 24, 32, 48, 56, 64, 72
                 //,4,12,14,28,36,46,34,44,52,66,68,76
 

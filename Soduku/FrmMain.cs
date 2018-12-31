@@ -646,7 +646,7 @@ namespace SodukuUI
 
         private void UpdateCurrentSodukuInfo()
         {
-            label4.Text = "平均候选数个数为：  " + Math.Round(currentMarket.difficult, 2);
+            label4.Text = "共同位置加权值：  " + Math.Round(currentMarket.Common, 2);
             label5.Text = "实际提示数个数为:   " + currentMarket.initLists.Count;
         }
 
