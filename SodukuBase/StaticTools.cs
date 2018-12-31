@@ -25,7 +25,26 @@ namespace SodukuBase
 
         };
 
-        public static readonly List<int> baseFillList=new List<int>{1,2,3,4,5,6,7,8,9};
+        public static readonly List<int> baseFillList=new List<int> {1,2,3,4,5,6,7,8,9};
+
+        public static bool ValidNoticeList(List<int> noticeValue)
+        {
+            List<bool> row = new List<bool> { false, false, false, false, false, false, false, false, false, };
+            List<bool> column = new List<bool> { false, false, false, false, false, false, false, false, false, };
+            foreach (var value in noticeValue)
+            {
+                row[value / 9] = true;
+                column[value % 9] = true;
+            }
+
+            return (row[0] ? 1 : 0) + (row[1] ? 1 : 0) + (row[2] ? 1 : 0) >= 2
+                   && (row[3] ? 1 : 0) + (row[4] ? 1 : 0) + (row[5] ? 1 : 0) >= 2
+                   && (row[6] ? 1 : 0) + (row[7] ? 1 : 0) + (row[8] ? 1 : 0) >= 2
+                   && (column[0] ? 1 : 0) + (column[1] ? 1 : 0) + (column[2] ? 1 : 0) >= 2
+                   && (column[3] ? 1 : 0) + (column[4] ? 1 : 0) + (column[5] ? 1 : 0) >= 2
+                   && (column[6] ? 1 : 0) + (column[7] ? 1 : 0) + (column[8] ? 1 : 0) >= 2
+                ;
+        }
 
         public static string ListToString(List<List<int>> tempquestion)
         {
@@ -43,7 +62,24 @@ namespace SodukuBase
             return sb.ToString();
         }
 
+        public static bool IsVaildSoduku(List<List<int>> question)
+        {
+            return !string.IsNullOrEmpty(new DanceLink().do_solve(StaticTools.ListToString(question)));
+        }
 
+        public static void InitQuestion(List<int> list1, List<List<int>> tempquestion)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (!list1.Contains(i * 9 + j))
+                    {
+                        tempquestion[i][j] = 0;
+                    }
+                }
+            }
+        }
 
 
         public static List<List<int>> StringToList(string str)

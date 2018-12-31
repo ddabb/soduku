@@ -231,6 +231,7 @@ namespace SodukuUI
             this.colorSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1931,7 +1932,7 @@ namespace SodukuUI
             // StartGameToolStripMenuItem
             // 
             this.StartGameToolStripMenuItem.Name = "StartGameToolStripMenuItem";
-            this.StartGameToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.StartGameToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.StartGameToolStripMenuItem.Text = "开始游戏";
             this.StartGameToolStripMenuItem.Click += new System.EventHandler(this.开始游戏ToolStripMenuItem_Click);
             // 
@@ -1942,7 +1943,7 @@ namespace SodukuUI
             this.normalToolStripMenuItem,
             this.锯齿数独ToolStripMenuItem});
             this.GenToolStripMenuItem.Name = "GenToolStripMenuItem";
-            this.GenToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.GenToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.GenToolStripMenuItem.Text = "生成数独";
             // 
             // 完整数独ToolStripMenuItem
@@ -1950,14 +1951,14 @@ namespace SodukuUI
             this.完整数独ToolStripMenuItem.Name = "完整数独ToolStripMenuItem";
             this.完整数独ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.完整数独ToolStripMenuItem.Text = "完整数独";
-            this.完整数独ToolStripMenuItem.Click += new System.EventHandler(this.完整数独ToolStripMenuItem_Click);
+            this.完整数独ToolStripMenuItem.Click += new System.EventHandler(this.GenWholeToolStripMenuItem_Click);
             // 
             // normalToolStripMenuItem
             // 
             this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
             this.normalToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.normalToolStripMenuItem.Text = "标准数独";
-            this.normalToolStripMenuItem.Click += new System.EventHandler(this.标准数独ToolStripMenuItem_Click);
+            this.normalToolStripMenuItem.Click += new System.EventHandler(this.NormalToolStripMenuItem_Click);
             // 
             // 锯齿数独ToolStripMenuItem
             // 
@@ -1972,19 +1973,20 @@ namespace SodukuUI
             this.ForceToolStripMenuItem,
             this.理论求解ToolStripMenuItem});
             this.数独求解ToolStripMenuItem.Name = "数独求解ToolStripMenuItem";
-            this.数独求解ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.数独求解ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.数独求解ToolStripMenuItem.Text = "数独求解";
             // 
             // ForceToolStripMenuItem
             // 
             this.ForceToolStripMenuItem.Name = "ForceToolStripMenuItem";
-            this.ForceToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.ForceToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.ForceToolStripMenuItem.Text = "暴力求解";
+            this.ForceToolStripMenuItem.Click += new System.EventHandler(this.ForceToolStripMenuItem_Click);
             // 
             // 理论求解ToolStripMenuItem
             // 
             this.理论求解ToolStripMenuItem.Name = "理论求解ToolStripMenuItem";
-            this.理论求解ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.理论求解ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.理论求解ToolStripMenuItem.Text = "理论求解";
             this.理论求解ToolStripMenuItem.Click += new System.EventHandler(this.理论求解ToolStripMenuItem_Click);
             // 
@@ -1994,7 +1996,7 @@ namespace SodukuUI
             this.imporPictureToolStripMenuItem,
             this.importTextToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.importToolStripMenuItem.Text = "导入数独";
             // 
             // imporPictureToolStripMenuItem
@@ -2016,7 +2018,7 @@ namespace SodukuUI
             this.exportPictureToolStripMenuItem,
             this.exportTextToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.exportToolStripMenuItem.Text = "导出数独";
             // 
             // exportPictureToolStripMenuItem
@@ -2036,9 +2038,9 @@ namespace SodukuUI
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.ExitToolStripMenuItem.Text = "退出";
-            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // configToolStripMenuItem
             // 
@@ -2055,7 +2057,7 @@ namespace SodukuUI
             this.ShowHelpToolStripMenuItem.Checked = true;
             this.ShowHelpToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ShowHelpToolStripMenuItem.Name = "ShowHelpToolStripMenuItem";
-            this.ShowHelpToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.ShowHelpToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.ShowHelpToolStripMenuItem.Text = "显示提示";
             this.ShowHelpToolStripMenuItem.Click += new System.EventHandler(this.ShowHelpToolStripMenuItem_Click);
             // 
@@ -2077,7 +2079,7 @@ namespace SodukuUI
             this.toolStripMenuItem14,
             this.toolStripMenuItem15});
             this.noticeCountToolStripMenuItem.Name = "noticeCountToolStripMenuItem";
-            this.noticeCountToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.noticeCountToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.noticeCountToolStripMenuItem.Text = "提示数个数";
             // 
             // toolStripMenuItem2
@@ -2167,7 +2169,7 @@ namespace SodukuUI
             // colorSetToolStripMenuItem
             // 
             this.colorSetToolStripMenuItem.Name = "colorSetToolStripMenuItem";
-            this.colorSetToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.colorSetToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.colorSetToolStripMenuItem.Text = "颜色设置";
             this.colorSetToolStripMenuItem.Click += new System.EventHandler(this.colorSetToolStripMenuItem_Click);
             // 
@@ -2183,9 +2185,20 @@ namespace SodukuUI
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.aboutToolStripMenuItem.Text = "关于";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(924, 101);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "提高难度";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // FrmMain
             // 
             this.ClientSize = new System.Drawing.Size(1229, 766);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -2472,6 +2485,6 @@ namespace SodukuUI
         private ToolStripMenuItem toolStripMenuItem14;
         private ToolStripMenuItem toolStripMenuItem15;
         private ToolStripMenuItem colorSetToolStripMenuItem;
-
+        private Button button1;
     }
 }

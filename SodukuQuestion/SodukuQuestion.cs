@@ -98,8 +98,8 @@ namespace SodukuFactory
                     else if(needlist.Count == noticeCounts)
                     {
                         var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(result));
-                        InitQuestion(needlist, valueCopy);
-                        if (IsVaildSoduku(valueCopy))
+                        StaticTools.InitQuestion(needlist, valueCopy);
+                        if (StaticTools.IsVaildSoduku(valueCopy))
                         {
                             return new SodukuMarket(valueCopy);
                         }
@@ -115,11 +115,12 @@ namespace SodukuFactory
                             var c = items.ToList();
                             var location1 = needlist.Union(c).ToList();
                             var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(result));
-                            InitQuestion(location1, valueCopy);
-                            if (ValidNoticeList(location1))
+                            StaticTools.InitQuestion(location1, valueCopy);
+                            if (StaticTools.ValidNoticeList(location1))
                             {
-                                if (IsVaildSoduku(valueCopy))
+                                if (StaticTools.IsVaildSoduku(valueCopy))
                                 {
+
                                     return new SodukuMarket(valueCopy);
                                 }
                             
@@ -145,11 +146,6 @@ namespace SodukuFactory
 
         }
 
-        public bool IsVaildSoduku(List<List<int>> question)
-        {
-            return !string.IsNullOrEmpty(new DanceLink().do_solve(StaticTools.ListToString(question)));
-        }
-
 
 
         private List<int> GetAllNeedList(List<List<int>> tempSoduku, List<int> locations)
@@ -163,15 +159,9 @@ namespace SodukuFactory
                 valueCopy[location / 9][location % 9] = 0;
 
 
-                var validthis = ValidNoticeList(locations.Except(new List<int> { location }).ToList());
-                if (!validthis)
+                var validthis = StaticTools.ValidNoticeList(locations.Except(new List<int> { location }).ToList());
+                if (!validthis|| !StaticTools.IsVaildSoduku(valueCopy))
                 {
-                    needList.Add(location);
-                }
-
-                if (!IsVaildSoduku(valueCopy))
-                {
-
                     needList.Add(location);
                 }
 
@@ -203,46 +193,12 @@ namespace SodukuFactory
                 do
                 {
                     list1 = RandomHelper.GetRandom(0, true, 80, true, noticeValue, rm, false);
-                } while (!ValidNoticeList(list1));
+                } while (!StaticTools.ValidNoticeList(list1));
 
-                InitQuestion(list1, tempquestion);
-            } while (!IsVaildSoduku(tempquestion));
+                StaticTools.InitQuestion(list1, tempquestion);
+            } while (!StaticTools.IsVaildSoduku(tempquestion));
 
             return new SodukuMarket(tempquestion, list1);
-        }
-
-        public static void InitQuestion(List<int> list1, List<List<int>> tempquestion)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    if (!list1.Contains(i * 9 + j))
-                    {
-                        tempquestion[i][j] = 0;
-                    }
-                }
-            }
-        }
-
-
-        public static bool ValidNoticeList(List<int> noticeValue)
-        {
-            List<bool> row = new List<bool> {false, false, false, false, false, false, false, false, false,};
-            List<bool> column = new List<bool> {false, false, false, false, false, false, false, false, false,};
-            foreach (var value in noticeValue)
-            {
-                row[value / 9] = true;
-                column[value % 9] = true;
-            }
-
-            return (row[0] ? 1 : 0) + (row[1] ? 1 : 0) + (row[2] ? 1 : 0) >= 2
-                   && (row[3] ? 1 : 0) + (row[4] ? 1 : 0) + (row[5] ? 1 : 0) >= 2
-                   && (row[6] ? 1 : 0) + (row[7] ? 1 : 0) + (row[8] ? 1 : 0) >= 2
-                   && (column[0] ? 1 : 0) + (column[1] ? 1 : 0) + (column[2] ? 1 : 0) >= 2
-                   && (column[3] ? 1 : 0) + (column[4] ? 1 : 0) + (column[5] ? 1 : 0) >= 2
-                   && (column[6] ? 1 : 0) + (column[7] ? 1 : 0) + (column[8] ? 1 : 0) >= 2
-                ;
         }
     }
 }

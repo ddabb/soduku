@@ -340,6 +340,7 @@ namespace SodukuUI
                 return;
             }
 
+            UpdateCurrentSodukuInfo();
             Dictionary<string, CellInfo> cells = currentMarket.GetCellInfos();
             this.BackColor = _config.ColorConfig.FrmColor;
             foreach (KeyValuePair<string, CellInfo> kv in cells)
@@ -348,23 +349,30 @@ namespace SodukuUI
                 CellInfo cell = kv.Value;
                 var clue = locationClues[location];
                 var text = TextBoxdic[location];
-            
 
+                if (kv.Key=="postion_6_1")
+                {
+                    var breakin =0 ;
+
+                }
                 if (!cell.isInit)
                 {
-                  
+             
                     clue.SetClues(cell.initrest);
-                    clue.Visible = showhelp && true;
-                    text.Visible = !showhelp;
-
+                    clue.Visible = showhelp;
+                    text.Visible = cell.Value!=0|| !showhelp;
+                    text.Text = "" + cell.Value;
                 }
                 else
                 {
                     clue.Visible = false;
                     text.Visible = true;
+                    text.Text = "" + cell.Value;
                     text.Enabled = true;
                 }
             }
+            this.tableLayoutPanel1.Refresh();
+          
         }
 
         private void SetColor()
@@ -567,12 +575,12 @@ namespace SodukuUI
         {
         }
 
-        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void 完整数独ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GenWholeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var result = sdkBuilder.MakeSoduku();
             for (int i = 0; i < result.Count; i++)
@@ -593,12 +601,31 @@ namespace SodukuUI
             var breakouot = 0;
         }
 
-        private void 标准数独ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NormalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            currentMarket = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
+            bool istest = false;
+            if(!istest)
+            { currentMarket = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
+            }
+            else
+            {
+                List<List<int>> param = new List<List<int>>()
+
+                {
+                    new List<int> {0, 0, 0, 0, 2, 0, 0, 8, 0,},
+                    new List<int> {0, 4, 0, 0, 0, 9, 0, 0, 3,},
+                    new List<int> {0, 0, 0, 0, 0, 5, 7, 0, 0,},
+                    new List<int> {0, 0, 0, 0, 0, 0, 0, 0, 0,},
+                    new List<int> {8, 0, 5, 0, 7, 0, 0, 2, 0,},
+                    new List<int> {0, 3, 7, 0, 0, 4, 0, 0, 0,},
+                    new List<int> {0, 7, 0, 0, 8, 0, 0, 5, 6,},
+                    new List<int> {0, 9, 0, 0, 0, 0, 3, 0, 0,},
+                    new List<int> {1, 0, 0, 0, 4, 0, 0, 0, 0,}
+                };
+                currentMarket = new SodukuMarket(param);
+            }
             questions = currentMarket.initValues;
-            label4.Text = "平均候选数个数为：  " + Math.Round(currentMarket.difficult, 2);
-            label5.Text = "实际提示数个数为:   " + currentMarket.initLists.Count;
+            UpdateCurrentSodukuInfo();
             showhelp = this.ShowHelpToolStripMenuItem.Checked;
             for (int i = 0; i < questions.Count; i++)
             {
@@ -617,6 +644,12 @@ namespace SodukuUI
 
             RefreshPanel();
             var breakouot = 0;
+        }
+
+        private void UpdateCurrentSodukuInfo()
+        {
+            label4.Text = "平均候选数个数为：  " + Math.Round(currentMarket.difficult, 2);
+            label5.Text = "实际提示数个数为:   " + currentMarket.initLists.Count;
         }
 
         private void 锯齿数独ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -693,12 +726,13 @@ namespace SodukuUI
         private void ShowHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+          
+            showhelp = !this.ShowHelpToolStripMenuItem.Checked;
             RefreshPanel();
-            showhelp = this.ShowHelpToolStripMenuItem.Checked;
-            this.ShowHelpToolStripMenuItem.Checked = !showhelp;
-  
+            this.ShowHelpToolStripMenuItem.Checked = showhelp;
+ 
 
-       
+
         }
 
         private void exportTextToolStripMenuItem_Click(object sender, EventArgs e)
@@ -735,6 +769,22 @@ namespace SodukuUI
             f2.StartPosition = FormStartPosition.CenterScreen;
 
             f2.ShowDialog();
+            RefreshPanel();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            foreach (var variable in TextBoxdic)
+            {
+                variable.Value.Text = null;
+            }
+            currentMarket = currentMarket.LessNoticeNumber();
+            RefreshPanel();
+        }
+
+        private void ForceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            currentMarket.GetAnswerByForce();
             RefreshPanel();
         }
     }

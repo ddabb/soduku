@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace SodukuBase
 {
@@ -15,6 +16,53 @@ namespace SodukuBase
 
         public List<RemoveValueStep> removeValueSteps;
 
+        private List<SodukuMarket> _SubMarkets;
+        public List<SodukuMarket> SubMarkets
+        {
+            get
+            {
+                if (_SubMarkets==null)
+                {
+                    _SubMarkets=new List<SodukuMarket>();
+                    foreach (var location in initLists)
+                    {
+                        var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(initValues));
+
+                        valueCopy[location / 9][location % 9] = 0;
+
+
+                        var validthis = StaticTools.ValidNoticeList(initLists.Except(new List<int> { location }).ToList());
+                        if (validthis&&StaticTools.IsVaildSoduku(valueCopy))
+                        {
+                            var newSoduku = new SodukuMarket(valueCopy);
+                            _SubMarkets.Add(newSoduku);
+                        }
+
+
+                    }
+                }
+
+                return _SubMarkets;
+            }
+        }
+
+        public SodukuMarket LessNoticeNumber()
+        {
+            SodukuMarket result=this;
+            do
+            {
+                if (result.SubMarkets.Count > 0)
+                {
+                    result= result.SubMarkets.OrderBy(c => c.difficult).Last();
+
+                }
+
+            } while (result.SubMarkets.Count!=0);
+
+            return result;
+
+
+        }
         /// <summary>
         /// 坐标与单元格的信息
         /// </summary>
@@ -255,6 +303,31 @@ namespace SodukuBase
             columnDatas = FilledDatas();
             blockDatas = FilledDatas();
             InitCells();
+        }
+
+        public void GetAnswerByForce()
+        {
+            var s=new DanceLink().do_solve(StrExpress);
+            if (s.Length==81)
+            {
+                var resultList=      StaticTools.StringToList(s);
+
+                for (int i = 0; i < 9; i++)
+                {
+                    for (int j = 0; j < 9; j++)
+                    {
+                        var loction = "postion_" + i + "_" + j;
+                        if (cellInfos[loction].Value==0)
+                        {
+                            cellInfos[loction].SetValue(resultList[i][j]);
+                        }
+
+                       
+                    }
+                }
+
+
+            }
         }
     }
 }

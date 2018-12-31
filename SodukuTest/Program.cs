@@ -97,7 +97,7 @@ namespace SodukuTest
                         count = 0;
                     }
 
-                    SodukuQuestion.InitQuestion(kv.Value, tempquestion);
+                    StaticTools.InitQuestion(kv.Value, tempquestion);
 
                 } while (new DanceLink().do_solve(StaticTools.ListToString(tempquestion)).Length<81);
 
