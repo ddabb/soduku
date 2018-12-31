@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using SodukuBase;
 using SodukuGenerator;
 using SodukuFactory;
-using SodukuSolver;
 
 namespace SodukuTest
 {
@@ -100,7 +99,7 @@ namespace SodukuTest
 
                     SodukuQuestion.InitQuestion(kv.Value, tempquestion);
 
-                } while (new DanceLink().do_solve(Listtostring(tempquestion)).Length<81);
+                } while (new DanceLink().do_solve(StaticTools.ListToString(tempquestion)).Length<81);
 
     
 

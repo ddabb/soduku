@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Questions", "Questions", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodukuUserControls", "SodukuUserControls\SodukuUserControls.csproj", "{E0094B12-AE52-48A6-95E3-285DC4871661}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTools", "CommonTools\CommonTools.csproj", "{F2405815-D19F-4421-A7A2-40F909F4A041}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{E0094B12-AE52-48A6-95E3-285DC4871661}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0094B12-AE52-48A6-95E3-285DC4871661}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0094B12-AE52-48A6-95E3-285DC4871661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2405815-D19F-4421-A7A2-40F909F4A041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2405815-D19F-4421-A7A2-40F909F4A041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2405815-D19F-4421-A7A2-40F909F4A041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2405815-D19F-4421-A7A2-40F909F4A041}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using SodukuBase;
-using SodukuSolver;
 
 namespace SodukuFactory
 {

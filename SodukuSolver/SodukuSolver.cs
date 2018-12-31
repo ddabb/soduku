@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using SodukuBase;
 
-namespace Solver
+namespace SodukuSolver
 {
     /// <summary>
     /// 数独解题类

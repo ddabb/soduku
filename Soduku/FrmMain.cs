@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -12,6 +13,10 @@ using SodukuFactory;
 using SodukuGenerator;
 using System.Runtime.InteropServices;
 using System.Text;
+using SodukuUserControls;
+using CommonTools;
+using SodukuUI.Config;
+using System.Xml.Serialization;
 
 namespace SodukuUI
 {
@@ -19,6 +24,7 @@ namespace SodukuUI
     {
         public FrmMain()
         {
+       
             InitializeComponent();
         }
 
@@ -64,8 +70,12 @@ namespace SodukuUI
             //}
         }
 
+        private ClsAllConfig _config;
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            InitConfig();
+
             GetType()
                 .GetProperty("DoubleBuffered",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
@@ -269,6 +279,44 @@ namespace SodukuUI
             }
 
             //this.tableLayoutPanel1.Controls.Find("postion_8_8", true).First().Visible = false;
+        }
+
+        private void InitConfig()
+        {
+            string dir = AppDomain.CurrentDomain.BaseDirectory;
+            string configName = Path.Combine(dir, "config.json");
+
+            if (File.Exists(configName))
+            {
+                string json = File.ReadAllText(configName);
+      
+                 _config = JsonConvert.DeserializeObject<ClsAllConfig>(json);
+            }
+            else
+            {
+                var colorConfig = new ClsColorConfig
+                {
+                    AnswerForgerColor = Color.Blue,
+                    FrmColor = Color.Gainsboro,
+                    PanelMouseMoveColor = Color.Orange,
+                    NoticeBackColor = Color.Transparent,
+                    QuestionForeColor = Color.Black,
+                    NoticeForeColor = Color.White
+                };
+                var genConfig = new ClsGenConfig
+                {
+                    ShowHelp = true,
+                    NoticesCount = 25
+                };
+
+                _config = new ClsAllConfig
+                {
+                    ColorConfig = colorConfig,
+                    GenConfig = genConfig
+                };
+                _config.SaveToFile();
+
+            }
         }
 
         /// <summary>
@@ -592,7 +640,7 @@ namespace SodukuUI
                 return;
             }
 
-            new Solver.SodukuSolver().Solve(currentMarket);
+            new SodukuSolver.SodukuSolver().Solve(currentMarket);
             sdk.Solve(questions, true);
             for (int i = 0; i < questions.Count; i++)
             {

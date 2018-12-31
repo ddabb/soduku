@@ -1,7 +1,4 @@
-﻿using SodukuUserControls;
-using System.Drawing;
-using System.Windows.Forms;
-namespace SodukuUI
+﻿namespace SodukuUserControls
 {
     partial class CtlNoticePanel
     {
