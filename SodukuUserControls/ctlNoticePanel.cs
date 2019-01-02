@@ -10,7 +10,10 @@ namespace SodukuUserControls
         public CtlNoticePanel()
         {
             InitializeComponent();
-
+            this.tableLayoutPanel1.GetType()
+                .GetProperty("DoubleBuffered",
+                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                ?.SetValue(tableLayoutPanel1, true, null);
             Init();
         }
 

@@ -75,17 +75,18 @@ namespace SodukuUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-         
 
-            GetType()
-                .GetProperty("DoubleBuffered",
-                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
-                ?.SetValue(this, true, null);
-            locationClues = new Dictionary<string, CtlNoticePanel>();
+
+            //GetType()
+            //    .GetProperty("DoubleBuffered",
+            //        System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+            //    ?.SetValue(this, true, null);
+            //
             this.tableLayoutPanel1.GetType()
                 .GetProperty("DoubleBuffered",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
                 ?.SetValue(tableLayoutPanel1, true, null);
+            locationClues = new Dictionary<string, CtlNoticePanel>();
             helpMessage.Text = null;
             resultMessage.Text = null;
             TextBoxdic.Add("postion_0_0", postion_0_0);
