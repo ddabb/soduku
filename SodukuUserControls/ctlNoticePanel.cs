@@ -61,6 +61,7 @@ namespace SodukuUserControls
 
         public void SetClues(List<int> list)
         {
+            this.tableLayoutPanel1.SuspendLayout();
             foreach (var kv in controlDic)
             {
                 var control = controlDic[kv.Key];
@@ -74,16 +75,10 @@ namespace SodukuUserControls
                 control.label1.Text = "" + notice;
                 control.Visible = true;
             }
-
-            this.Refresh();
+            this.tableLayoutPanel1.ResumeLayout();
+      
         }
 
-        private void CtlNoticePanel_Load(object sender, EventArgs e)
-        {
-            this.tableLayoutPanel1.GetType()
-                .GetProperty("DoubleBuffered",
-                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
-                ?.SetValue(tableLayoutPanel1, true, null);
-        }
+
     }
 }

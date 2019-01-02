@@ -344,6 +344,7 @@ namespace SodukuUI
             UpdateCurrentSodukuInfo();
             Dictionary<string, CellInfo> cells = currentMarket.GetCellInfos();
             this.BackColor = _config.ColorConfig.FrmColor;
+            this.tableLayoutPanel1.SuspendLayout();
             foreach (KeyValuePair<string, CellInfo> kv in cells)
             {
                 var location = kv.Key;
@@ -364,24 +365,8 @@ namespace SodukuUI
                     clue.Visible = showhelp;
                     text.Visible =  !showhelp;
                 }
-
-                //if (!cell.isInit)
-                //{
-             
-                //    clue.SetClues(cell.initrest);
-                //    clue.Visible = showhelp;
-                //    text.Visible = cell.Value!=0|| !showhelp;
-                //    text.Text = "" + cell.Value;
-                //}
-                //else
-                //{
-                //    clue.Visible = false;
-                //    text.Visible = true;
-                //    text.Text = "" + cell.Value;
-                //    text.Enabled = true;
-                //}
             }
-            this.tableLayoutPanel1.Refresh();
+            this.tableLayoutPanel1.ResumeLayout();
           
         }
 

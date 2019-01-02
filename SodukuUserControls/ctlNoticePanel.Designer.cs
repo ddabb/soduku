@@ -175,7 +175,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CtlNoticePanel";
             this.Size = new System.Drawing.Size(75, 75);
-            this.Load += new System.EventHandler(this.CtlNoticePanel_Load);
+
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
