@@ -81,6 +81,27 @@ namespace SodukuBase
         }
 
 
+        public static List<int> GetLocations(List<List<int>> initValues)
+        {
+            var tempList = new List<int>();
+
+            int location = 0;
+            foreach (var lists in initValues)
+            {
+                foreach (var value in lists)
+                {
+                    if (value != 0)
+                    {
+                        tempList.Add(location);
+                    }
+
+                    location += 1;
+                }
+            }
+
+            return tempList;
+        }
+
         public static List<List<int>> StringToList(string str)
         {
             var arr = str.ToCharArray();

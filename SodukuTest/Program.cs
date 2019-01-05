@@ -15,7 +15,7 @@ namespace SodukuTest
     {
         //出题，采用静态数组
 
-       
+
         static List<List<int>> twoAnswerList = new List<List<int>>()
 
         {
@@ -31,7 +31,7 @@ namespace SodukuTest
         };
 
 
-        static List<List<int>> Standard= new List<List<int>>()
+        static List<List<int>> Standard = new List<List<int>>()
         {
             new List<int> {0, 8, 0, 0, 0, 0, 6, 0, 0},
             new List<int> {0, 0, 0, 4, 0, 0, 0, 0, 9},
@@ -76,87 +76,114 @@ namespace SodukuTest
         static void Main(string[] args)
 
         {
-            //var test = twoAnswerList;
-            var test = twoAnswerList;
-            var test2 = Standard;
-            var count1=new DanceLink().solution_count(StaticTools.ListToString(test));
-            var c=    new DanceLink().do_solve(StaticTools.ListToString(test));
-
-            var count2 = new DanceLink().solution_count(StaticTools.ListToString(test2));
-            var c2 = new DanceLink().do_solve(StaticTools.ListToString(test2));
-
-            Console.WriteLine("count" + count1);
-            Console.WriteLine("count" + JsonConvert.SerializeObject(c));
-            Console.WriteLine("input" + StaticTools.ListToString(test));
-            Console.WriteLine("count2  " + count2);
-            Console.WriteLine("count2  " + JsonConvert.SerializeObject(c2));
-            Console.WriteLine("input   " + StaticTools.ListToString(test2));
-            //Random rm = new Random();
-            //var list1 = RandomHelper.GetRandom(0, true, 40, true, 25, rm, false);
-            //Console.WriteLine(JsonConvert.SerializeObject(list1));
-
-            Console.ReadKey();
-     return;
-            List<int> locations = new List<int> {0, 10, 20, 30, 40, 50, 60, 70, 80, 8, 16, 24, 32, 48, 56, 64, 72
-                //,4,12,14,28,36,46,34,44,52,66,68,76
-
-            };
-            Dictionary<string, List<int>> dic=new Dictionary<string, List<int>>();
-            dic.Add("快", new List<int> { 10, 14, 19, 21, 22, 23, 24, 25, 28, 32, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 46, 50, 51, 55, 64, 65, 57, 60, 70  });
-            dic.Add("旦", new List<int> { 72,80,11, 12, 13, 14, 15, 20, 24, 29, 33, 38, 39, 40, 41, 42, 47, 51, 56, 60, 73, 74, 75, 76, 77, 78, 79 });
-            dic.Add("元",new List<int>{ 27,35,11, 12, 13, 14, 15, 24, 28, 29, 30, 31, 32, 33, 34, 39, 41,48, 50, 57, 59, 64, 65, 61, 68, 69, 70 });
+            string a = "helloword";
 
 
-            dic.Add("乐", new List<int> { 6, 14, 20, 21, 22, 29, 31, 38, 39, 40, 41, 42, 43, 49, 56, 64, 58, 67, 76, 66, 60, 70 });
+            string strsoduku18 = StaticTools.ListToString(soduku18);
 
-            foreach (var kv in dic)
+            strsoduku18 = "001000009000200086007060000000001000003000200000500000000040700820009000500000300";
+
+            //string strsoduku18 = "001000009000200067008060000000001000003000200000500000000090700280004000500000300";
+
+
+            Console.WriteLine(strsoduku18);
+            var list = StaticTools.GetLocations(soduku18);
+
+            Console.WriteLine(JsonConvert.SerializeObject(list));
+
+
+            var switchList = PermutationAndCombination<int>.GetCombination(list.ToArray(), 2);
+            //switchList.Reverse();
+            Console.WriteLine("list" + list.Count);
+            Console.WriteLine("switchList" + switchList.Count);
+            Dictionary<string, int> expressCount = new Dictionary<string, int>();
+            string beginstr = strsoduku18;
+            List<string> tryedList = new List<string> {strsoduku18};
+            var min = GetMinCount(strsoduku18, expressCount, switchList);
+
+            var maxMin = 0;
+            while (min != 1)
             {
-                Console.WriteLine("现在生成"+kv.Key+"开始");
-                List<List<int>> tempquestion;
-                int count = 0;
-                int outputCount = 0;
-                do
+                var result = (from item1 in expressCount
+                    where
+                        !(tryedList.Any(item2 => item2 == item1.Key))
+                    select item1).Where(c => c.Value != 0).ToList();
+                var newSeed = result.OrderBy(c => c.Value).Last();
+                var newMin = result.OrderBy(c => c.Value).First();
+
+
+                if (true)
                 {
-                    var validSoduku = new SodukuBuilder().MakeSoduku();
-                    tempquestion =
-                        JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(validSoduku));
-                    count += 1;
-                    if (count==1000000)
-                    {
-                        outputCount += 1;
-                        Console.WriteLine("计算次数(百万)"+ outputCount);
-                        count = 0;
-                    }
-
-                    StaticTools.InitQuestion(kv.Value, tempquestion);
-
-                } while (new DanceLink().do_solve(StaticTools.ListToString(tempquestion)).Length<81);
-
-    
-
-                foreach (var list in tempquestion)
-                {
-                    foreach (var value in list)
-                    {
-                     
-                        Console.Write(" " + value);
-                    }
-                    Console.WriteLine();
+                    Console.WriteLine(newSeed.Key + "   最多的解  " + newSeed.Value + "最少的解 " + newMin.Value);
                 }
-           
-                Console.WriteLine("现在生成" + kv.Key + "结束");
 
+                min = GetMinCount(newSeed.Key, expressCount, switchList);
+                tryedList.Add(newSeed.Key);
             }
 
 
+            Console.WriteLine("result" + expressCount.Where(c => c.Value == 1).Select(c => c.Key).First());
 
 
-
-
-            Console.ReadLine();
+            Console.ReadKey();
+            return;
         }
 
+        private static int GetMinCount(string strsoduku18, Dictionary<string, int> expressCount, List<int[]> switchList)
+        {
+            int min = 0;
+
+            if (!expressCount.ContainsKey(strsoduku18))
+            {
+                min = new DanceLink().solution_count(strsoduku18);
+                expressCount.Add(strsoduku18, min);
+            }
+            else
+            {
+                min = expressCount[strsoduku18];
+            }
+
+            int start = 0;
+            int end = 0;
+
+            do
+            {
+                start = min;
 
 
+                foreach (var switchListCouple in switchList)
+                {
+                    var newStr = ReplaceString(strsoduku18, switchListCouple[0], switchListCouple[1]);
+
+                    if (!expressCount.ContainsKey(newStr))
+                    {
+                        var count = new DanceLink().solution_count(newStr);
+
+                        //Console.WriteLine("newStr  " + newStr + "  " + count);
+                        expressCount.Add(newStr, count);
+                        if (count != 0 && count < min)
+                        {
+                            strsoduku18 = newStr;
+                            min = count;
+                            break;
+                        }
+                    }
+                }
+
+                end = min;
+            } while (start != end);
+
+            return min;
+        }
+
+        public static string ReplaceString(string str, int a, int b)
+        {
+            char[] newStr = str.ToCharArray();
+            var c1 = newStr[a];
+            var c2 = newStr[b];
+            newStr[a] = c2;
+            newStr[b] = c1;
+            return new string(newStr);
+        }
     }
 }

@@ -343,25 +343,16 @@ namespace SodukuBase
         {
             this.initValues = initValues;
 
-            int location = 0;
-            this.initLists = new List<int>();
-            foreach (var lists in initValues)
-            {
-                foreach (var value in lists)
-                {
-                    if (value != 0)
-                    {
-                        initLists.Add(location);
-                    }
 
-                    location += 1;
-                }
-            }
+            var tempList = StaticTools.GetLocations(initValues);
+
+            this.initLists = tempList;
             rowDatas = FilledDatas();
             columnDatas = FilledDatas();
             blockDatas = FilledDatas();
             InitCells();
         }
+
 
         public void GetAnswerByForce()
         {
