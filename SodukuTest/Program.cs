@@ -16,7 +16,7 @@ namespace SodukuTest
         //出题，采用静态数组
 
        
-        static List<List<int>> param = new List<List<int>>()
+        static List<List<int>> twoAnswerList = new List<List<int>>()
 
         {
             new List<int> {0, 4, 2, 1, 9, 7, 5, 8, 0},
@@ -31,7 +31,7 @@ namespace SodukuTest
         };
 
 
-        static List<List<int>> pu1 = new List<List<int>>()
+        static List<List<int>> Standard= new List<List<int>>()
         {
             new List<int> {0, 8, 0, 0, 0, 0, 6, 0, 0},
             new List<int> {0, 0, 0, 4, 0, 0, 0, 0, 9},
@@ -53,19 +53,47 @@ namespace SodukuTest
             new List<int> {4, 0, 0, 0, 0, 0, 0, 0, 0},
             new List<int> {0, 3, 0, 0, 6, 0, 0, 9, 0},
             new List<int> {0, 0, 0, 7, 2, 0, 1, 0, 0},
-            new List<int> {0, 9, 3, 2, 0, 0, 7, 6, 4},
+            new List<int> {0, 9, 3, 2, 0, 0, 0, 6, 4},
             new List<int> {8, 1, 0, 3, 0, 0, 0, 0, 0},
             new List<int> {0, 0, 0, 0, 0, 5, 0, 0, 0}
+        };
+
+
+        static List<List<int>> soduku18 = new List<List<int>>()
+        {
+            new List<int> {0, 0, 1, 0, 0, 0, 0, 0, 9},
+            new List<int> {0, 0, 0, 2, 0, 0, 0, 4, 6},
+            new List<int> {0, 0, 7, 0, 8, 0, 0, 0, 0},
+            new List<int> {0, 0, 0, 0, 0, 1, 0, 0, 0},
+            new List<int> {0, 0, 3, 0, 0, 0, 2, 0, 0},
+            new List<int> {0, 0, 0, 5, 0, 0, 0, 0, 0},
+            new List<int> {0, 0, 0, 0, 3, 0, 8, 0, 0},
+            new List<int> {9, 6, 0, 0, 0, 7, 0, 0, 0},
+            new List<int> {2, 0, 0, 0, 0, 0, 5, 0, 0}
         };
 
 
         static void Main(string[] args)
 
         {
+            //var test = twoAnswerList;
+            var test = twoAnswerList;
+            var test2 = Standard;
+            var count1=new DanceLink().solution_count(StaticTools.ListToString(test));
+            var c=    new DanceLink().do_solve(StaticTools.ListToString(test));
 
-            Random rm = new Random();
-            var list1 = RandomHelper.GetRandom(0, true, 40, true, 25, rm, false);
-            Console.WriteLine(JsonConvert.SerializeObject(list1));
+            var count2 = new DanceLink().solution_count(StaticTools.ListToString(test2));
+            var c2 = new DanceLink().do_solve(StaticTools.ListToString(test2));
+
+            Console.WriteLine("count" + count1);
+            Console.WriteLine("count" + JsonConvert.SerializeObject(c));
+            Console.WriteLine("input" + StaticTools.ListToString(test));
+            Console.WriteLine("count2  " + count2);
+            Console.WriteLine("count2  " + JsonConvert.SerializeObject(c2));
+            Console.WriteLine("input   " + StaticTools.ListToString(test2));
+            //Random rm = new Random();
+            //var list1 = RandomHelper.GetRandom(0, true, 40, true, 25, rm, false);
+            //Console.WriteLine(JsonConvert.SerializeObject(list1));
 
             Console.ReadKey();
      return;
