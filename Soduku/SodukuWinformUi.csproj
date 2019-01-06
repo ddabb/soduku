@@ -116,13 +116,13 @@
       <Project>{c3acd9e1-a40d-4422-9e15-e9d7a26b577d}</Project>
       <Name>SodukuConfig</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SodukuFactory\SodukuFactory.csproj">
+      <Project>{D7B70BD9-08B4-4C9C-B9A7-4F8D6A701F58}</Project>
+      <Name>SodukuFactory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SodukuGenerator\SodukuBuilder.csproj">
       <Project>{4360bbc9-dce8-4938-8c18-d2aba53fed87}</Project>
       <Name>SodukuBuilder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SodukuQuestion\SodukuFactory.csproj">
-      <Project>{d7b70bd9-08b4-4c9c-b9a7-4f8d6a701f58}</Project>
-      <Name>SodukuFactory</Name>
     </ProjectReference>
     <ProjectReference Include="..\SodukuSolver\SodukuSolver.csproj">
       <Project>{6d97c8a3-6f76-4ffc-9fcb-edeab3b961c9}</Project>

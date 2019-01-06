@@ -63,7 +63,7 @@ namespace SodukuBase
 
         public static bool IsVaildSoduku(List<List<int>> question)
         {
-            return !string.IsNullOrEmpty(new DanceLink().do_solve(StaticTools.ListToString(question)));
+            return !String.IsNullOrEmpty(new DanceLink().do_solve(StaticTools.ListToString(question)));
         }
 
         public static void InitQuestion(List<int> list1, List<List<int>> tempquestion)
@@ -80,6 +80,15 @@ namespace SodukuBase
             }
         }
 
+        public static string ReplaceString(string str, int a, int b)
+        {
+            char[] newStr = str.ToCharArray();
+            var c1 = newStr[a];
+            var c2 = newStr[b];
+            newStr[a] = c2;
+            newStr[b] = c1;
+            return new string(newStr);
+        }
 
         public static List<int> GetLocations(List<List<int>> initValues)
         {
@@ -216,7 +225,5 @@ namespace SodukuBase
             new List<int> {39, 41},
 
         };
-
-
     }
 }

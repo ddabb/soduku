@@ -50,6 +50,10 @@
       <Project>{d8fb1819-787b-433c-9419-b7fe852bd62e}</Project>
       <Name>SodukuBase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SodukuFactory\SodukuFactory.csproj">
+      <Project>{D7B70BD9-08B4-4C9C-B9A7-4F8D6A701F58}</Project>
+      <Name>SodukuFactory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SodukuGenerator\SodukuBuilder.csproj">
       <Project>{4360bbc9-dce8-4938-8c18-d2aba53fed87}</Project>
       <Name>SodukuBuilder</Name>

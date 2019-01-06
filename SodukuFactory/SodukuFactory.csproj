@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComfirmedPostion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SodukuQuestion.cs" />
     <Compile Include="SodukuSets.cs" />

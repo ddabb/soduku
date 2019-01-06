@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SodukuBase;
+using SodukuFactory;
 using SodukuGenerator;
 using Console = System.Console;
 
@@ -79,111 +80,11 @@ namespace SodukuTest
             string a = "helloword";
 
 
-            string strsoduku18 = StaticTools.ListToString(soduku18);
-
-            strsoduku18 = "001000009000200086007060000000001000003000200000500000000040700820009000500000300";
-
-            //string strsoduku18 = "001000009000200067008060000000001000003000200000500000000090700280004000500000300";
-
-
-            Console.WriteLine(strsoduku18);
-            var list = StaticTools.GetLocations(soduku18);
-
-            Console.WriteLine(JsonConvert.SerializeObject(list));
-
-
-            var switchList = PermutationAndCombination<int>.GetCombination(list.ToArray(), 2);
-            //switchList.Reverse();
-            Console.WriteLine("list" + list.Count);
-            Console.WriteLine("switchList" + switchList.Count);
-            Dictionary<string, int> expressCount = new Dictionary<string, int>();
-            string beginstr = strsoduku18;
-            List<string> tryedList = new List<string> {strsoduku18};
-            var min = GetMinCount(strsoduku18, expressCount, switchList);
-
-            var maxMin = 0;
-            while (min != 1)
-            {
-                var result = (from item1 in expressCount
-                    where
-                        !(tryedList.Any(item2 => item2 == item1.Key))
-                    select item1).Where(c => c.Value != 0).ToList();
-                var newSeed = result.OrderBy(c => c.Value).Last();
-                var newMin = result.OrderBy(c => c.Value).First();
-
-
-                if (true)
-                {
-                    Console.WriteLine(newSeed.Key + "   最多的解  " + newSeed.Value + "最少的解 " + newMin.Value);
-                }
-
-                min = GetMinCount(newSeed.Key, expressCount, switchList);
-                tryedList.Add(newSeed.Key);
-            }
-
-
-            Console.WriteLine("result" + expressCount.Where(c => c.Value == 1).Select(c => c.Key).First());
+          new ComfirmedPostion().GenConfirmedPosition(StaticTools.ListToString(soduku18));
 
 
             Console.ReadKey();
             return;
-        }
-
-        private static int GetMinCount(string strsoduku18, Dictionary<string, int> expressCount, List<int[]> switchList)
-        {
-            int min = 0;
-
-            if (!expressCount.ContainsKey(strsoduku18))
-            {
-                min = new DanceLink().solution_count(strsoduku18);
-                expressCount.Add(strsoduku18, min);
-            }
-            else
-            {
-                min = expressCount[strsoduku18];
-            }
-
-            int start = 0;
-            int end = 0;
-
-            do
-            {
-                start = min;
-
-
-                foreach (var switchListCouple in switchList)
-                {
-                    var newStr = ReplaceString(strsoduku18, switchListCouple[0], switchListCouple[1]);
-
-                    if (!expressCount.ContainsKey(newStr))
-                    {
-                        var count = new DanceLink().solution_count(newStr);
-
-                        //Console.WriteLine("newStr  " + newStr + "  " + count);
-                        expressCount.Add(newStr, count);
-                        if (count != 0 && count < min)
-                        {
-                            strsoduku18 = newStr;
-                            min = count;
-                            break;
-                        }
-                    }
-                }
-
-                end = min;
-            } while (start != end);
-
-            return min;
-        }
-
-        public static string ReplaceString(string str, int a, int b)
-        {
-            char[] newStr = str.ToCharArray();
-            var c1 = newStr[a];
-            var c2 = newStr[b];
-            newStr[a] = c2;
-            newStr[b] = c1;
-            return new string(newStr);
         }
     }
 }
