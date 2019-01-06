@@ -90,6 +90,26 @@ namespace SodukuBase
             return new string(newStr);
         }
 
+        /// <summary>
+        /// 获取字符串的所有非0的位置
+        /// </summary>
+        /// <param name="initValues"></param>
+        /// <returns></returns>
+        public static List<int> GetLocations(string initValues)
+        {
+            var tempList = new List<int>();
+            var chars = initValues.ToCharArray();
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i]!='0')
+                {
+                    tempList.Add(i);
+                }
+                
+            }
+            return tempList;
+        }
+
         public static List<int> GetLocations(List<List<int>> initValues)
         {
             var tempList = new List<int>();
@@ -180,6 +200,38 @@ namespace SodukuBase
 
         };
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="location"></param>
+        /// <returns></returns>
+        public static string SetZero(string str, int location)
+        {
+          var chars=  str.ToCharArray();
+            chars[location] = '0';
+            return new string(chars);
+
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="location"></param>
+        /// <returns></returns>
+        public static string SetZero(string str, IEnumerable<int> location)
+        {
+            var chars = str.ToCharArray();
+            foreach (var zeroloction in location)
+            {
+                chars[zeroloction] = '0';
+            }
+      
+            return new string(chars);
+
+        }
 
         public static List<List<int>> symmetry = new List<List<int>>
         {

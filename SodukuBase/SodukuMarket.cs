@@ -17,28 +17,29 @@ namespace SodukuBase
         public List<RemoveValueStep> removeValueSteps;
 
         private List<SodukuMarket> _SubMarkets;
+
         public List<SodukuMarket> SubMarkets
         {
             get
             {
-                if (_SubMarkets==null)
+                if (_SubMarkets == null)
                 {
-                    _SubMarkets=new List<SodukuMarket>();
+                    _SubMarkets = new List<SodukuMarket>();
                     foreach (var location in initLists)
                     {
-                        var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(initValues));
+                        var valueCopy =
+                            JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(initValues));
 
                         valueCopy[location / 9][location % 9] = 0;
 
 
-                        var validthis = StaticTools.ValidNoticeList(initLists.Except(new List<int> { location }).ToList());
-                        if (validthis&&StaticTools.IsVaildSoduku(valueCopy))
+                        var validthis =
+                            StaticTools.ValidNoticeList(initLists.Except(new List<int> {location}).ToList());
+                        if (validthis && StaticTools.IsVaildSoduku(valueCopy))
                         {
                             var newSoduku = new SodukuMarket(valueCopy);
                             _SubMarkets.Add(newSoduku);
                         }
-
-
                     }
                 }
 
@@ -46,33 +47,86 @@ namespace SodukuBase
             }
         }
 
+
+        public SodukuMarket Pearl
+        {
+            get
+            {
+                SodukuMarket result = new SodukuMarket(this.initValues);
+                if (result.SubMarkets.Count == 0)
+                {
+                    return this;
+                }
+
+                do
+                {
+                    if (result.SubMarkets.Count > 0)
+                    {
+                        var count = result.SubMarkets.Count;
+                        if (count == 1)
+                        {
+                            result = result.SubMarkets.First();
+                        }
+                        else
+                        {
+                            var top = count / 2 + 1;
+                            result = result.SubMarkets.Take(top).Last();
+                        }
+                   
+                    }
+                } while (result.SubMarkets.Count != 0);
+
+                return result;
+            }
+        }
+
+        public SodukuMarket GetMarket(List<int> includes, int exceptValue)
+        {
+            SodukuMarket result = null;
+            var list = this.SubMarkets.Where(c => !c.initLists.Contains(exceptValue) &&includes.Except(c.initLists).Count()==0)
+                .ToList();
+            Console.WriteLine("要处理列表个数为：  " + list.Count+ "    提示书个数为" + list[0].initLists.Count);
+
+            if (list.Exists(c => c.SubMarkets.Count == 0))
+            {
+                result= list.First(c => c.SubMarkets.Count == 0);
+
+                return result;
+            }
+            else
+            {
+
+                result = list[0].GetMarket(includes, exceptValue);
+            }
+
+            return result;
+        }
+
         public SodukuMarket LessNoticeNumber()
         {
-            SodukuMarket result=new SodukuMarket(this.initValues);
+            SodukuMarket result = new SodukuMarket(this.initValues);
             do
             {
                 if (result.SubMarkets.Count > 0)
                 {
-                    result= result.SubMarkets.OrderByDescending(c => c.Common).First();
-
+                    result = result.SubMarkets.OrderByDescending(c => c.Common).First();
                 }
-
-            } while (result.SubMarkets.Count!=0);
+            } while (result.SubMarkets.Count != 0);
 
             return result;
-
-
         }
+
         /// <summary>
         /// 坐标与单元格的信息
         /// </summary>
-        private Dictionary<string, CellInfo> cellInfos=new Dictionary<string, CellInfo>();
+        private Dictionary<string, CellInfo> cellInfos = new Dictionary<string, CellInfo>();
 
 
         public Dictionary<string, CellInfo> GetCellInfos()
         {
             return cellInfos;
         }
+
         private double _difficult;
 
         private double _common;
@@ -95,7 +149,7 @@ namespace SodukuBase
 
         private double GetCommon()
         {
-            double sum= 0;
+            double sum = 0;
             restLoction.Add(1, GetRestLoctions(1));
             restLoction.Add(2, GetRestLoctions(2));
             restLoction.Add(3, GetRestLoctions(3));
@@ -112,7 +166,7 @@ namespace SodukuBase
                 var str12 = restLoction[kv[1]];
                 if (str1s.Count != 0 || str12.Count != 0)
                 {
-                    sum +=1- ((str1s.Intersect(str12).Count()) / (1.0 * (str1s.Count + str12.Count)));
+                    sum += 1 - ((str1s.Intersect(str12).Count()) / (1.0 * (str1s.Count + str12.Count)));
                 }
             }
 
@@ -121,15 +175,14 @@ namespace SodukuBase
 
         private List<string> GetRestLoctions(int restValue)
         {
-        
             return cellInfos.Where(c => c.Value.GetRest().Contains(restValue)).Select(c => c.Key).ToList();
-        
-       
+
+
             ;
         }
 
 
-        private Dictionary<int, List<string>> restLoction=new Dictionary<int, List<string>>();
+        private Dictionary<int, List<string>> restLoction = new Dictionary<int, List<string>>();
 
         private List<int> _emptyLists;
 
@@ -321,7 +374,7 @@ namespace SodukuBase
         /// </summary>
         /// <param name="initValues">数独初盘</param>
         /// <param name="initLists">剩余的有数据的位置</param>
-        public SodukuMarket(List<List<int>> initValues, List<int> initLists) 
+        public SodukuMarket(List<List<int>> initValues, List<int> initLists)
         {
             this.initValues = initValues;
             this.initLists = initLists;
@@ -333,13 +386,12 @@ namespace SodukuBase
         }
 
 
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="initValues">数独初盘</param>
         /// <param name="initLists">剩余的有数据的位置</param>
-        public SodukuMarket(List<List<int>> initValues) 
+        public SodukuMarket(List<List<int>> initValues)
         {
             this.initValues = initValues;
 
@@ -354,28 +406,34 @@ namespace SodukuBase
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="initValues">数独初盘</param>
+        /// <param name="initLists">剩余的有数据的位置</param>
+        public SodukuMarket(string initValues):this(StaticTools.StringToList(initValues))
+        {
+            
+        }
+
         public void GetAnswerByForce()
         {
-            var s=new DanceLink().do_solve(StrExpress);
-            if (s.Length==81)
+            var s = new DanceLink().do_solve(StrExpress);
+            if (s.Length == 81)
             {
-                var resultList=      StaticTools.StringToList(s);
+                var resultList = StaticTools.StringToList(s);
 
                 for (int i = 0; i < 9; i++)
                 {
                     for (int j = 0; j < 9; j++)
                     {
                         var loction = "postion_" + i + "_" + j;
-                        if (cellInfos[loction].Value==0)
+                        if (cellInfos[loction].Value == 0)
                         {
                             cellInfos[loction].SetValue(resultList[i][j]);
                         }
-
-                       
                     }
                 }
-
-
             }
         }
     }

@@ -323,17 +323,36 @@ namespace SodukuBase
             return scount;
         }
 
+        /// <summary>
+        /// 检查数独是否是有效数独
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public bool isValid(String str)
         {
             chkVaild = true;
             return solution_count(str) == 1;
         }
-
-
         /// <summary>
-        /// 调用示例: new DanceLink().do_solve("693241578587639412421578396875963241214857639936124857142785963369412785758390000");
+        /// 找到一个可行解
         /// </summary>
         /// <param name="str"></param>
+        /// <returns></returns>
+        public string GetOneAnswer(String str)
+        {
+            chk_unique = false;
+            return run(str);
+        }
+
+        /// <summary>
+        /// 判断数独是否是标注数独,
+        /// 如果不是返回空字符串
+        /// 否则返回其对应的解。
+        /// </summary>
+        /// <param name="str"></param>
+        /// <example>
+        /// new DanceLink().do_solve("693241578587639412421578396875963241214857639936124857142785963369412785758390000");
+        /// </example>
         /// <returns></returns>
         public String do_solve(String str)
 

@@ -73,18 +73,73 @@ namespace SodukuTest
             new List<int> {2, 0, 0, 0, 0, 0, 5, 0, 0}
         };
 
+        static List<List<int>> soduku39 = new List<List<int>>()
+        {
+            new List<int> {7, 0, 5, 6, 0, 0, 8, 0, 4},
+            new List<int> {6, 4, 0, 0, 0, 0, 0, 2, 7},
+            new List<int> {1, 2, 8, 4, 7, 0, 0, 5, 6},
+            new List<int> {2, 5, 1, 0, 6, 0, 0, 0, 8},
+            new List<int> {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            new List<int> {8, 0, 0, 0, 5, 0, 2, 6, 0},
+            new List<int> {0, 8, 0, 0, 3, 0, 0, 7, 0},
+            new List<int> {5, 0, 2, 7, 4, 0, 0, 8, 3},
+            new List<int> {3, 0, 7, 5, 0, 0, 4, 0, 2}
+        };
 
         static void Main(string[] args)
 
         {
-            string a = "helloword";
+            if (-1>0)
+            {
+                var newtest = GetNewClues();
+            }
+            else
+            {
+
+                var c1111=new SodukuMarket("812569473346871592795324186278415639469783215153692847531247968624938751987156324").Pearl.StrExpress;
+                var test = MoreClues.IsPearl(c1111);
+                Console.WriteLine("     ...."+StaticTools.GetLocations(c1111).Count);
+                var testString = "000000000040800032095300100200010009000003000050000840030047908600000050980150000";
+
+                Console.WriteLine("输入数据的提示数个数为" + StaticTools.GetLocations(testString).Count);
+                var c = new MoreClues().GenSoduku(testString
+                 ); //26个提示数
+
+                Console.WriteLine(c);
+            }
 
 
-          new ComfirmedPostion().GenConfirmedPosition(StaticTools.ListToString(soduku18));
+
+
+
+   
+            
 
 
             Console.ReadKey();
             return;
+        }
+
+        private static bool GetNewClues()
+        {
+            var validString = "000000000040800032095300100200010009000003000050000840037040908600000050984150000";
+
+            Console.WriteLine( "输入数据的提示数个数为" + StaticTools.GetLocations(validString).Count);
+            var newtest =
+                MoreClues.IsPearl(validString);
+            var result1 = new SodukuMarket(StaticTools.StringToList(validString)).SubMarkets;
+
+            foreach (var c1 in result1)
+            {
+
+                if (MoreClues.IsPearl(c1.StrExpress))
+                {
+                    Console.WriteLine(c1.StrExpress+"已知数个数为"+StaticTools.GetLocations(c1.StrExpress).Count);
+                }
+            }
+
+  
+            return newtest;
         }
     }
 }

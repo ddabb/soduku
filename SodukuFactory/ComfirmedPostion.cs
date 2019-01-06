@@ -8,16 +8,18 @@ using SodukuBase;
 
 namespace SodukuFactory
 {
-   public class ComfirmedPostion
+    public class ComfirmedPostion
     {
         /// <summary>
         /// 将数独指定位置的数进行交换构成标准数独。
+        /// 
         /// </summary>
+        /// <example>
+        /// new ComfirmedPostion().GenConfirmedPosition(StaticTools.ListToString(sodukuMatrix));
+        /// </example>
         /// <param name="sodukuString"></param>
-        public  string GenConfirmedPosition(string sodukuString)
+        public string GenSoduku(string sodukuString)
         {
-          
-       
             var matrix = StaticTools.StringToList(sodukuString);
             Console.WriteLine(sodukuString);
             var list = StaticTools.GetLocations(matrix);
@@ -30,29 +32,29 @@ namespace SodukuFactory
             Console.WriteLine("list" + list.Count);
             Console.WriteLine("switchList" + switchList.Count);
             Dictionary<string, int> expressCount = new Dictionary<string, int>();
-            string beginstr = sodukuString;
-            List<string> tryedList = new List<string> { sodukuString };
+            List<string> tryedList = new List<string> {sodukuString};
             var min = GetMinCount(sodukuString, expressCount, switchList);
 
             while (min != 1)
             {
                 var result = (from item1 in expressCount
-                              where
-                                  !(tryedList.Any(item2 => item2 == item1.Key))
-                              select item1).Where(c => c.Value != 0).ToList();
-                if (result.Count==0)
+                    where
+                        !(tryedList.Any(item2 => item2 == item1.Key))
+                    select item1).Where(c => c.Value != 0).ToList();
+                if (result.Count == 0)
                 {
                     //所有该尝试的组合都已经尝试过了
                     //表明已知提示数在固定位置的确无法构成唯一解。
                     return null;
                 }
+
                 var newSeed = result.OrderBy(c => c.Value).Last();
                 var newMin = result.OrderBy(c => c.Value).First();
 
 
                 if (true)
                 {
-                    Console.WriteLine("最少的终盘个数: "+newMin.Value);
+                    Console.WriteLine("最少的终盘个数: " + newMin.Value);
                 }
 
                 min = GetMinCount(newSeed.Key, expressCount, switchList);
@@ -63,7 +65,7 @@ namespace SodukuFactory
         }
 
 
-        private  int GetMinCount(string strsoduku18, Dictionary<string, int> expressCount, List<int[]> switchList)
+        private int GetMinCount(string strsoduku18, Dictionary<string, int> expressCount, List<int[]> switchList)
         {
             int min = 0;
 
@@ -109,6 +111,5 @@ namespace SodukuFactory
 
             return min;
         }
-
     }
 }
