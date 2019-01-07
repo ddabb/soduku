@@ -29,19 +29,31 @@ namespace SodukuFactory
                 sodukumap.Add(newstr, answerCount);
             }
 
-            var newGene = sodukumap.OrderBy(c => c.Value).Last().Key;
-            Console.WriteLine("存在多解的提示数  \r\n" + newGene);
-            var tempResult = newClues(newGene, otherLocations);
-       
-            var cluesCount = tempResult.ToCharArray().Count(c => c != '0');
-            Console.WriteLine("提示数个数为" + cluesCount);
-            if (cluesCount < 39)
+            var tempResult="";
+            var index = 1;
+            foreach (var newGene in sodukumap)
             {
-                Console.WriteLine("新提示表达式\r\n" + tempResult);
-                GenSoduku(tempResult);
-            }
+                //Console.WriteLine("存在多解的提示数  \r\n" + newGene);
+                Console.WriteLine("进展：  \r\n" +"处理了"+ index+"条，总数是  "+ sodukumap.Count);
+                index += 1;
+                tempResult = newClues(newGene.Key, otherLocations);
+                if (!string.IsNullOrEmpty(tempResult))
+                {
+                    var cluesCount = tempResult.ToCharArray().Count(c => c != '0');
+                    Console.WriteLine("提示数个数为" + cluesCount);
+                    if (cluesCount < 39)
+                    {
+                        Console.WriteLine("新提示表达式\r\n" + tempResult);
+                        GenSoduku(tempResult);
+                    }
 
-            Console.WriteLine("最终提示数表达式为\r\n"+ tempResult);
+                    Console.WriteLine("最终提示数表达式为\r\n" + tempResult);
+                }
+
+            }
+ 
+        
+
 
             return tempResult;
         }
@@ -70,12 +82,11 @@ namespace SodukuFactory
         {
             var choose = 2;
 
-            while (true)
-            {
+        
                 var ints = PermutationAndCombination<int>.GetCombination(pure.ToArray(), choose);
-                Console.WriteLine("组合元素个数   " + pure.Count());
-                Console.WriteLine("choose   " + choose);
-                Console.WriteLine("组合个数   " + ints.Count);
+                //Console.WriteLine("组合元素个数   " + pure.Count());
+                //Console.WriteLine("choose   " + choose);
+                //Console.WriteLine("组合个数   " + ints.Count);
                 var locations = StaticTools.GetLocations(clues);
 
                 int computedCount = 0;
@@ -99,9 +110,8 @@ namespace SodukuFactory
                         return result;
                     }
                 }
+            return "";
 
-                choose += 1;
-            }
         }
 
         private static List<int> ExceptOtherPearlGene(IEnumerable<int> otherLocations, List<int> locations,

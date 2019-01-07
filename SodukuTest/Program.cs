@@ -99,7 +99,7 @@ namespace SodukuTest
                 var c1111=new SodukuMarket("812569473346871592795324186278415639469783215153692847531247968624938751987156324").Pearl.StrExpress;
                 var test = MoreClues.IsPearl(c1111);
                 Console.WriteLine("     ...."+StaticTools.GetLocations(c1111).Count);
-                var testString = "000000000040800032095300100200010009000003000050000840030047908600000050980150000";
+                var testString = "000000000000090032095300100200010009060000000050000840030047908604009051980150020";//29个提示数的珍珠盘
 
                 Console.WriteLine("输入数据的提示数个数为" + StaticTools.GetLocations(testString).Count);
                 var c = new MoreClues().GenSoduku(testString
@@ -122,7 +122,7 @@ namespace SodukuTest
 
         private static bool GetNewClues()
         {
-            var validString = "000000000040800032095300100200010009000003000050000840037040908600000050984150000";
+            var validString = "000000000000090032095300100200010009060000000050000840030047908604009051980150020";
 
             Console.WriteLine( "输入数据的提示数个数为" + StaticTools.GetLocations(validString).Count);
             var newtest =
