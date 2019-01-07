@@ -47,12 +47,12 @@ namespace SodukuFactory
                         GenSoduku(tempResult);
                     }
 
-                    Console.WriteLine("最终提示数表达式为\r\n" + tempResult);
                 }
 
             }
- 
-        
+
+
+            Console.WriteLine("最终提示数表达式为\r\n" + tempResult);
 
 
             return tempResult;
@@ -62,14 +62,14 @@ namespace SodukuFactory
         {
             var oneAnswer = new DanceLink().GetOneAnswer(clues);
 
-            Console.WriteLine("局部结果   " + oneAnswer);
+            //Console.WriteLine("局部结果   " + oneAnswer);
             var locations = StaticTools.GetLocations(clues);
 
             var otherLocationList
                 = otherLocations.ToList();
-            Console.WriteLine("剩余元素个数   " + otherLocations.Count());
+            //Console.WriteLine("剩余元素个数   " + otherLocations.Count());
             var exceptList = ExceptOtherPearlGene(otherLocationList, locations, oneAnswer);
-            Console.WriteLine("不能填数据的位置为   " +JsonConvert.SerializeObject(exceptList));
+            //Console.WriteLine("不能填数据的位置为   " +JsonConvert.SerializeObject(exceptList));
             var pure = otherLocations.Except(exceptList);
 
             var result = GetPureGene(oneAnswer, clues, pure);
