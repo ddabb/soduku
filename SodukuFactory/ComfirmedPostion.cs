@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace SodukuFactory
         /// new ComfirmedPostion().GenConfirmedPosition(StaticTools.ListToString(sodukuMatrix));
         /// </example>
         /// <param name="sodukuString"></param>
-        public string GenSoduku(string sodukuString)
+        public string GenSoduku(string sodukuString,string fileName="")
         {
             var matrix = StaticTools.StringToList(sodukuString);
             Console.WriteLine(sodukuString);
@@ -54,29 +55,35 @@ namespace SodukuFactory
 
                 if (true)
                 {
-                    Console.WriteLine("最少的终盘个数: " + newMin.Value);
+                    Console.WriteLine(fileName + "最少的终盘个数: " + newMin.Value+"表达式为   "+ newMin.Key+ "   最多的终盘个数: " + newSeed.Value + "表达式为   " + newSeed.Key);
                 }
 
                 min = GetMinCount(newSeed.Key, expressCount, switchList);
                 tryedList.Add(newSeed.Key);
             }
+           
 
-            return expressCount.Where(c => c.Value == 1).Select(c => c.Key).First();
+            string Value = expressCount.Where(c => c.Value == 1).Select(c => c.Key).First();
+            string dir = AppDomain.CurrentDomain.BaseDirectory;
+            var noticeCount = StaticTools.GetLocations(Value).Count;
+            string configName = Path.Combine(dir, fileName+ "生成于" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt");
+            File.WriteAllText(configName, Value);
+            return Value;
         }
 
 
-        private int GetMinCount(string strsoduku18, Dictionary<string, int> expressCount, List<int[]> switchList)
+        private int GetMinCount(string sodukuString, Dictionary<string, int> expressCount, List<int[]> switchList)
         {
             int min = 0;
 
-            if (!expressCount.ContainsKey(strsoduku18))
+            if (!expressCount.ContainsKey(sodukuString))
             {
-                min = new DanceLink().solution_count(strsoduku18);
-                expressCount.Add(strsoduku18, min);
+                min = new DanceLink().solution_count(sodukuString);
+                expressCount.Add(sodukuString, min);
             }
             else
             {
-                min = expressCount[strsoduku18];
+                min = expressCount[sodukuString];
             }
 
             int start = 0;
@@ -89,7 +96,7 @@ namespace SodukuFactory
 
                 foreach (var switchListCouple in switchList)
                 {
-                    var newStr = StaticTools.ReplaceString(strsoduku18, switchListCouple[0], switchListCouple[1]);
+                    var newStr = StaticTools.SwitchLocation(sodukuString, switchListCouple[0], switchListCouple[1]);
 
                     if (!expressCount.ContainsKey(newStr))
                     {
@@ -99,7 +106,7 @@ namespace SodukuFactory
                         expressCount.Add(newStr, count);
                         if (count != 0 && count < min)
                         {
-                            strsoduku18 = newStr;
+                            sodukuString = newStr;
                             min = count;
                             break;
                         }

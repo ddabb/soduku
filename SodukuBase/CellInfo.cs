@@ -107,7 +107,7 @@ namespace SodukuBase
         }
 
 
-
+        public int location;
         public bool Equals(CellInfo x)
         {
             return ProgramPostion == x.ProgramPostion;
@@ -117,6 +117,7 @@ namespace SodukuBase
         {
             row = x;
             column = y;
+            location = x * 9 + y;
             ProgramPostion = "postion_" + x + "_" + y;
             showPostion =  (x + 1) + "行" + (y + 1)+ "列" ;
             block = GetBlock(row, column);

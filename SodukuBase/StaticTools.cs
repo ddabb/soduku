@@ -80,7 +80,7 @@ namespace SodukuBase
             }
         }
 
-        public static string ReplaceString(string str, int a, int b)
+        public static string SwitchLocation(string str, int a, int b)
         {
             char[] newStr = str.ToCharArray();
             var c1 = newStr[a];
@@ -231,6 +231,22 @@ namespace SodukuBase
       
             return new string(chars);
 
+        }
+
+        /// <summary>
+        /// 将字符串的某个或者多个位置赋值
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public static string SetValues(string str, Dictionary<int, string> values)
+        {
+            var chars = str.ToCharArray();
+            foreach (var value in values)
+            {
+                chars[value.Key] = value.Value.ToCharArray()[0];
+            }
+            return new string(chars);
         }
 
 

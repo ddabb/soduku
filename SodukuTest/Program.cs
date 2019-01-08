@@ -89,20 +89,30 @@ namespace SodukuTest
         static void Main(string[] args)
 
         {
-            if (-1>0)
+            if (1>0)
             {
-                var newtest = GetNewClues();
+               Dictionary<string,string> dic=new Dictionary<string, string>();
+                dic.Add("元", "000000000001234500000000600034659780000308000000402000000703020029006350000000000");
+                dic.Add("旦", "000000000001234500005000600006000700008547900009000800007912300000000000014783260");
+                dic.Add("快", "000000000010005000020634180030002090647589213050003000060050800070300050094000000");
+                dic.Add("乐", "000000100000002000025430000010040000047891230000050000004060800050370040000020000");
+                foreach (var kv in dic)
+                {
+                    new ComfirmedPostion().GenSoduku( kv.Value, kv.Key);
+                }
             }
             else
             {
 
-                var c1111=new SodukuMarket("812569473346871592795324186278415639469783215153692847531247968624938751987156324").Pearl.StrExpress;
-                var test = StaticTools.IsPearl(c1111);
-                Console.WriteLine("     ...."+StaticTools.GetLocations(c1111).Count);
+                var c1111=new SodukuMarket(new SodukuBuilder().MakeSoduku()).Pearl.StrExpress;
+            
+   
                 var testString = "300000000000090032095300100200010009060003000050000840030007908600009450980150020";//29个提示数的珍珠盘
-                                  
+                testString = c1111;
+                var test = StaticTools.IsPearl(testString);
+                Console.WriteLine("    当前表达式是\r\n" + testString + "\r\n" + StaticTools.GetLocations(testString).Count);
                 Console.WriteLine("输入数据的提示数个数为" + StaticTools.GetLocations(testString).Count);
-                var c = new MoreClues().GenSoduku(testString
+                var c = new MoreClues().GetMoreNotice(testString, 39
                  ); //26个提示数
 
                 Console.WriteLine(c);
