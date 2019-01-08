@@ -315,6 +315,10 @@ namespace SodukuBase
             }
         }
 
+        public  bool IsPearl => StaticTools.IsPearl(StrExpress);
+
+        public bool IsValid => StaticTools.IsValid(StrExpress);
+
         public void InitCells()
         {
             int x = 0;

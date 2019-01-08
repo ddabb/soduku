@@ -14,7 +14,7 @@ namespace SodukuFactory
         public string GenSoduku(string sodukuString)
         {
             var matrix = StaticTools.StringToList(sodukuString);
-            if (!IsPearl(sodukuString))
+            if (!StaticTools.IsPearl(sodukuString))
             {
                 throw new Exception("输入数独应是应该珍珠题");
             }
@@ -103,7 +103,7 @@ namespace SodukuFactory
                         Console.WriteLine("已处理   " + index+"万条数据" +DateTime.Now);
                     }
 
-                    if (IsPearl(newClues))
+                    if (StaticTools.IsPearl(newClues))
                     {
                         var result = newClues;
 
@@ -122,26 +122,13 @@ namespace SodukuFactory
             {
                 var newlocations = StaticTools.allLocations.Except(locations.Union(new List<int> {loc}));
                 var newGens = StaticTools.SetZero(oneAnswer, newlocations);
-                if (IsPearl(newGens))
+                if (StaticTools.IsPearl(newGens))
                 {
                     exceptList.Add(loc);
                 }
             }
 
             return exceptList;
-        }
-
-
-        public static bool IsPearl(string newGens)
-        {
-          
-            var a = new DanceLink().isValid(newGens);
-
-
-            if (!a) return false;
-            var b = new SodukuMarket(StaticTools.StringToList(newGens)).SubMarkets.Count;
-            if (b == 0) return true;
-            return false;
         }
     }
 }

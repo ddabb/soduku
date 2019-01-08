@@ -233,6 +233,51 @@ namespace SodukuBase
 
         }
 
+
+        public static List<string> GetSubString(string str)
+        {
+            var result = new List<string>();
+            var locations = StaticTools.GetLocations(str);
+            foreach (var location in locations)
+            {
+                result.Add(StaticTools.SetZero(str, location));
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 是否是珍珠题
+        /// </summary>
+        /// <param name="newGens"></param>
+        /// <returns></returns>
+        public static bool IsPearl(string newGens)
+        {
+
+            var a = new DanceLink().isValid(newGens);
+            if (!a) return false;
+            foreach (var subString in StaticTools.GetSubString(newGens))
+            {
+                if (!new DanceLink().isValid(subString)) continue;
+                return false;
+
+            }
+            return true;
+        }
+
+
+        /// <summary>
+        /// 是否是珍珠题具有唯一解。
+        /// </summary>
+        /// <param name="newGens"></param>
+        /// <returns></returns>
+        public static bool IsValid(string newGens)
+        {
+
+            return new DanceLink().isValid(newGens);
+
+        }
+
         public static List<List<int>> symmetry = new List<List<int>>
         {
             new List<int> {0, 80},
