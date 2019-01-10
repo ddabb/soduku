@@ -250,6 +250,22 @@ namespace SodukuBase
         }
 
 
+        /// <summary>
+        /// 将字符串的某个或者多个位置赋值
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="location">位置</param>
+        /// <param name="value">值</param>
+        /// <returns></returns>
+        public static string SetValue(string str, int location,string  value)
+        {
+            var chars = str.ToCharArray();
+       
+                chars[location] = value.ToCharArray()[0];
+        
+            return new string(chars);
+        }
+
         public static List<string> GetSubString(string str)
         {
             var result = new List<string>();

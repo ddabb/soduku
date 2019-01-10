@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -89,13 +90,70 @@ namespace SodukuTest
         static void Main(string[] args)
 
         {
-            if (1>0)
+            if (-1>0)
             {
-               Dictionary<string,string> dic=new Dictionary<string, string>();
-                dic.Add("元", "000000000001234500000000600034659780000308000000402000000703020029006350000000000");
-                dic.Add("旦", "000000000001234500005000600006000700008547900009000800007912300000000000014783260");
-                dic.Add("快", "000000000010005000020634180030002090647589213050003000060050800070300050094000000");
-                dic.Add("乐", "000000100000002000025430000010040000047891230000050000004060800050370040000020000");
+                string str1 = "705602000640305100100000300200000000000000000000004269000000000010040980000098412";
+                Console.WriteLine("IsPearl"  + StaticTools.IsPearl(str1));
+               var temp=new SodukuMarket(str1).Pearl.StrExpress;
+                Console.WriteLine("this Pearl" + temp);
+                Console.WriteLine("this temp count" +   StaticTools.GetLocations(temp).Count);
+                var result=new DanceLink().do_solve(StaticTools.ListToString(soduku39));
+                var locations = new SodukuMarket(result).Pearl.StrExpress;
+                //var lists = PermutationAndCombination<int>.GetCombination(locations.ToArray(), 2);
+                //var AllStr=new List<String>();
+                //foreach (var item in lists)
+                //{
+                //    AllStr.Add(StaticTools.SwitchLocation(str1,item[0],item[1]));
+                //}
+
+                //AllStr = AllStr.Distinct().ToList();
+                //Console.WriteLine(" 待检测表达式个数"+ AllStr.Count);
+                //AllStr = AllStr.Where(c => new DanceLink().solution_count(c) > 1).ToList();
+                //AllStr.Sort();
+                //Console.WriteLine(" 有效表达式个数" + AllStr.Count);
+                //foreach (var express in AllStr)
+                //{
+               
+
+                //    using (StreamWriter sw = new StreamWriter(@"E:\soduku\Soduku\bin\Debug\text.txt", true))
+                //    {
+                //        sw.WriteLine(" 当前表达式是" + express + "结果个数是" + new DanceLink().solution_count(express));
+                //    }
+
+                //    var item =new SodukuMarket(express);
+                //    var cells = item.GetCellInfos().Values.Where(cell => cell.Value == 0).ToList();
+                //    Dictionary<int,List<int>> dic1=new Dictionary<int, List<int>>();
+                //    foreach (var cell in cells)
+                //    {
+                //        dic1.Add(cell.location,cell.initrest);
+                //    }
+
+                //    foreach (var kv in dic1)
+                //    {
+                //        foreach (var value in kv.Value)
+                //        {
+                //            var newString = StaticTools.SetValue(express, kv.Key, "" + value);
+                //            if (StaticTools.IsPearl(newString))
+                //            {
+                //                Console.WriteLine("newString" + newString + "  提示数个数为" + StaticTools.GetLocations(newString).Count);
+                //            }
+                //        }
+                //    }
+                //}
+
+                return;
+                Dictionary<string, string> dic = new Dictionary<string, string>
+                {
+                    {"快", "080007000010005000020634180030002090040589213952003000060050800070300050094000001"},
+                    {"旦", "002156400001000500005000600006829700008000900009000800007912340000000000914783265"},
+                    {"乐", "000000100085712000200030000800040000547891230000050000004060800050370040300020001"},
+                    {"元", "000000000001234500000000020134659782000308000000402000000703004009006007070001358"},
+                    {"对称之一", "100000007020000080003000500000406000000907000000503000006000400080000020900000001"},
+                    {"对称之二", "100040007020000080003000500000406000504000106000503000006000400080000020900080001"}
+                };
+
+
+
                 foreach (var kv in dic)
                 {
                     new ComfirmedPostion().GenSoduku( kv.Value, kv.Key);
@@ -107,8 +165,8 @@ namespace SodukuTest
                 var c1111=new SodukuMarket(new SodukuBuilder().MakeSoduku()).Pearl.StrExpress;
             
    
-                var testString = "300000000000090032095300100200010009060003000050000840030007908600009450980150020";//29个提示数的珍珠盘
-                testString = c1111;
+                var testString = "705602000640305100100000300200000000000000000000004269000000000010040980000098412";//29个提示数的珍珠盘
+                //testString = c1111;
                 var test = StaticTools.IsPearl(testString);
                 Console.WriteLine("    当前表达式是\r\n" + testString + "\r\n" + StaticTools.GetLocations(testString).Count);
                 Console.WriteLine("输入数据的提示数个数为" + StaticTools.GetLocations(testString).Count);
