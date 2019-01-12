@@ -133,6 +133,7 @@ namespace SodukuBase
 
         public static List<List<int>> StringToList(string str)
         {
+            str= str.Replace("*","0").Replace(".","").Replace("\r\n", "").Trim();
             var arr = str.ToCharArray();
             List<List<int>> result = new List<List<int>>()
             {

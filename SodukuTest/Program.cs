@@ -90,8 +90,25 @@ namespace SodukuTest
         static void Main(string[] args)
 
         {
-            if (-1>0)
+            if (1>0)
             {
+
+                //Dictionary<string, string> dic111 = new Dictionary<string, string>();
+                //dic111.Add("元", "000000000001234500000000020134659782000308000000402000000703004009006007070001358");
+                //dic111.Add("旦", "002156400001000500005000600006829700008000900009000800007912340000000000914783265");
+                //dic111.Add("快", "080007000010005000020634180030002090040589213952003000060050800070300050094000001");
+                //dic111.Add("乐", "000000100085712000200030000800040000547891230000050000004060800050370040300020001");
+                //foreach (var kv in dic111)
+                //{
+                //    new ComfirmedPostion().GenSoduku(kv.Value, kv.Key);
+                //}
+
+
+                Console.WriteLine(new DanceLink().solution_count("000000000001234500000000020134659782000308000000402000000703004009006007070001358"));
+                Console.WriteLine(new DanceLink().solution_count("000000000002134500000000020134659782000308000000402000000703004009006007070001358"));
+                Console.WriteLine(new DanceLink().solution_count("002156400001000500005000600006829700008000900009000800007912340000000000914783265"));
+                Console.WriteLine(new DanceLink().solution_count("080007000010005000020634180030002090040589213952003000060050800070300050094000001"));
+                Console.WriteLine(new DanceLink().solution_count("000000100085712000200030000800040000547891230000050000004060800050370040300020001"));
                 string str1 = "705602000640305100100000300200000000000000000000004269000000000010040980000098412";
                 Console.WriteLine("IsPearl"  + StaticTools.IsPearl(str1));
                var temp=new SodukuMarket(str1).Pearl.StrExpress;

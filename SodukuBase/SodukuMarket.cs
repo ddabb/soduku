@@ -101,16 +101,19 @@ namespace SodukuBase
 
             return result;
         }
-
+        /// <summary>
+        /// 减少提示数
+        /// </summary>
+        /// <returns></returns>
         public SodukuMarket LessNoticeNumber()
         {
             SodukuMarket result = new SodukuMarket(this.initValues);
             do
             {
-                if (result.SubMarkets.Count > 0)
-                {
-                    result = result.SubMarkets.OrderByDescending(c => c.Common).First();
-                }
+              var allcount=  result.SubMarkets.Count;
+                Random rm=new Random();
+                var temp = RandomHelper.GetRandom(0, true, allcount, false, 1, rm, false);
+                result = result.SubMarkets[temp[0]];
             } while (result.SubMarkets.Count != 0);
 
             return result;

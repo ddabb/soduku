@@ -352,6 +352,7 @@ namespace SodukuUI
                 CellInfo cell = kv.Value;
                 var clue = locationClues[location];
                 var text = TextBoxdic[location];
+                text.Text = ""; 
                 clue.SetColors(_config);
                 if (cell.Value!=0)
                 {
@@ -566,23 +567,10 @@ namespace SodukuUI
 
         private void GenWholeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             var result = sdkBuilder.MakeSoduku();
-            for (int i = 0; i < result.Count; i++)
-            {
-                var list = result[i];
-                for (int j = 0; j < list.Count; j++)
-                {
-                    var value = list[j];
-
-                       TextBox testBox = TextBoxdic["postion_" + i + "_" + j];
-                    if (testBox == null) continue;
-                    testBox.Text = "" + value;
-                    testBox.BackColor = Color.White;
-                    resultMessage.Text = null;
-                }
-            }
-
-            var breakouot = 0;
+            currentMarket =new SodukuMarket(result);
+            RefreshPanel();
         }
 
         private void NormalToolStripMenuItem_Click(object sender, EventArgs e)
