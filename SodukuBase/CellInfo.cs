@@ -105,8 +105,8 @@ namespace SodukuBase
         {
             return (x / 3) * 3 + (y / 3);
         }
-
-
+        public string variablename;
+        
         public int location;
         public bool Equals(CellInfo x)
         {
@@ -118,6 +118,7 @@ namespace SodukuBase
             row = x;
             column = y;
             location = x * 9 + y;
+            variablename = "x" + ("" + (location + 100)).Substring(1, 2);
             ProgramPostion = "postion_" + x + "_" + y;
             showPostion =  (x + 1) + "行" + (y + 1)+ "列" ;
             block = GetBlock(row, column);
