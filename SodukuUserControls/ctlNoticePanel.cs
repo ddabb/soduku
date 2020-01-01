@@ -1,9 +1,9 @@
-﻿using SodukuConfig.Config;
+﻿using SudokuConfig.Config;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace SodukuUserControls
+namespace SudokuUserControls
 {
     public partial class CtlNoticePanel : UserControl
     {

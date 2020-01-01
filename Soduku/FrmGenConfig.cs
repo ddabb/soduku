@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SodukuUI
+namespace SudokuUI
 {
     public partial class FrmGenConfig : Form
     {

@@ -2,14 +2,14 @@
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace SodukuBase
+namespace SudokuBase
 {
     public class CellInfo
     {
         /// <summary>
         /// 当前初盘
         /// </summary>
-        public SodukuMarket currentMarket;
+        public SudokuMarket currentMarket;
         /// <summary>
         /// 行
         /// </summary>

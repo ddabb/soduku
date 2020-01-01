@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using SodukuBase;
+using SudokuBase;
 
-namespace SodukuFactory
+namespace SudokuFactory
 {
     public class ComfirmedPostion
     {
@@ -19,7 +19,7 @@ namespace SodukuFactory
         /// new ComfirmedPostion().GenConfirmedPosition(StaticTools.ListToString(sodukuMatrix));
         /// </example>
         /// <param name="sodukuString"></param>
-        public string GenSoduku(string sodukuString,string fileName="")
+        public string GenSudoku(string sodukuString,string fileName="")
         {
             var matrix = StaticTools.StringToList(sodukuString);
             Console.WriteLine(sodukuString);

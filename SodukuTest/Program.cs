@@ -8,12 +8,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using SodukuBase;
-using SodukuFactory;
-using SodukuGenerator;
+using SudokuBase;
+using SudokuFactory;
+using SudokuGenerator;
 using Console = System.Console;
 
-namespace SodukuTest
+namespace SudokuTest
 {
     class Program
     {
@@ -125,8 +125,8 @@ namespace SodukuTest
         {
             if (1 > 0)
             {
-                SodukuMarket sdm =
-                    new SodukuMarket(soduku39);
+                SudokuMarket sdm =
+                    new SudokuMarket(soduku39);
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine("from sympy import *");
                 var cells = sdm.GetCellInfos().Values.ToList();
@@ -158,13 +158,15 @@ namespace SodukuTest
                 sb.AppendLine(string.Format("],[{0}]))", string.Join(",", cells.Select(c => c.variablename))));
 
       
-                File.WriteAllText("solveSoduku.py", sb.ToString());
-                File.WriteAllText("solveSoduku.begintime.txt", DateTime.Now.ToString());
-                string result = runPython("solveSoduku.py", "");
-                File.WriteAllText("solveSoduku.endtime.txt", DateTime.Now.ToString());
-                File.WriteAllText("solveSoduku.result", result);
+                File.WriteAllText("solveSudoku.py", sb.ToString());
+                File.WriteAllText("solveSudoku.begintime.txt", DateTime.Now.ToString());
+                Console.WriteLine("开始计算");
+                string result = runPython("solveSudoku.py", "");
+             
+                File.WriteAllText("solveSudoku.endtime.txt", DateTime.Now.ToString());
+                File.WriteAllText("solveSudoku.result", result);
                 Console.WriteLine(result);
-
+                Console.WriteLine("运算结束");
                 Console.ReadKey();
 
 
@@ -172,7 +174,7 @@ namespace SodukuTest
             }
             else
             {
-                var c1111 = new SodukuMarket(new SodukuBuilder().MakeSoduku()).Pearl.StrExpress;
+                var c1111 = new SudokuMarket(new SudokuBuilder().MakeSudoku()).Pearl.StrExpress;
 
 
                 var testString =
@@ -237,7 +239,7 @@ namespace SodukuTest
             Console.WriteLine("输入数据的提示数个数为" + StaticTools.GetLocations(validString).Count);
             var newtest =
                 StaticTools.IsPearl(validString);
-            var result1 = new SodukuMarket(StaticTools.StringToList(validString)).SubMarkets;
+            var result1 = new SudokuMarket(StaticTools.StringToList(validString)).SubMarkets;
 
             foreach (var c1 in result1)
             {

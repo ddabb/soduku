@@ -1,4 +1,4 @@
-﻿namespace SodukuConfig.Config
+﻿namespace SudokuConfig.Config
 {
     /// <summary>
     /// 生成配置类

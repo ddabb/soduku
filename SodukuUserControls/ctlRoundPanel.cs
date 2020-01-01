@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
-namespace SodukuUserControls
+namespace SudokuUserControls
 {
     public partial class ctlRoundPanel : UserControl
     {

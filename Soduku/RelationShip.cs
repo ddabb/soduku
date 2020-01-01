@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace SodukuUI
+namespace SudokuUI
 {
     public enum RelationShip
     {

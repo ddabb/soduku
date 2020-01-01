@@ -1,4 +1,4 @@
-﻿namespace SodukuUI
+﻿namespace SudokuUI
 {
     partial class FrmColorConfig
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlColorConfig1 = new SodukuUserControls.CtlColorConfig();
+            this.ctlColorConfig1 = new SudokuUserControls.CtlColorConfig();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -87,7 +87,7 @@
 
         #endregion
 
-        private SodukuUserControls.CtlColorConfig ctlColorConfig1;
+        private SudokuUserControls.CtlColorConfig ctlColorConfig1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;

@@ -1,4 +1,4 @@
-﻿namespace SodukuBase
+﻿namespace SudokuBase
 {
     /// <summary>
     /// 移除候选数的步骤

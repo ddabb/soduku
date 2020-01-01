@@ -4,14 +4,14 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
-using SodukuBase;
+using SudokuBase;
 
-namespace SodukuFactory
+namespace SudokuFactory
 {
     /// <summary>
     /// 数独出题类
     /// </summary>
-    public class SodukuQuestion
+    public class SudokuQuestion
     {
         /// <summary>
         /// 出题
@@ -51,10 +51,10 @@ namespace SodukuFactory
         /// <summary>
         /// 生成初盘提示数个数为noticeValue的具有唯一解的初盘
         /// </summary>
-        /// <param name="wholeSoduku">完整数独</param>
+        /// <param name="wholeSudoku">完整数独</param>
         /// <param name="noticeCounts">提示数个数</param>
         /// <returns></returns>
-        public SodukuMarket AutoQuestion(List<List<int>> wholeSoduku, int noticeCounts)
+        public SudokuMarket AutoQuestion(List<List<int>> wholeSudoku, int noticeCounts)
         {
             var tempValue = 0;
             bool flag = true;
@@ -74,7 +74,7 @@ namespace SodukuFactory
             if (noticeCounts >= RandomValue)
             {
                 #region 多余30个提示数 直接采取随机数生成。
-                return SubAutoQuestion(wholeSoduku, noticeCounts, ref locations);
+                return SubAutoQuestion(wholeSudoku, noticeCounts, ref locations);
                 #endregion
             }
             else
@@ -82,12 +82,12 @@ namespace SodukuFactory
        
                 bool flag1 = true;
                 int trytimes = 0;
-                SodukuMarket market = null;
-                List < SodukuMarket > markets=new List<SodukuMarket>();
+                SudokuMarket market = null;
+                List < SudokuMarket > markets=new List<SudokuMarket>();
                 while (flag1)
                 {
                
-                    market = SubAutoQuestion(wholeSoduku, RandomValue, ref locations);
+                    market = SubAutoQuestion(wholeSudoku, RandomValue, ref locations);
                     markets.Add(market);
                     result = market.initValues;
                     var needlist = GetAllNeedList(result, locations);
@@ -99,9 +99,9 @@ namespace SodukuFactory
                     {
                         var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(result));
                         StaticTools.InitQuestion(needlist, valueCopy);
-                        if (StaticTools.IsVaildSoduku(valueCopy))
+                        if (StaticTools.IsVaildSudoku(valueCopy))
                         {
-                            return new SodukuMarket(valueCopy);
+                            return new SudokuMarket(valueCopy);
                         }
                     }
                     else
@@ -118,10 +118,10 @@ namespace SodukuFactory
                             StaticTools.InitQuestion(location1, valueCopy);
                             if (StaticTools.ValidNoticeList(location1))
                             {
-                                if (StaticTools.IsVaildSoduku(valueCopy))
+                                if (StaticTools.IsVaildSudoku(valueCopy))
                                 {
 
-                                    return new SodukuMarket(valueCopy);
+                                    return new SudokuMarket(valueCopy);
                                 }
                             
                             }
@@ -148,19 +148,19 @@ namespace SodukuFactory
 
 
 
-        private List<int> GetAllNeedList(List<List<int>> tempSoduku, List<int> locations)
+        private List<int> GetAllNeedList(List<List<int>> tempSudoku, List<int> locations)
         {
 
             List<int> needList=new List<int>();
             foreach (var location in locations)
             {
-                var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(tempSoduku));
+                var valueCopy = JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(tempSudoku));
 
                 valueCopy[location / 9][location % 9] = 0;
 
 
                 var validthis = StaticTools.ValidNoticeList(locations.Except(new List<int> { location }).ToList());
-                if (!validthis|| !StaticTools.IsVaildSoduku(valueCopy))
+                if (!validthis|| !StaticTools.IsVaildSudoku(valueCopy))
                 {
                     needList.Add(location);
                 }
@@ -177,11 +177,11 @@ namespace SodukuFactory
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="wholeSoduku">完整数独</param>
+        /// <param name="wholeSudoku">完整数独</param>
         /// <param name="noticeValue">提示数个数</param>
         /// <param name="list1">提示数位置</param>
         /// <returns></returns>
-        public  SodukuMarket SubAutoQuestion(List<List<int>> wholeSoduku, int noticeValue,ref List<int> list1)
+        public  SudokuMarket SubAutoQuestion(List<List<int>> wholeSudoku, int noticeValue,ref List<int> list1)
         {
             Random rm = new Random();
             List<List<int>> tempquestion;
@@ -189,7 +189,7 @@ namespace SodukuFactory
             do
             {
                 tempquestion =
-                    JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(wholeSoduku));
+                    JsonConvert.DeserializeObject<List<List<int>>>(JsonConvert.SerializeObject(wholeSudoku));
 
                 do
                 {
@@ -211,9 +211,9 @@ namespace SodukuFactory
                 } while (!StaticTools.ValidNoticeList(list1));
 
                 StaticTools.InitQuestion(list1, tempquestion);
-            } while (!StaticTools.IsVaildSoduku(tempquestion));
+            } while (!StaticTools.IsVaildSudoku(tempquestion));
 
-            return new SodukuMarket(tempquestion, list1);
+            return new SudokuMarket(tempquestion, list1);
         }
     }
 }

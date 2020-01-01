@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra.Double;
-using SodukuBase;
+using SudokuBase;
 
-namespace SodukuGenerator
+namespace SudokuGenerator
 {
     /// <summary>
     /// 数独生成类
     /// </summary>
-   public class SodukuBuilder
+   public class SudokuBuilder
     {
         /// <summary>
         /// 制作完整的数独
         /// </summary>
         /// <returns></returns>
-        public List<List<int>> MakeSoduku()
+        public List<List<int>> MakeSudoku()
         {
             Random rm = new Random();
             var list1 = RandomHelper.GetRandom(1, true, 9, true, 9, rm, false);
-            var a = GetBaseSoduku(list1);
+            var a = GetBaseSudoku(list1);
             return Upset(a);
         }
 
@@ -28,11 +28,11 @@ namespace SodukuGenerator
         /// 制作完整的数独
         /// </summary>
         /// <returns></returns>
-        public List<List<int>> MakeJuchiSoduku()
+        public List<List<int>> MakeJuchiSudoku()
         {
             Random rm = new Random();
             var list1 = RandomHelper.GetRandom(1, true, 9, true, 9, rm, false);
-            var a = GetBaseSoduku(list1);
+            var a = GetBaseSudoku(list1);
          
 
             double[,] doubles = new double[9, 9];
@@ -71,7 +71,7 @@ namespace SodukuGenerator
         /// 生成基本的数独
         /// </summary>
         /// <returns></returns>
-        private List<List<int>> GetBaseSoduku(List<int> list1)
+        private List<List<int>> GetBaseSudoku(List<int> list1)
         {
    
             var list2 = moveToTail(list1, 3);

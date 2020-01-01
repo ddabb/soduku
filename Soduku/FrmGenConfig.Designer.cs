@@ -1,4 +1,4 @@
-﻿namespace SodukuUI
+﻿namespace SudokuUI
 {
     partial class FrmGenConfig
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlGenConfig1 = new SodukuUserControls.ctlGenConfig();
+            this.ctlGenConfig1 = new SudokuUserControls.ctlGenConfig();
             this.SuspendLayout();
             // 
             // ctlGenConfig1
@@ -52,6 +52,6 @@
 
         #endregion
 
-        private SodukuUserControls.ctlGenConfig ctlGenConfig1;
+        private SudokuUserControls.ctlGenConfig ctlGenConfig1;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace SodukuConfig.Config
+namespace SudokuConfig.Config
 {
     /// <summary>
     /// 颜色配置类

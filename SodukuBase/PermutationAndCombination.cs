@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SodukuBase
+namespace SudokuBase
 {
     /// <summary>
     /// 参考地址 https://www.cnblogs.com/zhao-yi/p/8533035.html

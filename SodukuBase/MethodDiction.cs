@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace SodukuBase
+namespace SudokuBase
 {
     /// <summary>
     /// 方法方向

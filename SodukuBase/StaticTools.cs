@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SodukuBase
+namespace SudokuBase
 {
     /// <summary>
     /// 静态工具类
@@ -61,7 +61,7 @@ namespace SodukuBase
             return sb.ToString();
         }
 
-        public static bool IsVaildSoduku(List<List<int>> question)
+        public static bool IsVaildSudoku(List<List<int>> question)
         {
             return !String.IsNullOrEmpty(new DanceLink().do_solve(StaticTools.ListToString(question)));
         }
@@ -284,6 +284,7 @@ namespace SodukuBase
         /// </summary>
         /// <param name="newGens"></param>
         /// <returns></returns>
+        /// 900400613320190700000000009000017008000000000700360000800000000009045086253001004 应该fanhuiTrue
         public static bool IsPearl(string newGens)
         {
 

@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SodukuConfig.Config;
+using SudokuConfig.Config;
 
-namespace SodukuUI
+namespace SudokuUI
 {
     public partial class FrmColorConfig : Form
     {

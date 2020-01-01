@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace SodukuBase
+namespace SudokuBase
 {
     public class DanceLink
 

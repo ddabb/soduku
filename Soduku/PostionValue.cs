@@ -1,4 +1,4 @@
-﻿namespace SodukuUI
+﻿namespace SudokuUI
 {
     public class PostionValue
     {

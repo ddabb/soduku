@@ -1,11 +1,11 @@
 # 数独解决方案
 该解决方案包含以下几个项目
->SodukuBase 数独基础类库  
->SodukuBuilder 数独生成类库  
->SodukuQuestion 数独出题类库  
->SodukuSolver 数独求解类库  
->SodukuWinformUi WinformUI类库  
->SodukuTest 数独测试类库  
+>SudokuBase 数独基础类库  
+>SudokuBuilder 数独生成类库  
+>SudokuQuestion 数独出题类库  
+>SudokuSolver 数独求解类库  
+>SudokuWinformUi WinformUI类库  
+>SudokuTest 数独测试类库  
 
 ## 数独基础类库
 

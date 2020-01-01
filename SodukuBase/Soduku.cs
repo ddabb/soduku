@@ -5,12 +5,12 @@ using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace SodukuBase
+namespace SudokuBase
 {
     /// <summary>
     /// 数独类
     /// </summary>
-    public class Soduku
+    public class Sudoku
     {
 
 
@@ -85,9 +85,9 @@ namespace SodukuBase
         public void Solve(List<List<int>> values, bool firsttime)
 
         {
-            //SodukuMarket.rowDatas = FilledDatas();
-            //SodukuMarket.columnDatas = FilledDatas();
-            //SodukuMarket.blockDatas = FilledDatas();
+            //SudokuMarket.rowDatas = FilledDatas();
+            //SudokuMarket.columnDatas = FilledDatas();
+            //SudokuMarket.blockDatas = FilledDatas();
             cellInfos = new Dictionary<string, CellInfo>();
 
             int row = 0;

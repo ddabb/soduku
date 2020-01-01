@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SodukuBase;
+using SudokuBase;
 
-namespace SodukuFactory
+namespace SudokuFactory
 {
-    public class SodukuSets
+    public class SudokuSets
     {
-        public Dictionary<int,List<SodukuMarket>> marketList;
+        public Dictionary<int,List<SudokuMarket>> marketList;
 
         public int minValue=100;
 
@@ -61,14 +61,14 @@ namespace SodukuFactory
             return !small.Except(big).Any();
         }
 
-        public SodukuSets()
+        public SudokuSets()
         {
-            marketList=new Dictionary<int, List<SodukuMarket>>();
+            marketList=new Dictionary<int, List<SudokuMarket>>();
 
             CanNotRemoveItemsList=new List<List<int>>();
         }
 
-        public void AddMarket(SodukuMarket market, int newNoticeCount)
+        public void AddMarket(SudokuMarket market, int newNoticeCount)
         {
             if (marketList.ContainsKey(newNoticeCount))
             {
@@ -76,7 +76,7 @@ namespace SodukuFactory
             }
             else
             {
-                marketList.Add(newNoticeCount,new List<SodukuMarket>{ market });
+                marketList.Add(newNoticeCount,new List<SudokuMarket>{ market });
             }
      
 

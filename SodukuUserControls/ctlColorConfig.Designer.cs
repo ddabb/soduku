@@ -1,4 +1,4 @@
-﻿namespace SodukuUserControls
+﻿namespace SudokuUserControls
 {
     partial class CtlColorConfig
     {

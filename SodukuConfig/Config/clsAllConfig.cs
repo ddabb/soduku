@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
-namespace SodukuConfig.Config
+namespace SudokuConfig.Config
 {
     /// <summary>
     /// 所有配置类

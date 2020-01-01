@@ -108,29 +108,29 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SodukuBase\SodukuBase.csproj">
+    <ProjectReference Include="..\SodukuBase\SudokuBase.csproj">
       <Project>{d8fb1819-787b-433c-9419-b7fe852bd62e}</Project>
-      <Name>SodukuBase</Name>
+      <Name>SudokuBase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SodukuConfig\SodukuConfig.csproj">
+    <ProjectReference Include="..\SodukuConfig\SudokuConfig.csproj">
       <Project>{c3acd9e1-a40d-4422-9e15-e9d7a26b577d}</Project>
-      <Name>SodukuConfig</Name>
+      <Name>SudokuConfig</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SodukuFactory\SodukuFactory.csproj">
+    <ProjectReference Include="..\SodukuFactory\SudokuFactory.csproj">
       <Project>{D7B70BD9-08B4-4C9C-B9A7-4F8D6A701F58}</Project>
-      <Name>SodukuFactory</Name>
+      <Name>SudokuFactory</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SodukuGenerator\SodukuBuilder.csproj">
+    <ProjectReference Include="..\SodukuGenerator\SudokuBuilder.csproj">
       <Project>{4360bbc9-dce8-4938-8c18-d2aba53fed87}</Project>
-      <Name>SodukuBuilder</Name>
+      <Name>SudokuBuilder</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SodukuSolver\SodukuSolver.csproj">
+    <ProjectReference Include="..\SodukuSolver\SudokuSolver.csproj">
       <Project>{6d97c8a3-6f76-4ffc-9fcb-edeab3b961c9}</Project>
-      <Name>SodukuSolver</Name>
+      <Name>SudokuSolver</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SodukuUserControls\SodukuUserControls.csproj">
+    <ProjectReference Include="..\SodukuUserControls\SudokuUserControls.csproj">
       <Project>{e0094b12-ae52-48a6-95e3-285dc4871661}</Project>
-      <Name>SodukuUserControls</Name>
+      <Name>SudokuUserControls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

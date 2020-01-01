@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace SodukuBase
+namespace SudokuBase
 {
-    public class SodukuMarket
+    public class SudokuMarket
     {
         /// <summary>
         /// 初始化链表个数,共81位包括0和非0。
@@ -16,15 +16,15 @@ namespace SodukuBase
 
         public List<RemoveValueStep> removeValueSteps;
 
-        private List<SodukuMarket> _SubMarkets;
+        private List<SudokuMarket> _SubMarkets;
 
-        public List<SodukuMarket> SubMarkets
+        public List<SudokuMarket> SubMarkets
         {
             get
             {
                 if (_SubMarkets == null)
                 {
-                    _SubMarkets = new List<SodukuMarket>();
+                    _SubMarkets = new List<SudokuMarket>();
                     foreach (var location in initLists)
                     {
                         var valueCopy =
@@ -35,10 +35,10 @@ namespace SodukuBase
 
                         var validthis =
                             StaticTools.ValidNoticeList(initLists.Except(new List<int> {location}).ToList());
-                        if (validthis && StaticTools.IsVaildSoduku(valueCopy))
+                        if (validthis && StaticTools.IsVaildSudoku(valueCopy))
                         {
-                            var newSoduku = new SodukuMarket(valueCopy);
-                            _SubMarkets.Add(newSoduku);
+                            var newSudoku = new SudokuMarket(valueCopy);
+                            _SubMarkets.Add(newSudoku);
                         }
                     }
                 }
@@ -48,11 +48,11 @@ namespace SodukuBase
         }
 
 
-        public SodukuMarket Pearl
+        public SudokuMarket Pearl
         {
             get
             {
-                SodukuMarket result = new SodukuMarket(this.initValues);
+                SudokuMarket result = new SudokuMarket(this.initValues);
                 if (result.SubMarkets.Count == 0)
                 {
                     return this;
@@ -80,9 +80,9 @@ namespace SodukuBase
             }
         }
 
-        public SodukuMarket GetMarket(List<int> includes, int exceptValue)
+        public SudokuMarket GetMarket(List<int> includes, int exceptValue)
         {
-            SodukuMarket result = null;
+            SudokuMarket result = null;
             var list = this.SubMarkets.Where(c => !c.initLists.Contains(exceptValue) &&includes.Except(c.initLists).Count()==0)
                 .ToList();
             Console.WriteLine("要处理列表个数为：  " + list.Count+ "    提示书个数为" + list[0].initLists.Count);
@@ -105,9 +105,9 @@ namespace SodukuBase
         /// 减少提示数
         /// </summary>
         /// <returns></returns>
-        public SodukuMarket LessNoticeNumber()
+        public SudokuMarket LessNoticeNumber()
         {
-            SodukuMarket result = new SodukuMarket(this.initValues);
+            SudokuMarket result = new SudokuMarket(this.initValues);
             do
             {
               var allcount=  result.SubMarkets.Count;
@@ -381,7 +381,7 @@ namespace SodukuBase
         /// </summary>
         /// <param name="initValues">数独初盘</param>
         /// <param name="initLists">剩余的有数据的位置</param>
-        public SodukuMarket(List<List<int>> initValues, List<int> initLists)
+        public SudokuMarket(List<List<int>> initValues, List<int> initLists)
         {
             this.initValues = initValues;
             this.initLists = initLists;
@@ -398,7 +398,7 @@ namespace SodukuBase
         /// </summary>
         /// <param name="initValues">数独初盘</param>
         /// <param name="initLists">剩余的有数据的位置</param>
-        public SodukuMarket(List<List<int>> initValues)
+        public SudokuMarket(List<List<int>> initValues)
         {
             this.initValues = initValues;
 
@@ -418,7 +418,7 @@ namespace SodukuBase
         /// </summary>
         /// <param name="initValues">数独初盘</param>
         /// <param name="initLists">剩余的有数据的位置</param>
-        public SodukuMarket(string initValues):this(StaticTools.StringToList(initValues))
+        public SudokuMarket(string initValues):this(StaticTools.StringToList(initValues))
         {
             
         }

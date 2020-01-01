@@ -1,4 +1,4 @@
-﻿namespace SodukuBase
+﻿namespace SudokuBase
 {
     /// <summary>
     /// 单元设置值的步骤

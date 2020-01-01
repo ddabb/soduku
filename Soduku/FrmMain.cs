@@ -8,18 +8,18 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using SodukuBase;
-using SodukuFactory;
-using SodukuGenerator;
+using SudokuBase;
+using SudokuFactory;
+using SudokuGenerator;
 using System.Runtime.InteropServices;
 using System.Text;
-using SodukuUserControls;
+using SudokuUserControls;
 
 
 using System.Xml.Serialization;
-using SodukuConfig.Config;
+using SudokuConfig.Config;
 
-namespace SodukuUI
+namespace SudokuUI
 {
     public partial class FrmMain : Form
     {
@@ -31,13 +31,13 @@ namespace SodukuUI
 
         private static readonly int numbers = 9;
 
-        private static Soduku sdk = new Soduku();
+        private static Sudoku sdk = new Sudoku();
 
-        private static SodukuBuilder sdkBuilder = new SodukuBuilder();
+        private static SudokuBuilder sdkBuilder = new SudokuBuilder();
 
-        private static SodukuQuestion sdkGenerator = new SodukuQuestion();
+        private static SudokuQuestion sdkGenerator = new SudokuQuestion();
 
-        private static SodukuMarket currentMarket;
+        private static SudokuMarket currentMarket;
 
         private static List<List<int>> questions;
 
@@ -342,7 +342,7 @@ namespace SodukuUI
                 return;
             }
 
-            UpdateCurrentSodukuInfo();
+            UpdateCurrentSudokuInfo();
             Dictionary<string, CellInfo> cells = currentMarket.GetCellInfos();
             this.BackColor = _config.ColorConfig.FrmColor;
             this.tableLayoutPanel1.SuspendLayout();
@@ -520,7 +520,7 @@ namespace SodukuUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var result = sdkBuilder.MakeSoduku();
+            var result = sdkBuilder.MakeSudoku();
             for (int i = 0; i < result.Count; i++)
             {
                 var list = result[i];
@@ -543,7 +543,7 @@ namespace SodukuUI
         {
         }
 
-        private void SolveSoduku_Click(object sender, EventArgs e)
+        private void SolveSudoku_Click(object sender, EventArgs e)
         {
         }
 
@@ -568,36 +568,35 @@ namespace SodukuUI
         private void GenWholeToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            var result = sdkBuilder.MakeSoduku();
-            currentMarket =new SodukuMarket(result);
+            var result = sdkBuilder.MakeSudoku();
+            currentMarket =new SudokuMarket(result);
             RefreshPanel();
         }
 
         private void NormalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool istest = false;
+            bool istest = true;
             if(!istest)
-            { currentMarket = sdkGenerator.AutoQuestion(sdkBuilder.MakeSoduku(), int.Parse(noticeNumber.Text));
+            { currentMarket = sdkGenerator.AutoQuestion(sdkBuilder.MakeSudoku(), int.Parse(noticeNumber.Text));
             }
             else
             {
-                List<List<int>> param = new List<List<int>>()
-
-                {
-                    new List<int> {0, 0, 0, 0, 2, 0, 0, 8, 0,},
-                    new List<int> {0, 4, 0, 0, 0, 9, 0, 0, 3,},
-                    new List<int> {0, 0, 0, 0, 0, 5, 7, 0, 0,},
-                    new List<int> {0, 0, 0, 0, 0, 0, 0, 0, 0,},
-                    new List<int> {8, 0, 5, 0, 7, 0, 0, 2, 0,},
-                    new List<int> {0, 3, 7, 0, 0, 4, 0, 0, 0,},
-                    new List<int> {0, 7, 0, 0, 8, 0, 0, 5, 6,},
-                    new List<int> {0, 9, 0, 0, 0, 0, 3, 0, 0,},
-                    new List<int> {1, 0, 0, 0, 4, 0, 0, 0, 0,}
-                };
-                currentMarket = new SodukuMarket(param);
+         List<List<int>> param = new List<List<int>>()
+        {
+            new List<int> {7, 0, 5, 6, 0, 0, 8, 0, 4},
+            new List<int> {6, 4, 0, 0, 0, 0, 0, 2, 7},
+            new List<int> {1, 2, 8, 4, 7, 0, 0, 5, 6},
+            new List<int> {2, 5, 1, 0, 6, 0, 0, 0, 8},
+            new List<int> {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            new List<int> {8, 0, 0, 0, 5, 0, 2, 6, 0},
+            new List<int> {0, 8, 0, 0, 3, 0, 0, 7, 0},
+            new List<int> {5, 0, 2, 7, 4, 0, 0, 8, 3},
+            new List<int> {3, 0, 7, 5, 0, 0, 4, 0, 2}
+        };
+                currentMarket = new SudokuMarket(param);
             }
             questions = currentMarket.initValues;
-            UpdateCurrentSodukuInfo();
+            UpdateCurrentSudokuInfo();
             showhelp = this.ShowHelpToolStripMenuItem.Checked;
             for (int i = 0; i < questions.Count; i++)
             {
@@ -618,7 +617,7 @@ namespace SodukuUI
             var breakouot = 0;
         }
 
-        private void UpdateCurrentSodukuInfo()
+        private void UpdateCurrentSudokuInfo()
         {
             label4.Text = "共同位置加权值：  " + Math.Round(currentMarket.Common, 2);
             label5.Text = "实际提示数个数为:   " + currentMarket.initLists.Count;
@@ -670,7 +669,7 @@ namespace SodukuUI
                 return;
             }
 
-            new SodukuSolver.SodukuSolver().Solve(currentMarket);
+            new SudokuSolver.SudokuSolver().Solve(currentMarket);
             sdk.Solve(questions, true);
             for (int i = 0; i < questions.Count; i++)
             {
@@ -730,7 +729,7 @@ namespace SodukuUI
                 {
                    return;
                 }
-                currentMarket=new SodukuMarket(StaticTools.StringToList(express));
+                currentMarket=new SudokuMarket(StaticTools.StringToList(express));
                 RefreshPanel();
             }
         }

@@ -6,9 +6,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using SodukuBase;
+using SudokuBase;
 
-namespace SodukuFactory
+namespace SudokuFactory
 {
     public class MoreClues
     {
@@ -103,7 +103,7 @@ namespace SodukuFactory
             {
                 Console.WriteLine("处理字符串   " + index + "  "+ subString);
                 index += 1;
-                var market=new SodukuMarket(subString);
+                var market=new SudokuMarket(subString);
                 var result = market.GetCellInfos().Where(c=>c.Value.Value==0).
                     
                     Select(c1 => c1.Value).ToList();

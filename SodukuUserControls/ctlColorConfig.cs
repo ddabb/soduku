@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SodukuConfig.Config;
+using SudokuConfig.Config;
 
-namespace SodukuUserControls
+namespace SudokuUserControls
 {
     public partial class CtlColorConfig : UserControl
     {
